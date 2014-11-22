@@ -1,5 +1,6 @@
 var app = angular.module('firearm-listings', [
 	'ngRoute',
+	'ui.bootstrap',
 	'GlobalController',
 	'IndexController',
 	'AccountController',
