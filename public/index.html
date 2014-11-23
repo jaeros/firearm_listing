@@ -4,26 +4,47 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="components/bootstrap-css-only/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="components/bootstrap-css-only/css/bootstrap-theme.css" />
-		<title>Firearm Listings | Home</title>
-		<!-- INCLUDE CSS HERE -->
-		<link rel="stylesheet" href="css/foundation.css" />
-		<link rel="stylesheet" href="css/style.css" />
-	</head>
-	<body ng-app="firearm-listings" ng-controller='globalController'>
-		<div ng-view></div>
-		<script type="text/javascript" src="components/angular/angular.js" defer="defer"></script>
-		<script type="text/javascript" src="components/angular-route/angular-route.js" defer="defer"></script>
-		<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js" defer="defer"></script>
-		<script type="text/javascript" src="js/app.js" defer="defer"></script>
-		<script type="text/javascript" src="js/global.js" defer="defer"></script>
-		<script type="text/javascript" src="js/index.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/account.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/admin.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/contact.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/legal.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/listing.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/my-listings.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/register.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/search.js" defer="defer"></script>
-	</body>
-</html>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+			<title>Firearm Listings | Home</title>
+			<!-- INCLUDE CSS HERE -->
+			<link rel="stylesheet" href="css/style.css" />
+		</head>
+		<body ng-app="firearm-listings" ng-controller='globalController'>
+			<header>
+				<div class="page-header">
+					<h1>Firearm Listing <small>Let's sell some guns</small></h1>
+				</div>
+			</header>
+			<div ng-view></div>
+			<script type="text/javascript" src="components/angular/angular.js" defer="defer"></script>
+			<script type="text/javascript" src="components/angular-route/angular-route.js" defer="defer"></script>
+			<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js" defer="defer"></script>
+			<script type="text/javascript" src="js/app.js" defer="defer"></script>
+			<script type="text/javascript" src="js/global.js" defer="defer"></script>
+			<script type="text/javascript" src="js/index.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/account.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/admin.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/contact.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/legal.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/listing.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/my-listings.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/register.js" defer="defer"></script>
+			<script type="text/javascript" src="js/controllers/search.js" defer="defer"></script>
+			<footer>
+				<div class="row">
+					<div class="col-xs-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 text-center">
+						<small>Contents &copy 2014</small>
+					</div>
+					<div class="col-xs-7 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2">
+						<div class="col-xs-12 col-md-11 text-right">
+							<small>
+								<a href="#">Contact Us</a> |
+								<a href="#">Legal</a> |
+								<a href="#">Code</a>
+							</small>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</body>
+	</html>
