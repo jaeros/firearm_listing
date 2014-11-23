@@ -18,11 +18,17 @@ header .navbar{
 }
 
 header a {
-	color:white !important; 
+	color:white !important;
 }
 
 header a:hover {
 	color:lightgray !important;
+}
+
+header .navbar-brand {
+	padding:0;
+	padding-top: 15px;
+	padding-left: 5px;
 }
 
 .input-group-addon {
