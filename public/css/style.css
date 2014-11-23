@@ -23,7 +23,9 @@ header a:hover {
 	color:lightgray !important;
 }
 
-
+header .input-search { 
+	width: 400px 
+}
 
 header h2 {
 	margin-top:0px;
@@ -49,12 +51,12 @@ footer a:hover{
 	text-decoration: none;
 }
 
-.btn-orange {
+.input-group-addon {
 	background:rgb(230, 121, 26) !important;
 	color: white;
 	text-shadow: 0 0px;
 }
 
-.btn-orange:hover{
+.input-group-addon:hover{
 	color:rgb(62,53,56);
 }
