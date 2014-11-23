@@ -1,10 +1,17 @@
 body, h1 {
-  font-family: 'Droid Sans', sans-serif;
-  font-size:12px;
+ 	font-family: 'Droid Sans', sans-serif;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-size:12px;
 }
 
 a {
-  color: #00B7FF;
+ 	color: #00B7FF;
 }
 
 button .button {
@@ -44,8 +51,8 @@ header .navbar-brand {
 
 /*FOOTER STYLES*/
 
-footer {
-	position:absolute;
+.footer {
+	/*position:absolute;*/
 	bottom:0;
 	width:100%;
 	height:45px; 
@@ -54,12 +61,22 @@ footer {
 	padding-top:13px;
 }
 
-footer a {
+.footer a {
 	color: white;
 }
 
-footer a:hover{
+.footer a:hover{
 	color:lightgray;
 	text-decoration: none;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -45px;
+}
+.footer, .push {
+    height: 45px; 
 }
 

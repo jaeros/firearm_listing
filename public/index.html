@@ -10,77 +10,82 @@
 			<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body ng-app="firearm-listings" ng-controller='globalController'>
-		<header>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="row">
-					<div class="container-fluid">
-						<div class="navbar-header col-sm-3 col-md-2 col-lg-2">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#">Firearm Listings</a>
-						</div>
-						<div class="col-sm-9 col-md-10 col-lg-10">
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<div class="row">
-									<div class="col-sm-8 col-md-9 col-lg-10">
-										<form class="navbar-form navbar-left" role="search">
-											<div class="form-group">
-												<div class="input-group">
-									    			<input type="text" class="form-control" placeholder="Search"/>
-									    			<span class="input-group-addon">
-									        			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-									   				</span>
+		<div class="wrapper">
+			<header>
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="row">
+						<div class="container-fluid">
+							<div class="navbar-header col-sm-3 col-md-2 col-lg-2">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="#">Firearm Listings</a>
+							</div>
+							<div class="col-sm-9 col-md-10 col-lg-10">
+								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<div class="row">
+										<div class="col-sm-8 col-md-9 col-lg-10">
+											<form class="navbar-form navbar-left" role="search">
+												<div class="form-group">
+													<div class="input-group">
+										    			<input type="text" class="form-control" placeholder="Search"/>
+										    			<span class="input-group-addon">
+										        			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+										   				</span>
+													</div>
 												</div>
-											</div>
-										</form>
-									</div>
-									<div class="col-sm-4 col-md-3 col-lg-2">
-										<ul class="nav navbar-nav">
-											<li><a href="#/">Login</a></li>
-											<li><a href="#/register">Register</a></li>
-										</ul>
+											</form>
+										</div>
+										<div class="col-sm-4 col-md-3 col-lg-2">
+											<ul class="nav navbar-nav">
+												<li><a href="#/">Login</a></li>
+												<li><a href="#/register">Register</a></li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</nav>
-		</header>
-		<div ng-view></div>
-		<script type="text/javascript" src="components/angular/angular.js" defer="defer"></script>
-		<script type="text/javascript" src="components/angular-route/angular-route.js" defer="defer"></script>
-		<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js" defer="defer"></script>
-		<script type="text/javascript" src="js/app.js" defer="defer"></script>
-		<script type="text/javascript" src="js/global.js" defer="defer"></script>
-		<script type="text/javascript" src="js/index.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/account.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/admin.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/contact.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/legal.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/listing.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/my-listings.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/register.js" defer="defer"></script>
-		<script type="text/javascript" src="js/controllers/search.js" defer="defer"></script>
-		<footer>
-			<div class="row">
-				<div class="col-xs-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 text-center">
-					<small>Contents &copy 2014</small>
-				</div>
-				<div class="col-xs-7 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2">
-					<div class="col-xs-12 col-md-11 text-right">
-						<small>
-						<a href="#/contact">Contact Us</a> |
-						<a href="#/legal">Legal</a> |
-						<a href="https://github.com/jaeros/firearm_listing">Code</a>
-						</small>
-					</div>
+				</nav>
+			</header>
+			<div class="container">
+				<div ng-view></div>
+				<script type="text/javascript" src="components/angular/angular.js" defer="defer"></script>
+				<script type="text/javascript" src="components/angular-route/angular-route.js" defer="defer"></script>
+				<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js" defer="defer"></script>
+				<script type="text/javascript" src="js/app.js" defer="defer"></script>
+				<script type="text/javascript" src="js/global.js" defer="defer"></script>
+				<script type="text/javascript" src="js/index.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/account.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/admin.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/contact.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/legal.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/listing.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/my-listings.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/register.js" defer="defer"></script>
+				<script type="text/javascript" src="js/controllers/search.js" defer="defer"></script>
+			</div>
+			<div class="push"></div>
+		</div>
+
+		<div class="footer">
+			<div class="col-xs-5 col-sm-2 col-sm-offset-5 col-md-2 col-md-offset-5 text-center">
+				<small>Contents &copy 2014</small>
+			</div>
+			<div class="col-xs-7 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2">
+				<div class="col-xs-12 col-md-11 text-right">
+					<small>
+					<a href="#/contact">Contact Us</a> |
+					<a href="#/legal">Legal</a> |
+					<a href="https://github.com/jaeros/firearm_listing">Code</a>
+					</small>
 				</div>
 			</div>
-		</footer>
+		</div>
+		
 	</body>
 </html>
