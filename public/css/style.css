@@ -10,6 +10,8 @@ button .button {
 	font-size:8pt;
 }
 
+/*HEADER STYLES*/
+
 header .navbar{
 	background:rgb(62,53,56);
 	color: white;
@@ -23,14 +25,17 @@ header a:hover {
 	color:lightgray !important;
 }
 
-header .input-search { 
-	width: 400px 
+.input-group-addon {
+	background:rgb(230, 121, 26) !important;
+	color: white;
+	text-shadow: 0 0px;
 }
 
-header h2 {
-	margin-top:0px;
-	padding-top:15px;
+.input-group-addon:hover{
+	color:rgb(62,53,56);
 }
+
+/*FOOTER STYLES*/
 
 footer {
 	position:absolute;
@@ -51,12 +56,3 @@ footer a:hover{
 	text-decoration: none;
 }
 
-.input-group-addon {
-	background:rgb(230, 121, 26) !important;
-	color: white;
-	text-shadow: 0 0px;
-}
-
-.input-group-addon:hover{
-	color:rgb(62,53,56);
-}
