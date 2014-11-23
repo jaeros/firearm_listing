@@ -10,13 +10,22 @@ button .button {
 	font-size:8pt;
 }
 
-header .page-header {
+header .navbar{
 	background:rgb(62,53,56);
-	margin: 0px;
 	color: white;
 }
 
-header h1 {
+header a {
+	color:white !important; 
+}
+
+header a:hover {
+	color:lightgray !important;
+}
+
+
+
+header h2 {
 	margin-top:0px;
 	padding-top:15px;
 }
@@ -38,4 +47,14 @@ footer a {
 footer a:hover{
 	color:lightgray;
 	text-decoration: none;
+}
+
+.btn-orange {
+	background:rgb(230, 121, 26) !important;
+	color: white;
+	text-shadow: 0 0px;
+}
+
+.btn-orange:hover{
+	color:rgb(62,53,56);
 }
