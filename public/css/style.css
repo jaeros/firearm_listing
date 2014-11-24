@@ -1,3 +1,6 @@
+/*********************************************************************************/
+/*GENERAL*/
+/*********************************************************************************/
 body, h1 {
  	font-family: 'Droid Sans', sans-serif;
 }
@@ -13,13 +16,25 @@ body {
 a {
  	color: #00B7FF;
 }
+/*********************************************************************************/
+/*BUTTONS*/
+/*********************************************************************************/
 
 button .button {
 	font-size:8pt;
 }
 
-/*HEADER STYLES*/
+.blue-btn {
+	background:rgb(131,146,159);
+	color:white;
+	text-shadow:0 0px;
+	width:100%;
+	border-radius:10px;
+}
 
+/*********************************************************************************/
+/*HEADER STYLES*/
+/*********************************************************************************/
 header .navbar{
 	background:rgb(62,53,56);
 	color: white;
@@ -49,11 +64,10 @@ header .navbar-brand {
 .input-group-addon:hover{
 	color:rgb(62,53,56);
 }
-
+/*********************************************************************************/
 /*FOOTER STYLES*/
-
+/*********************************************************************************/
 .footer {
-	/*position:absolute;*/
 	bottom:0;
 	width:100%;
 	background:rgb(62,53,56);
@@ -76,16 +90,29 @@ header .navbar-brand {
     height: 100%;
     margin: 0 auto -45px;
 }
+
 .footer, .push {
     height: 45px; 
 }
 
-/*INDEX STYLES*/
-
+/*********************************************************************************/
+/*COLORS*/
+/*********************************************************************************/
 .orange {
 	background:rgb(230, 121, 26) !important;
 }
 
+.border-black {
+	border-color:black;
+}
+
+.border-orange {
+	border-color:rgb(230, 121, 26);
+}
+
+/*********************************************************************************/
+/*INDEX STYLES*/
+/*********************************************************************************/
 .browse-table {
 	background:lightgray;
 	padding-top: 15px;
@@ -104,14 +131,6 @@ header .navbar-brand {
 	border: 1px solid black;
 }
 
-.border-black {
-	border-color:black;
-}
-
-.border-orange {
-	border-color:rgb(230, 121, 26);
-}
-
 a h1 {
 	color:black;
 }
@@ -119,8 +138,10 @@ a h1 {
 a h1:hover {
 	color: darkgray;
 }
-/*LISTING STYLES*/
 
+/*********************************************************************************/
+/*LISTING STYLES*/
+/*********************************************************************************/
 .listing-header {
 	height: 40px;
 	background:rgb(62,53,56);
@@ -135,26 +156,6 @@ a h1:hover {
 .white-small {
 	color:white;
 	font-size:14px;
-}
-
-.space-sm {
-	height: 30px;
-}
-.space-xs {
-	height: 15px;
-}
-
-.no-padding {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-.blue-btn {
-	background:rgb(131,146,159);
-	color:white;
-	text-shadow:0 0px;
-	width:100%;
-	border-radius:10px;
 }
 
 .thumbnail {
@@ -173,8 +174,30 @@ a h1:hover {
 	padding: 5px;
 }
 
+/*********************************************************************************/
+/*REMOVE BOOTSTRAP STYLING*/
+/*********************************************************************************/
+.no-padding {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.no-border {
+	border:none;
+}
+
 .no-margin {
 	margin-left: 0px;
 	margin-right: 0px;
+}
+
+/*********************************************************************************/
+/*SPACING*/
+/*********************************************************************************/
+.space-sm {
+	height: 30px;
+}
+.space-xs {
+	height: 15px;
 }
 
