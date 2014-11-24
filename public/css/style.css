@@ -64,6 +64,15 @@ header .navbar-brand {
 .input-group-addon:hover{
 	color:rgb(62,53,56);
 }
+
+header .navbar-form {
+	width: 100% !important;
+}
+
+header .navbar-form .form-group {
+	width: 100%;
+}
+
 /*********************************************************************************/
 /*FOOTER STYLES*/
 /*********************************************************************************/
