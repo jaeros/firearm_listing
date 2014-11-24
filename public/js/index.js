@@ -1,4 +1,4 @@
-var indexController = angular.module('IndexController', ['ui.bootstrap']);
+var indexController = angular.module('IndexController', []);
 
 indexController.controller('indexController', function($scope) {
 	$scope.test = "Index controller text";
