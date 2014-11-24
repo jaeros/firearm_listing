@@ -86,6 +86,11 @@ header .navbar-brand {
 	background:rgb(230, 121, 26) !important;
 }
 
+.browse-table {
+	background:lightgray;
+	padding-top: 15px;
+}
+
 /*LISTING STYLES*/
 
 .listing-header {
