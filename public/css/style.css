@@ -140,6 +140,9 @@ a h1:hover {
 .space-sm {
 	height: 30px;
 }
+.space-xs {
+	height: 15px;
+}
 
 .no-padding {
 	padding-right: 0px;
