@@ -32,6 +32,23 @@ button .button {
 	border-radius:10px;
 }
 
+.btn-success {
+    background-image: linear-gradient(to bottom, #F2801D 0%, #E6791A 100%);
+    background-repeat: repeat-x;
+    border-color: #E6791A;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #DB7318;
+  background-position: 0 -15px;
+}
+.btn-success:active,
+.btn-success.active {
+  background-color: #DB7318;
+  border-color: #DB7318;
+}
+
 /*********************************************************************************/
 /*HEADER STYLES*/
 /*********************************************************************************/
