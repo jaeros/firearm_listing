@@ -89,8 +89,36 @@ header .navbar-brand {
 .browse-table {
 	background:lightgray;
 	padding-top: 15px;
+	border: 1px solid black;
+	border-left: none;
 }
 
+.selected {
+	background: lightgray;
+	border: 1px solid black;
+	border-right: none;
+}
+
+.unselected {
+	background: gray;
+	border: 1px solid black;
+}
+
+.border-black {
+	border-color:black;
+}
+
+.border-orange {
+	border-color:rgb(230, 121, 26);
+}
+
+a h1 {
+	color:black;
+}
+
+a h1:hover {
+	color: darkgray;
+}
 /*LISTING STYLES*/
 
 .listing-header {
