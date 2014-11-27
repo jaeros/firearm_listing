@@ -64,4 +64,21 @@ router.get('/:listingId', function(req, res) {
   });
 });
 
+router.post('/:listingId', function(req, res) {
+  listings.push(req.body);
+
+  console.log(listings);
+});
+
+router.put('/:listingId', function(req, res) {
+  newListing = req.body;
+
+  for(var i = 0; i < listings.length; i++) {
+    if(listings[i].id == listingId) {
+      listings[i] = req.body;
+      console.log(listings[i]);
+    }
+  }
+});
+
 module.exports = router;
