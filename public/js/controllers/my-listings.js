@@ -24,7 +24,7 @@ myListings.controller('myListingsController', function($scope, Listings) {
 
 
 	/* If you do need to access the data to do some processing, then you would do
-	   something like this. The next two queries do basically the same thing.
+	   something like this. The next three queries do basically the same thing.
 	   The $promise is useful when you find yourself doing a lot of nested callback
 	   functions in the example immediately below this comment. With the $promise,
 	   you can make your code a lot cleaner by not using a ton of nested callback
@@ -42,6 +42,10 @@ myListings.controller('myListingsController', function($scope, Listings) {
 	});
 
 	console.log(data);
+
+	data.$promise.then(function(listings) {
+		console.log(listings);
+	});
 
 
 	/* This last one here is an example of a GET that gets one particular listing,
