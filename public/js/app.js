@@ -1,5 +1,6 @@
 var app = angular.module('firearm-listings', [
 	'ngRoute',
+	'ngResource',
 	'GlobalController',
 	'IndexController',
 	'AccountController',
@@ -12,7 +13,7 @@ var app = angular.module('firearm-listings', [
 	'SearchController'
 ]);
 
-app.config(['$routeProvider', '$httpProvider', 
+app.config(['$routeProvider', '$httpProvider',
 	function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'partials/index.html',
