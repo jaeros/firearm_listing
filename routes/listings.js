@@ -1,5 +1,8 @@
 var express = require('express');
+var model = require('../models/listing');
 var router = express.Router();
+
+var Listing = model.Listing;
 
 var tempDate = new Date("October 13, 2014 11:13:00").toString();
 

@@ -1,12 +1,11 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/firearm_listings');
 
 // -------------------------------------------
 // VALIDATION DATA
 // -------------------------------------------
 
 var emailValidator = [function(val) {
-	return /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/.test(val);
+	return /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/.test(val);
 }, '{PATH} is not a valid email.'];
 
 var accountTypeValidator = {
@@ -20,10 +19,7 @@ var accountTypeValidator = {
 var userSchema = mongoose.Schema({
 	username: {type: String, required: true},
 	password: {type: String, required: true},
-	name: {
-		first: {type: String, required: true, trim: true},
-		last: {type: String, required: true, trim: true}
-	},
+	name: {type: String, trim: true},
 	location: {
 		address1: String,
 		address2: String,
@@ -46,4 +42,4 @@ var User = mongoose.model('User', userSchema);
 // -------------------------------------------
 // EXPORTS
 // -------------------------------------------
-exports.user = User;
+exports.User = User;
