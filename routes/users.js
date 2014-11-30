@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
   User.find({}, function(err, docs) {
   	if(err)
   	{
-  		res.status(400).send('Could not retrieve users');
+  		res.status(500).send('Could not retrieve users');
   	}
   	else
   	{
