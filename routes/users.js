@@ -36,7 +36,7 @@ router.post('/', function(req, res) {
 		{
 			res.status(201)
 			   .set('Location', '/users/' + user._id)
-			   .send("All good here!");
+			   .send(user);
 		}
 	});
 	
@@ -62,26 +62,43 @@ router.put('/:userId', function(req, res) {
 	// We have to update manually because mongoose's update function
 	// 	doesn't run validators on update command (cool, huh?)
 	User.findOne({'_id': req.params.userId}, function(err, doc) {
-		doc.username = req.body.username;
-		doc.password = req.body.password;
-		doc.name = req.body.name;
-		doc.location = req.body.location;
-		doc.email = req.body.email;
-		doc.phone = req.body.phone;
-		doc.accountType = req.body.accountType;
-		doc.profileImageUrl = req.body.profileImageUrl;
-		doc.isActive = req.body.isActive;
-		doc.save(function(err) {
-			if(err)
-			{
-				console.log(err);
-				res.status(400).send('User could not be created/updated.');
-			}
-			else
-			{
-				res.status(204).send('');
-			}
-		});
+		if(err)
+		{
+			res.status(500).send('Could not update user');
+		}
+		else if(!doc)
+		{
+			// Document not found, create a new document
+			User(user).save(function(err) {
+				if(err)
+					res.status(400).send('Invalid user');
+				else
+					res.status(200).send(user);
+			});
+		}
+		else
+		{
+			doc.username = req.body.username;
+			doc.password = req.body.password;
+			doc.name = req.body.name;
+			doc.location = req.body.location;
+			doc.email = req.body.email;
+			doc.phone = req.body.phone;
+			doc.accountType = req.body.accountType;
+			doc.profileImageUrl = req.body.profileImageUrl;
+			doc.isActive = req.body.isActive;
+			doc.save(function(err) {
+				if(err)
+				{
+					console.log(err);
+					res.status(400).send('User could not be created/updated.');
+				}
+				else
+				{
+					res.status(204).send('');
+				}
+			});
+		}
 	});
 });
 

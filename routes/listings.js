@@ -1,87 +1,107 @@
+// -------------------------------------------
+// DEPENDENCIES
+// -------------------------------------------
 var express = require('express');
 var model = require('../models/listing');
 var router = express.Router();
 
+// -------------------------------------------
+// SETUP
+// -------------------------------------------
 var Listing = model.Listing;
 
-var tempDate = new Date("October 13, 2014 11:13:00").toString();
+// -------------------------------------------
+// ENDPOINTS
+// -------------------------------------------
 
-// Hard coded data
-listings = [
-  {
-    id: 0,
-    userId: 0,
-    title: 'My Awesome Mauser!',
-    firearmId: 12345,
-    customGunSpecs: {},
-    description: 'This Post WWII rifle is such a beauty. Take one shot and you\'ll be hooked!',
-    price: 450.99,
-    photos: [
-      {
-        url: 'http://placehold.it/200x200',
-        description: 'Mauser - M48'
-      }
-    ],
-    pageViews: 12,
-    listedOn: tempDate,
-    refreshedOn: tempDate,
-    Promotion: null,
-    isSold: false,
-    isActive: true
-  },
-  {
-    id: 1,
-    userId: 10,
-    title: 'Glock 42',
-    firearmId: 9000,
-    customGunSpecs: {},
-    description: 'The perfect weapon for concealed carry. .380 AUTO really is big enough, trust me.',
-    price: 425.00,
-    photos: [
-    {
-      url: 'http://placehold.it/200x200',
-      description: 'Glock 42'
-    }
-    ],
-    pageViews: 421,
-    listedOn: tempDate,
-    refreshedOn: tempDate,
-    Promotion: null,
-    isSold: false,
-    isActive: true
-  }
-];
+/* Create new listing */
+router.post('/', function(req, res) {
+  var listing = Listing(req.body);
+  listing.save(function(err) {
+	if(err)
+	  res.status(400).send('Invalid listing');
+	else
+	  res.status(201)
+		 .set('Location', '/listings/' + listing._id)
+		 .send(listing);
+  });
+});
 
 /* GET all listings */
 router.get('/', function(req, res) {
-  res.json(listings);
+  Listing.find({}, function(err, docs) {
+	if(err)
+	  res.status(500).send('Couldn\'t retrieve listings');
+	else
+	  res.status(200).send(docs);
+  });
 });
 
 /* GET a listing based on the listing's id */
 router.get('/:listingId', function(req, res) {
   listingId = req.params.listingId;
 
-  listings.forEach(function (listing) {
-    if(listing.id == listingId)
-      res.json(listing);
+  Listing.find({'_id': listingId}, function(err, docs) {
+	if(docs)
+	  res.status(200).send(docs[0]);
+	else if (err)
+	  res.status(500).send('Could not retrieve listing');
+	else
+	  res.status(404).send('Specified listing not found');
   });
 });
 
-router.post('/:listingId', function(req, res) {
-  listings.push(req.body);
-
-  console.log(listings);
-});
-
+/* UPDATE an existing listing */
 router.put('/:listingId', function(req, res) {
-  newListing = req.body;
+	var user = req.body;
 
-  for(var i = 0; i < listings.length; i++) {
-    if(listings[i].id == listingId) {
-      listings[i] = req.body;
-      console.log(listings[i]);
-    }
-  }
+	// We have to update manually because mongoose's update function
+	// 	doesn't run validators on update command (cool, huh?)
+	Listing.findOne({'_id': req.params.listingId}, function(err, doc) {
+		if(err)
+		{
+			res.status(500).send('Could not update listing');
+		}
+		else if(!doc)
+		{
+			// Document not found, create a new document
+			var newUser = User(user);
+			newUser.save(function(err) {
+				if(err)
+					res.status(400).send('Invalid listing');
+				else
+					res.status(200).send(newUser);
+			});
+		}
+		else
+		{
+			doc.title = listing.title;
+			doc.gunTypeId = listing.gunTypeId;
+			doc.customGunSpecs = listing.customGunSpecs;
+			doc.description = listing.description;
+			doc.price = listing.price;
+			doc.photos = listing.photos;
+			doc.pageViews = listing.pageViews;
+			doc.listedOn = listing.listedOn;
+			doc.refreshedOn = listing.refreshedOn;
+			doc.promotion = listing.promotion;
+			doc.userId = listing.userId;
+			doc.isSold = listing.isSold;
+			doc.isActive = listing.isActive;
+			doc.save(function(err) {
+				if(err)
+				{
+					console.log(err);
+					res.status(400).send('Listing could not be created/updated.');
+				}
+				else
+				{
+					res.status(204).send('');
+				}
+			});
+		}
+	});
+
 });
 
 module.exports = router;
