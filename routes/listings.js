@@ -29,31 +29,42 @@ router.post('/', function(req, res) {
 
 /* GET all listings */
 router.get('/', function(req, res) {
-  Listing.find({}, function(err, docs) {
-	if(err)
-	  res.status(500).send('Couldn\'t retrieve listings');
-	else
-	  res.status(200).send(docs);
-  });
+  var findListings = function(err, docs) {
+    if(err)
+      res.status(500).send('Couldn\'t retrieve listings');
+    else
+      res.status(200).send(docs);
+  };
+
+  if(req.query.userId) {
+    Listing.find({userId: 'abc123'}, findListings);
+  }
+  else {
+    Listing.find({}, findListings);
+  }
 });
 
 /* GET a listing based on the listing's id */
 router.get('/:listingId', function(req, res) {
   listingId = req.params.listingId;
+  console.log(listingId);
 
   Listing.find({'_id': listingId}, function(err, docs) {
-	if(docs)
-	  res.status(200).send(docs[0]);
-	else if (err)
-	  res.status(500).send('Could not retrieve listing');
-	else
-	  res.status(404).send('Specified listing not found');
+    console.log(err);
+
+  	if(docs)
+  	  res.status(200).send(docs[0]);
+  	else if (err)
+  	  res.status(500).send('Could not retrieve listing');
+  	else
+  	  res.status(404).send('Specified listing not found');
   });
 });
 
 /* UPDATE an existing listing */
 router.put('/:listingId', function(req, res) {
-	var user = req.body;
+	var listing = req.body;
+  console.log(listing);
 
 	// We have to update manually because mongoose's update function
 	// 	doesn't run validators on update command (cool, huh?)
@@ -65,12 +76,12 @@ router.put('/:listingId', function(req, res) {
 		else if(!doc)
 		{
 			// Document not found, create a new document
-			var newUser = User(user);
-			newUser.save(function(err) {
+			var newListing = Listing(listing);
+			newListing.save(function(err) {
 				if(err)
 					res.status(400).send('Invalid listing');
 				else
-					res.status(200).send(newUser);
+					res.status(200).send(newListing);
 			});
 		}
 		else
