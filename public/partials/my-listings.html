@@ -1,24 +1,26 @@
 <div class="row">
 	<h1 class="text-center">My Listings</h1>
-	<div ng-repeat="listing in myListings.myListings">
+	<div ng-repeat="listing in myListings.myListings" ng-if="listing.isActive">
 		<div class="row">
 			<div class="col-xs-12 listing-header">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left white-large">
 					<div ng-if="!myListings.editing">{{listing.title}}</div>
-					<div ng-if="myListings.editing"><input class="black-medium" type="text" ng-model="myListings.listingTitle" ng-init="myListings.listingTitle = listing.title" /></div>
+					<div ng-if="myListings.editing"><input class="black-medium" type="text" ng-model="myListings.editListing.title" /></div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right white-large">
 					<div ng-if="!myListings.editing">${{listing.price}}</div>
-					<div ng-if="myListings.editing">$<input class="black-medium" type="text" ng-model="myListings.listingPrice" ng-init="myListings.listingPrice = listing.price" /></div>
+					<div ng-if="myListings.editing">$<input class="black-medium" type="text" ng-model="myListings.editListing.price" /></div>
 				</div>
 			</div>
 		</div>
 		<div class="row listing-body">
-			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
-				<div class="text-right"><h4><a ng-click="myListings.startEditing()" ng-if="!myListings.editing">Edit</a></h4></div>
+			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0" ng-if="!myListings.editing">
+				<div class="text-right"><h4><a ng-click="myListings.startEditing(listing)">Edit</a></h4></div>
 			</div>
-			<span><button type="button" class="btn btn-default blue-btn no-padding" ng-click="myListings.saveEditing()" ng-if="myListings.editing"><small>Save</small></button></span>
-			<span><button type="button" class="btn btn-default blue-btn no-padding" ng-click="myListings.cancelEditing()" ng-if="myListings.editing"><small>Cancel</small></button></span>
+			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0" ng-if="myListings.editing">
+				<button type="button" class="btn btn-default blue-btn no-padding listing-save-cancel-btn pull-right" ng-click="myListings.saveEditing()"><small>Save</small></button>
+				<button type="button" class="btn btn-default blue-btn no-padding listing-save-cancel-btn pull-right" ng-click="myListings.cancelEditing()"><small>Cancel</small></button>
+			</div>
 			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-md-3">
 				<img class="img-responsive" src="img/revolver.png" />
 				<h4>Views: {{listing.pageViews}}</h4>
@@ -29,12 +31,12 @@
 				<h5 ng-if="!myListings.editing">
 					{{listing.description}}
 				</h5>
-				<textarea class="textarea" ng-model="myListings.listingDescription" ng-init="myListings.listingDescription = listing.description" ng-if="myListings.editing"></textarea>
+				<textarea class="textarea" ng-model="myListings.editListing.description" ng-if="myListings.editing"></textarea>
 			</div>
 			<div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-0">
 
-				<button type="button" class="btn btn-default blue-btn no-padding"><small>Mark as Sold</small></button>
-				<button type="button" class="btn btn-default blue-btn no-padding"><small>Delete Listing</small></button>
+				<button type="button" class="btn btn-default blue-btn no-padding" ng-click="myListings.sellListing(listing)"><small>Mark as Sold</small></button>
+				<button type="button" class="btn btn-default blue-btn no-padding" ng-click="myListings.deleteListing(listing)"><small>Delete Listing</small></button>
 			</div>
 			<div class="row col-xs-12 space-sm"></div>
 		</div>

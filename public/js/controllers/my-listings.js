@@ -73,17 +73,17 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// 	 In this example, we also see an update (put) happening, where we change something
 	// 	 on the json object, then do a $update on it. This will update the backend
 	// 	 appropriately. */
-	var listing = Listings.get({listingId: '547d37a7feb2d8e81a29cddd'}, function(listing) {
-		console.log(listing);
-
-		listing.title = 'NEW TITLE';
-
-		listing.$update({listingId: listing._id});
-	});
-
-	Listings.query(function(listings) {
-		console.log(listings);
-	});
+	// var listing = Listings.get({listingId: '547d37a7feb2d8e81a29cddd'}, function(listing) {
+	// 	console.log(listing);
+	//
+	// 	listing.title = 'Like-new AK-47 UPDATED';
+	//
+	// 	listing.$update({listingId: listing._id});
+	// });
+	//
+	// Listings.query(function(listings) {
+	// 	console.log(listings);
+	// });
 
 	// console.log(listing);
 	//
@@ -107,25 +107,49 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 
 	this.init = function() {
 		this.editing = false;
+		this.storeListing = {};
+		this.editListing = {};
 
 		this.myListings = Listings.query({userId: 'abc123'});
-
-		// this.listing = Listings.get({listingId: '547d24f3d92520812ddf2795'}, function(listing) {
-		// 	console.log(listing);
-		// });
 	};
 
 	this.init();
 
-	this.startEditing = function() {
+	this.startEditing = function(listing) {
+		this.storeListing = listing;
+		this.editListing = listing;
 		this.editing = true;
 	};
 
 	this.saveEditing = function() {
 		this.editing = false;
+
+		this.editListing.$update({listingId: this.editListing._id});
 	};
 
 	this.cancelEditing = function() {
+		this.editListing = this.storeListing;
+		this.storeListing = {};
 		this.editing = false;
+	};
+
+	this.sellListing = function(listing) {
+		var sold = window.confirm("Are you sure you want to mark this item as sold?");
+
+		if(sold) {
+			listing.isSold = true;
+
+			listing.$update({listingId: listing._id});
+		}
+	};
+
+	this.deleteListing = function(listing) {
+		var isDeleted = window.confirm("Are you sure you want to delete this listing?");
+
+		if(isDeleted) {
+			listing.isActive = false;
+
+			listing.$update({listingId: listing._id});
+		}
 	};
 });
