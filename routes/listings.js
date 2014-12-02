@@ -63,7 +63,8 @@ router.get('/:listingId', function(req, res) {
 
 /* UPDATE an existing listing */
 router.put('/:listingId', function(req, res) {
-	var user = req.body;
+	var listing = req.body;
+  console.log(listing);
 
 	// We have to update manually because mongoose's update function
 	// 	doesn't run validators on update command (cool, huh?)
@@ -75,12 +76,12 @@ router.put('/:listingId', function(req, res) {
 		else if(!doc)
 		{
 			// Document not found, create a new document
-			var newUser = User(user);
-			newUser.save(function(err) {
+			var newListing = Listing(listing);
+			newListing.save(function(err) {
 				if(err)
 					res.status(400).send('Invalid listing');
 				else
-					res.status(200).send(newUser);
+					res.status(200).send(newListing);
 			});
 		}
 		else

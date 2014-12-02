@@ -73,13 +73,23 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// 	 In this example, we also see an update (put) happening, where we change something
 	// 	 on the json object, then do a $update on it. This will update the backend
 	// 	 appropriately. */
-	// var listing = Listings.get({listingId: 0}, function() {
-	// 	console.log(listing);
+	var listing = Listings.get({listingId: '547d37a7feb2d8e81a29cddd'}, function(listing) {
+		console.log(listing);
+
+		listing.title = 'NEW TITLE';
+
+		listing.$update({listingId: listing._id});
+	});
+
+	Listings.query(function(listings) {
+		console.log(listings);
+	});
+
+	// console.log(listing);
 	//
-	// 	listing.newData = 'new stuff';
+	// listing.newData = 'new stuff';
 	//
-	// 	listing.$update();
-	// });
+	// Listings.update({listingId: listing._id}, listing);
 	//
 	// listing.$promise.then(function(listing) {
 	// 	console.log(listing);
@@ -96,9 +106,9 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// Actual implementation
 
 	this.init = function() {
-		this.myListings = Listings.query({userId: 'abc123'}, function(listings) {
-			console.log(listings);
-		});
+		this.editing = false;
+
+		this.myListings = Listings.query({userId: 'abc123'});
 
 		// this.listing = Listings.get({listingId: '547d24f3d92520812ddf2795'}, function(listing) {
 		// 	console.log(listing);
@@ -106,4 +116,16 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	};
 
 	this.init();
+
+	this.startEditing = function() {
+		this.editing = true;
+	};
+
+	this.saveEditing = function() {
+		this.editing = false;
+	};
+
+	this.cancelEditing = function() {
+		this.editing = false;
+	};
 });
