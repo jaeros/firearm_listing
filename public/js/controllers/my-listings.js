@@ -121,6 +121,7 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	this.init();
 
 	$scope.startEditing = function(listing) {
+		$scope.oldListing = angular.copy(listing);
 		$scope.editListing = listing;
 		$scope.editing = true;
 	};
@@ -133,7 +134,11 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 
 	$scope.cancelEditing = function(listing) {
 		$timeout(function() {
-			$scope.myListings = Listings.query({userId: 'abc123'});
+			for(var i = 0; i < $scope.myListings.length; i++) {
+				if($scope.myListings[i]._id === listing._id)
+					$scope.myListings[i] = $scope.oldListing;
+			}
+
 			$scope.editing = false;
 		});
 	};
