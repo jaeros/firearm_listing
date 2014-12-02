@@ -106,34 +106,33 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// Actual implementation
 
 	this.init = function() {
-		this.editing = false;
-		this.storeListing = {};
-		this.editListing = {};
+		$scope.editing = false;
+		$scope.editListing = {};
 
-		this.myListings = Listings.query({userId: 'abc123'});
+		$scope.myListings = Listings.query({userId: 'abc123'});
 	};
 
 	this.init();
 
-	this.startEditing = function(listing) {
-		this.storeListing = listing;
-		this.editListing = listing;
-		this.editing = true;
+	$scope.startEditing = function(listing) {
+		$scope.editListing = listing;
+		$scope.editing = true;
 	};
 
-	this.saveEditing = function() {
-		this.editing = false;
+	$scope.saveEditing = function() {
+		$scope.editing = false;
 
-		this.editListing.$update({listingId: this.editListing._id});
+		$scope.editListing.$update({listingId: $scope.editListing._id});
 	};
 
-	this.cancelEditing = function() {
-		this.editListing = this.storeListing;
-		this.storeListing = {};
-		this.editing = false;
+	$scope.cancelEditing = function(listing) {
+		$timeout(function() {
+			$scope.myListings = Listings.query({userId: 'abc123'});
+			$scope.editing = false;
+		});
 	};
 
-	this.sellListing = function(listing) {
+	$scope.sellListing = function(listing) {
 		var sold = window.confirm("Are you sure you want to mark this item as sold?");
 
 		if(sold) {
@@ -143,7 +142,7 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 		}
 	};
 
-	this.deleteListing = function(listing) {
+	$scope.deleteListing = function(listing) {
 		var isDeleted = window.confirm("Are you sure you want to delete this listing?");
 
 		if(isDeleted) {
