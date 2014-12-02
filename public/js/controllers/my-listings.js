@@ -108,8 +108,14 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	this.init = function() {
 		$scope.editing = false;
 		$scope.editListing = {};
+		$scope.activeListings = 0;
 
-		$scope.myListings = Listings.query({userId: 'abc123'});
+		$scope.myListings = Listings.query({userId: 'abc123'}, function(listings) {
+			listings.forEach(function(listing) {
+				if(listing.isActive)
+					$scope.activeListings++;
+			});
+		});
 	};
 
 	this.init();
@@ -149,6 +155,8 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 			listing.isActive = false;
 
 			listing.$update({listingId: listing._id});
+
+			$scope.activeListings--;
 		}
 	};
 });
