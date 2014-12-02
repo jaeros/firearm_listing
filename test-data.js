@@ -103,6 +103,8 @@ function addTestUser2(onComplete) {
 	});
 }
 
+var tempDate = new Date("October 13, 2014 11:13:00").toString();
+
 function addTestListing(onComplete) {
 	console.log("Adding test listing 1...");
 	var testListing1 = {
@@ -125,6 +127,9 @@ function addTestListing(onComplete) {
 				url: 'http://placehold.it/200x200'
 			}
 		],
+		pageViews: 107,
+		listedOn: tempDate,
+		refreshedOn: tempDate,
 		userId: "abc123",
 		isSold: false,
 		isActive: true
@@ -136,4 +141,3 @@ function addTestListing(onComplete) {
 		onComplete();
 	});
 };
-

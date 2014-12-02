@@ -4,6 +4,9 @@ app.factory('Listings', function($resource) {
     listingId: '@id'
   },
   {
+    save: {
+      url: '/listings'
+    },
     update: {
       method: 'PUT'
     }
