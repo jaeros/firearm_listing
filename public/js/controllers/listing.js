@@ -11,7 +11,7 @@ listing.controller('listingController', function($scope, Listings) {
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
 		console.log(listing);
-		listing.$update();
+		listing.$update({listingId: listing._id});
 	});
 	/*$scope.listing = {
 		title: "Like-new AK-47",
