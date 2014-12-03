@@ -18,8 +18,8 @@ cmApp.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 	return {
 		request: function(config) {
 			config.headers = config.headers || {};
-			
-			if($window.sessionStorage.token) 
+
+			if($window.sessionStorage.token)
 				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
 
 			return config;
@@ -73,7 +73,7 @@ app.config(['$routeProvider', '$httpProvider',
 		}).
 		when('/add-listing', {
 			templateUrl: 'partials/add-listing.html',
-			controller: 'addListingsController'
+			controller: 'addListingController'
 		}).
 		when('/admin', {
 			templateUrl: 'partials/admin.html',
