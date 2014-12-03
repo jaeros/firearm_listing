@@ -13,8 +13,32 @@ var app = angular.module('firearm-listings', [
 	'SearchController'
 ]);
 
+// Interceptor for http calls to use authentication
+cmApp.factory('authInterceptor', function($rootScope, $q, $window, $location) {
+	return {
+		request: function(config) {
+			config.headers = config.headers || {};
+			
+			if($window.sessionStorage.token) 
+				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+
+			return config;
+		},
+		responseError: function(rejection) {
+			if(rejection.data == "Unauthorized")
+			{
+				console.log("Response error 401. Redirecting to login.");
+				$location.path('/');
+			}
+			return $q.reject(rejection);
+		}
+	}
+});
+
 app.config(['$routeProvider', '$httpProvider',
 	function($routeProvider, $httpProvider) {
+
+		// ROUTES
 		$routeProvider.when('/', {
 			templateUrl: 'partials/index.html',
 			controller: 'indexController'
@@ -53,5 +77,8 @@ app.config(['$routeProvider', '$httpProvider',
 		}).
 		otherwise({
 			redirectTo: '/'
-		})
+		});
+
+		// AUTHENTICATION INTERCEPTOR
+		$httpProvider.interceptors.push('authInterceptor');
 	}]);

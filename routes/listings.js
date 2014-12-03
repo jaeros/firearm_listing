@@ -4,19 +4,28 @@
 var express = require('express');
 var model = require('../models/listing');
 var router = express.Router();
+var jwt = require('express-jwt');
+var config = require('config');
 
 // -------------------------------------------
 // SETUP
 // -------------------------------------------
 var Listing = model.Listing;
+var _secret = config.get('secret');
+console.log("Secret: " + _secret);
 
 // -------------------------------------------
 // ENDPOINTS
 // -------------------------------------------
 
 /* Create new listing */
-router.post('/', function(req, res) {
+/* PROTECTED */
+router.post('/', jwt({secret: _secret}), function(req, res) {
+  
+  console.log("User: ", req.user);
+
   var listing = Listing(req.body);
+
   listing.save(function(err) {
 	if(err)
 	  res.status(400).send('Invalid listing');

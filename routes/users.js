@@ -2,6 +2,9 @@ var express = require('express');
 var model = require('../models/user');
 var User = model.User;
 var router = express.Router();
+var bcrypt = require('bcryptjs');
+var config = require('config');
+var jwt = require('jsonwebtoken');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -24,6 +27,9 @@ router.post('/', function(req, res) {
 
 	// Create user from parameters
 	var user = User(req.body);
+
+	// Hash password
+	user.password = hashPassword(user.password);
 
 	// Attempt to save user to mongo
 	user.save(function(err) {
@@ -102,4 +108,47 @@ router.put('/:userId', function(req, res) {
 	});
 });
 
+router.post('/login', function(req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+
+	// Retrieve specified user
+	User.findOne({'username': username}, function(err, doc) {
+		if(err || !doc)
+		{
+			console.log("Error: ", err);
+			console.log("Doc: ", doc);
+			res.status(401).send('Bad username or password');
+		}
+		else
+		{
+			var storedHash = doc.password;
+			// Compare passwords
+			if(bcrypt.compareSync(password, storedHash))
+			{
+				console.log("Okay, we're here.");
+				// Authentication successful, send token to client
+				var token = jwt.sign(doc, config.get('secret'), {expiresInMinutes: 3 * 60});
+				res.status(200).send({"token": token});
+			}
+			else
+			{
+				console.log("Bad password, actually.");
+				// Authentication failed
+				res.status(401).send('Bad username or password');
+			}
+		}
+	})
+	
+});
+
 module.exports = router;
+
+function hashPassword(password) {
+	var salt = genSalt();
+	return bcrypt.hashSync(password, salt);
+}
+
+function genSalt() {
+	return bcrypt.genSaltSync(10);
+}
