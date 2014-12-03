@@ -5,11 +5,11 @@
 			<div class="col-xs-12 listing-header">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left white-large">
 					<div ng-if="!editing || editListing._id !== listing._id">{{listing.title}}</div>
-					<div ng-if="editing &amp;&amp; editListing._id === listing._id"><input class="black-medium" type="text" ng-model="editListing.title" /></div>
+					<div ng-if="editing &amp;&amp; editListing._id === listing._id"><input class="header-input white-medium" type="text" ng-model="editListing.title" /></div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right white-large">
 					<div ng-if="!editing || editListing._id !== listing._id">${{listing.price}}</div>
-					<div ng-if="editing &amp;&amp; editListing._id === listing._id">$<input class="black-medium" type="text" ng-model="editListing.price" /></div>
+					<div ng-if="editing &amp;&amp; editListing._id === listing._id">$<input class="header-input white-medium" type="text" ng-model="editListing.price" /></div>
 				</div>
 			</div>
 		</div>
