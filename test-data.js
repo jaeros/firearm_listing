@@ -136,8 +136,78 @@ function addTestListing(onComplete) {
 	};
 
 	listing.Listing(testListing1).save(function(err) {
-	if(err)
-		console.error("Couldn't save test listing: ", err);
+		if(err)
+			console.error("Couldn't save test listing: ", err);
 		onComplete();
 	});
-};
+
+	console.log('Adding test listing 2...');
+	var testListing2 = {
+		title: "Dirt Cheap DPMS AR-15",
+		gunTypeId: "abc124",
+		customGunSpecs: {
+			"Buttstock": "Magpul",
+			"Rail": "Picatinny Quad Rail",
+			"Trigger": "Rock River Arms 2-stage trigger"
+		},
+		description: "I have used this AR extensively. It works " +
+		"extremely well, but has had thousands of rounds put through it.",
+		price: 249.99,
+		photos: [
+		{
+			url: 'http://placehold.it/200x200',
+			description: 'Side view'
+		},
+		{
+			url: 'http://placehold.it/200x200'
+		}
+		],
+		pageViews: 4023,
+		listedOn: tempDate,
+		refreshedOn: tempDate,
+		userId: "abc123",
+		isSold: false,
+		isActive: true
+	};
+
+	listing.Listing(testListing2).save(function(err) {
+		if(err)
+			console.error("Couldn't save test listing: ", err);
+		onComplete();
+	});
+
+	console.log('Adding test listing 3...');
+	var testListing3 = {
+		title: "Glock 19",
+		gunTypeId: "abc125",
+		customGunSpecs: {
+			"Scope": "Bushnell",
+			"Trigger": "Bravo"
+		},
+		description: "This is a like-new firearm. Bought " +
+		"it a few years back, only took it to the range twice. " +
+		"Price is firm.",
+		price: 500.00,
+		photos: [
+		{
+			url: 'http://placehold.it/200x200',
+			description: 'Side view'
+		},
+		{
+			url: 'http://placehold.it/200x200'
+		}
+		],
+		pageViews: 12,
+		listedOn: tempDate,
+		refreshedOn: tempDate,
+		userId: "abc124",
+		isSold: false,
+		isActive: true
+	};
+
+	listing.Listing(testListing3).save(function(err) {
+		if(err)
+			console.error("Couldn't save test listing: ", err);
+		onComplete();
+	});
+}

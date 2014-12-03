@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
   	{
   		res.status(200).send(docs);
   	}
-  })
+  });
 });
 
 /**
@@ -39,7 +39,7 @@ router.post('/', function(req, res) {
 			   .send(user);
 		}
 	});
-	
+
 });
 
 router.get('/:userId', function(req, res) {

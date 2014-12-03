@@ -29,8 +29,7 @@ app.config(['$routeProvider', '$httpProvider',
 		}).
 		when('/my-listings', {
 			templateUrl: 'partials/my-listings.html',
-			controller: 'myListingsController',
-			controllerAs: 'myListings'
+			controller: 'myListingsController'
 		}).
 		when('/search', {
 			templateUrl: 'partials/search.html',
