@@ -43,9 +43,13 @@ app.config(['$routeProvider', '$httpProvider',
 			templateUrl: 'partials/legal.html',
 			controller: 'legalController'
 		}).
-		when('contact', {
+		when('/contact', {
 			templateUrl: 'partials/contact.html',
 			controller: 'contactController'
+		}).
+		when('/add-listing', {
+			templateUrl: 'partials/add-listing.html',
+			controller: 'addListingsController'
 		}).
 		when('/admin', {
 			templateUrl: 'partials/admin.html',
