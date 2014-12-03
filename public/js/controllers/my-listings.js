@@ -150,6 +150,9 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 			listing.isSold = true;
 
 			listing.$update({listingId: listing._id});
+
+			if($scope.editing)
+				$scope.oldListing.isSold = true;
 		}
 	};
 
