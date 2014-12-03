@@ -14,7 +14,7 @@ var app = angular.module('firearm-listings', [
 ]);
 
 // Interceptor for http calls to use authentication
-cmApp.factory('authInterceptor', function($rootScope, $q, $window, $location) {
+app.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 	return {
 		request: function(config) {
 			config.headers = config.headers || {};
