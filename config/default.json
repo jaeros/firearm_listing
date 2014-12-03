@@ -1,0 +1,11 @@
+{
+	"secret": "abc123",
+	"userPermissions": {
+		"personal": {
+			"maxPostsPerMonth": 5
+		},
+		"business"	: {
+			"maxPostsPerMonth": 50
+		}
+	}
+}
