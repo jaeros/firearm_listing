@@ -30,6 +30,7 @@ button .button {
 	text-shadow:0 0px;
 	width:100%;
 	border-radius:10px;
+	font-weight:200;
 }
 
 .btn-success {

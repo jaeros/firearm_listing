@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var jwt = require('jsonwebtoken');
+var jwt = require('express-jwt');
 
 // Route handlers
 var routes = require('./routes/index');
@@ -47,8 +47,13 @@ app.use(function(req, res, next) {
 
 // error handlers
 app.use(function(err, req, res, next){
+  console.log("Error: ", err);
+  console.log("Error name: ", err.inner.name);
   if (err.constructor.name === 'UnauthorizedError') {
-    res.status(401).send("Not Authorized");
+    if(err.inner.name == "TokenExpiredError")
+        res.status(401).send('TokenExpired');
+    else
+        res.status(401).send('Unauthorized');
   }
 });
 
