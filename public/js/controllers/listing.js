@@ -28,7 +28,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		// 	$scope.isOwner = false;
 
 		if($location.search().editing) {
-				$scope.editListing = listing;
+			$scope.oldListing = angular.copy(listing);
+			$scope.editListing = listing;
 		}
 	});
 	/*$scope.listing = {
