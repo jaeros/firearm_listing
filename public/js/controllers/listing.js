@@ -70,25 +70,44 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	listing.$update();*/
 
 	$scope.startEditing = function() {
-		$scope.oldListing = angular.copy(listing);
-		$scope.editListing = listing;
+		$scope.oldListing = angular.copy($scope.listing);
+		$scope.editListing = $scope.listing;
 		$scope.isEditing = true;
 	};
 
 	$scope.cancelEditing = function() {
-		$scope.isEditing = false;
+		$timeout(function() {
+			$scope.editListing = $scope.oldListing;
+			$scope.listing = $scope.oldListing;
+
+			$scope.isEditing = false;
+		});
 	};
 
-	$scope.saveEditing = function() {
-		$scope.isEditing = false;
+	$scope.saveEditing = function(isValid) {
+		if(isValid) {
+			$scope.isEditing = false;
 
-		var price = $scope.editListing.price.toString();
+			var price = $scope.editListing.price.toString();
 
-		price = price.replace(/[^0-9\.]+/g, '');
-		$scope.editListing.price = parseFloat(price);
+			price = price.replace(/[^0-9\.]+/g, '');
+			$scope.editListing.price = parseFloat(price);
 
-		$scope.editListing.$update({listingId: $scope.editListing._id}, function(listing) {
-			console.log(listing);
-		});
+			$scope.editListing.$update({listingId: $scope.editListing._id}, function(listing) {
+				console.log(listing);
+			});
+		}
+	};
+
+	$scope.removeSpec = function(customGunSpec) {
+		for(var i = 0; i < $scope.editListing.customGunSpecs.length; i++) {
+			if(customGunSpec === $scope.editListing.customGunSpecs[i]) {
+				$scope.editListing.customGunSpecs.splice(i, i);
+			}
+		}
+	};
+
+	$scope.addSpec = function() {
+		$scope.editListing.customGunSpecs.push({name:"", value:""});
 	};
 });
