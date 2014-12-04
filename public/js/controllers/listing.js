@@ -2,10 +2,12 @@ var listing = angular.module('ListingController', []);
 
 listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout) {
 	$scope.globalTest = "Listing Controller Text";
-	$scope.isOwner = true;
+	$scope.isOwner = false;
 	$scope.isEditing = false;
 
 	this.init = function() {
+		$scope.user = JSON.parse(localStorage.getItem('user'));
+
 		if($location.search().editing)
 			$scope.isEditing = $location.search().editing;
 	};
@@ -15,6 +17,9 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	var listingId = $routeParams.listingId;
 	//Get main listing
 	var listing = Listings.get({listingId: listingId}, function(listing){
+		if($scope.user._id === listing.userId)
+			$scope.isOwner = true;
+
 		listing.pageViews += 1;
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
