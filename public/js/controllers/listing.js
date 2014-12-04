@@ -71,7 +71,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 
 	$scope.startEditing = function() {
 		$scope.oldListing = angular.copy(listing);
-		$scope.editListing = angular.copy(listing);
+		$scope.editListing = listing;
 		$scope.isEditing = true;
 	};
 
@@ -87,6 +87,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		price = price.replace(/[^0-9\.]+/g, '');
 		$scope.editListing.price = parseFloat(price);
 
-		$scope.editListing.$update({listingId: $scope.editListing._id});
+		$scope.editListing.$update({listingId: $scope.editListing._id}, function(listing) {
+			console.log(listing);
+		});
 	};
 });
