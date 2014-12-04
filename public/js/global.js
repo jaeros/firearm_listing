@@ -1,6 +1,6 @@
 var indexController = angular.module('GlobalController', []);
 
-indexController.controller('globalController', function($scope, $http, $window) {
+indexController.controller('globalController', function($scope, $http, $window, $location) {
 	$scope.globalTest = "Global Controller Text";
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
@@ -49,5 +49,7 @@ indexController.controller('globalController', function($scope, $http, $window) 
 		$window.localStorage.removeItem('token');
 
 		alert("You were logged out successfully");
+
+		$location.path('/');
 	}
 });
