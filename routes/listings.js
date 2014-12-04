@@ -21,7 +21,7 @@ console.log("Secret: " + _secret);
 /* Create new listing */
 /* PROTECTED */
 router.post('/', jwt({secret: _secret}), function(req, res) {
-  
+
   console.log("User: ", req.user);
 
   var listing = Listing(req.body);
@@ -53,8 +53,10 @@ router.get('/', function(req, res) {
   }
 });
 
+var queryParams = [];
+
 /* GET a listing based on the listing's id */
-router.get('/:listingId', function(req, res) {
+router.get('/:listingId', queryParams, function(req, res) {
   listingId = req.params.listingId;
   console.log(listingId);
 

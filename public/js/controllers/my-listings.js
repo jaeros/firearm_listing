@@ -120,28 +120,30 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 
 	this.init();
 
-	$scope.startEditing = function(listing) {
-		$scope.oldListing = angular.copy(listing);
-		$scope.editListing = listing;
-		$scope.editing = true;
-	};
-
-	$scope.saveEditing = function() {
-		$scope.editing = false;
-
-		$scope.editListing.$update({listingId: $scope.editListing._id});
-	};
-
-	$scope.cancelEditing = function(listing) {
-		$timeout(function() {
-			for(var i = 0; i < $scope.myListings.length; i++) {
-				if($scope.myListings[i]._id === listing._id)
-					$scope.myListings[i] = $scope.oldListing;
-			}
-
-			$scope.editing = false;
-		});
-	};
+	// $scope.startEditing = function(listing) {
+	// 	$scope.oldListing = angular.copy(listing);
+	// 	$scope.editListing = listing;
+	// 	$scope.editing = true;
+	//
+	// 	window.location = "#/listing/" + listing._id + "?editing=true";
+	// };
+	//
+	// $scope.saveEditing = function() {
+	// 	$scope.editing = false;
+	//
+	// 	$scope.editListing.$update({listingId: $scope.editListing._id});
+	// };
+	//
+	// $scope.cancelEditing = function(listing) {
+	// 	$timeout(function() {
+	// 		for(var i = 0; i < $scope.myListings.length; i++) {
+	// 			if($scope.myListings[i]._id === listing._id)
+	// 				$scope.myListings[i] = $scope.oldListing;
+	// 		}
+	//
+	// 		$scope.editing = false;
+	// 	});
+	// };
 
 	$scope.sellListing = function(listing) {
 		var sold = window.confirm("Are you sure you want to mark this item as sold?");

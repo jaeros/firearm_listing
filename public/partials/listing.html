@@ -1,10 +1,20 @@
 <div class="row" ng-controller="listingController">
 	<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 listing-header">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left white-large">
-			{{listing.title}}
+			<div ng-if="!isEditing || !isOwner">
+				{{listing.title}}
+			</div>
+			<div ng-if="isEditing &amp;&amp; isOwner">
+				<input class="header-input white-medium" type="text" ng-model="editListing.title" />
+			</div>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right white-large">
-			{{listing.price | currency}}
+			<div ng-if="!isEditing || !isOwner">
+				{{listing.price | currency}}
+			</div>
+			<div ng-if="isEditing &amp;&amp; isOwner">
+				$<input class="header-input white-medium" type="text" ng-model="editListing.price" />
+			</div>
 		</div>
 	</div>
 
@@ -12,11 +22,11 @@
 
 	<div class="row no-padding">
 		<div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
-			
+
 			<a href="" class="thumbnail" style="width:100%;">
 			  <img ng-src="{{currentPhoto.url}}" />
 			</a>
-			
+
 			<div class="row no-padding" ng-show="listing.photos.length > 1">
 				<div class="col-xs-4" ng-repeat="photo in listing.photos">
 					<a ng-click="showPhoto(photo)" class="thumbnail" style="width:100%;height:70px">
@@ -32,9 +42,11 @@
 		<div class="row col-xs-12 space-sm hidden-lg hidden-md hidden-sm"></div>
 
 		<div class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-md-5 col-lg-5">
-			<h5>
+			<h5 ng-if="!isEditing || !isOwner">
 				<p>{{listing.description}}</p>
 			</h5>
+			<textarea class="textarea" ng-model="editListing.description" ng-if="isEditing &amp;&amp; isOwner">
+			</textarea>
 			<br>
 			<br>
 			<div class="row">
@@ -52,12 +64,19 @@
  				<tr ng-repeat="(key,value) in listing.customGunSpecs"><td>{{key}}: {{value}}</td></tr>
 			</table>
 
+			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0" ng-if="isOwner &amp;&amp; !isEditing">
+				<div class="text-right"><h4><a class="clickable" ng-click="startEditing()">Edit</a></h4></div>
+			</div>
+			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0" ng-if="isOwner &amp;&amp; isEditing">
+				<button type="button" class="btn btn-default blue-btn no-padding listing-save-cancel-btn pull-right" ng-click="saveEditing()"><small>Save</small></button>
+				<button type="button" class="btn btn-default blue-btn no-padding listing-save-cancel-btn pull-right" ng-click="cancelEditing()"><small>Cancel</small></button>
+			</div>
 		</div>
 
 		<div class="row col-xs-12 space-sm"></div>
 
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2" ng-show="relatedListings.length">
-			
+
 			<h3>Related Items</h3>
 			<div class="row no-padding">
 				<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="relatedListing in relatedListings">
