@@ -113,11 +113,27 @@
 				<h4 class="modal-title" id="galleryModalLabel">{{listing.title}}</h4>
 			</div>
 			<div class="modal-body">
-				<img ng-src="{{listing.photos[currentPhotoIndex].url}}">
-				<br><h4 ng-show="listing.photos[currentPhotoIndex].description">{{listing.photos[currentPhotoIndex].description}}</h4>
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<img ng-src="{{listing.photos[currentPhotoIndex].url}}" align="middle">
+						<br><h4 ng-show="listing.photos[currentPhotoIndex].description">{{listing.photos[currentPhotoIndex].description}}</h4>
+					</div>
+				</div>
 				<div class="row" ng-show="listing.photos.length > 1">
-					<button type="button" class="btn btn-default" ng-click="previousPhoto()"><<</button>
-					<button type="button" class="btn btn-default" ng-click="nextPhoto()">>></button>
+					<div class="col-sm-4 col-sm-offset-2">
+						<button type="button" class="btn btn-default" ng-click="previousPhoto()">
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<!-- <span>Prev</span> -->
+						</button>
+					</div>
+					<div class="col-sm-4 col-sm-offset-2">
+						<button type="button" class="btn btn-default" ng-click="nextPhoto()">
+							<!-- <span>Next</span> -->
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
