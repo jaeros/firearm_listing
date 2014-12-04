@@ -17,10 +17,9 @@ var app = angular.module('firearm-listings', [
 app.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 	return {
 		request: function(config) {
-			config.headers = config.headers || {};
-
-			if($window.sessionStorage.token)
-				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+			config.headers = config.headers || {};			
+			if($window.localStorage.getItem('token')) 
+				config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
 
 			return config;
 		},
