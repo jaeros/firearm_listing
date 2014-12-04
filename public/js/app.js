@@ -17,8 +17,7 @@ var app = angular.module('firearm-listings', [
 app.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 	return {
 		request: function(config) {
-			config.headers = config.headers || {};
-			
+			config.headers = config.headers || {};			
 			if($window.localStorage.getItem('token')) 
 				config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
 
@@ -73,7 +72,7 @@ app.config(['$routeProvider', '$httpProvider',
 		}).
 		when('/add-listing', {
 			templateUrl: 'partials/add-listing.html',
-			controller: 'addListingsController'
+			controller: 'addListingController'
 		}).
 		when('/admin', {
 			templateUrl: 'partials/admin.html',
