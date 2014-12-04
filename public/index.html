@@ -65,21 +65,21 @@
 									<div class="form-group">
 
 										<div class="col-sm-12">
-											<input type="text" class="form-control" id="inputUsername" placeholder="Username">
+											<input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="login_username">
 										</div>
 									</div>
 									<div class="row col-xs-12 space-xs"></div>
 									<div class="form-group">
 
 										<div class="col-sm-12">
-											<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+											<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="login_password">
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-success">Login</button>
+								<button type="button" class="btn btn-success" ng-click="doLogin()">Login</button>
 							</div>
 						</div>
 					</div>
