@@ -9,9 +9,9 @@ indexController.controller('globalController', function($scope, $http, $window, 
 	$scope.doLogin = function() {
 		console.log("Logging in with user " + $scope.login_username + ", password " + $scope.login_password);
 
-		$http.post('users/login', 
+		$http.post('users/login',
 		{
-			'username': $scope.login_username, 
+			'username': $scope.login_username,
 			'password': $scope.login_password
 		}).
 		success(function(data, status, headers, config) {
@@ -19,7 +19,7 @@ indexController.controller('globalController', function($scope, $http, $window, 
 				console.error('No data received!');
 			// Retrieve token and user from results
 			var token = data.token;
-			var user = data.user;
+			var user = JSON.stringify(data.user);
 
 			// Save token to storage
 			console.log("Got token: ", token);
@@ -42,7 +42,7 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 		console.log("Logging out!");
 
-		// Set user as not logged in 
+		// Set user as not logged in
 		$scope.isLoggedIn = false;
 
 		// Clear token

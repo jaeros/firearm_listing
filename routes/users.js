@@ -130,7 +130,7 @@ router.post('/login', function(req, res) {
 				console.log("Okay, we're here.");
 				// Authentication successful, send token to client
 				var token = jwt.sign({user: doc}, config.get('secret'), {expiresInMinutes: config.get('loginDuration')});
-				res.status(200).send({"token": token});
+				res.status(200).send({"token": token,"user": doc});
 			}
 			else
 			{
@@ -140,7 +140,7 @@ router.post('/login', function(req, res) {
 			}
 		}
 	})
-	
+
 });
 
 module.exports = router;

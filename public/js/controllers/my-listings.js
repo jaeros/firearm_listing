@@ -106,11 +106,13 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// Actual implementation
 
 	this.init = function() {
+		$scope.user = JSON.parse(localStorage.getItem('user'));
+
 		$scope.editing = false;
 		$scope.editListing = {};
 		$scope.activeListings = 0;
 
-		$scope.myListings = Listings.query({userId: 'abc123'}, function(listings) {
+		$scope.myListings = Listings.query({userId: $scope.user._id}, function(listings) {
 			listings.forEach(function(listing) {
 				if(listing.isActive)
 					$scope.activeListings++;

@@ -69,8 +69,8 @@
 					</tr>
 					<tr ng-repeat="customGunSpec in editListing.customGunSpecs" ng-if="isEditing &amp;&amp; isOwner">
 						<td>
-							<input class="edit-listing-body-input" type="text" ng-model="customGunSpec.name" required /> :
-							<input class="edit-listing-body-input" type="text" ng-model="customGunSpec.value" required />
+							<input class="edit-listing-body-input" type="text" ng-model="customGunSpec.name" placeholder="Type of specification" required /> :
+							<input class="edit-listing-body-input" type="text" ng-model="customGunSpec.value" placeholder="Description of specification" required />
 							<img class="remove-spec pull-right" src="../img/remove-th.png" ng-click="removeSpec(customGunSpec)" />
 						</td>
 					</tr>

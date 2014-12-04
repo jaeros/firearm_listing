@@ -45,7 +45,7 @@ router.get('/', function(req, res) {
   };
 
   if(req.query.userId) {
-    Listing.find({userId: 'abc123'}, findListings);
+    Listing.find({userId: req.query.userId}, findListings);
   }
   else {
     Listing.find({}, findListings);
