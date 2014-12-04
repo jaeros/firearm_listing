@@ -114,20 +114,21 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3">
-						<img ng-src="{{listing.photos[currentPhotoIndex].url}}" align="middle">
+					<div class="col-xs-6 col-xs-offset-3">
+						<img id="myGunPic" ng-src="{{listing.photos[currentPhotoIndex].url}}" >
 						<br><h4 ng-show="listing.photos[currentPhotoIndex].description">{{listing.photos[currentPhotoIndex].description}}</h4>
 					</div>
 				</div>
+				<div class="row col-xs-12 space-sm"></div>
 				<div class="row" ng-show="listing.photos.length > 1">
-					<div class="col-sm-4 col-sm-offset-2">
+					<div class="col-xs-4 col-xs-offset-2">
 						<button type="button" class="btn btn-default" ng-click="previousPhoto()">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 							<!-- <span>Prev</span> -->
 						</button>
 					</div>
-					<div class="col-sm-4 col-sm-offset-2">
+					<div class="col-xs-4 col-xs-offset-2">
 						<button type="button" class="btn btn-default" ng-click="nextPhoto()">
 							<!-- <span>Next</span> -->
 							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
@@ -142,3 +143,7 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('#myGunPic').css('padding-left',($('#myGunPic').parent().innerWidth()-$('#myGunPic').outerWidth())/2);
+</script>
