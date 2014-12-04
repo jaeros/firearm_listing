@@ -4,6 +4,7 @@ var app = angular.module('firearm-listings', [
 	'GlobalController',
 	'IndexController',
 	'AccountController',
+	'addListingController',
 	'AdminController',
 	'ContactController',
 	'LegalController',
