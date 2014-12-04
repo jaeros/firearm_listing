@@ -1,17 +1,35 @@
 var listing = angular.module('ListingController', []);
 
-listing.controller('listingController', function($scope, Listings) {
+listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout) {
 	$scope.globalTest = "Listing Controller Text";
+	$scope.isOwner = true;
+	$scope.isEditing = false;
 
-	var url = window.location.href;
-	var listingId = url.substring(url.lastIndexOf('/')+1);
+	this.init = function() {
+		if($location.search().editing)
+			$scope.isEditing = $location.search().editing;
+	};
+
+	this.init();
+
+	var listingId = $routeParams.listingId;
 	//Get main listing
-	Listings.get({listingId: listingId}, function(listing){
+	var listing = Listings.get({listingId: listingId}, function(listing){
 		listing.pageViews += 1;
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
-		console.log(listing);
+		//console.log(listing);
+		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
+
+		// if(listing.userId === $scope.user._id)
+		// 	$scope.isOwner = true;
+		// else
+		// 	$scope.isOwner = false;
+
+		if($location.search().editing) {
+				$scope.editListing = listing;
+		}
 	});
 	/*$scope.listing = {
 		title: "Like-new AK-47",
@@ -39,9 +57,32 @@ listing.controller('listingController', function($scope, Listings) {
 		isActive: true
 	};*/
 
-	$scope.showPhoto = function(photo){
-		$scope.currentPhoto = photo;
+	$scope.showPhoto = function(index){
+		if(index > $scope.listing.photos.length) {
+			index = 0;
+		}
+		$scope.currentPhotoIndex = index;
+		$scope.currentPhoto = $scope.listing.photos[$scope.currentPhotoIndex];
+		console.log($scope.currentPhotoIndex);
 	};
+
+	$scope.nextPhoto = function() {
+		if(($scope.currentPhotoIndex + 1) >= $scope.listing.photos.length) {
+			$scope.currentPhotoIndex = 0;
+		} else{
+			$scope.currentPhotoIndex++;
+		}
+		console.log($scope.currentPhotoIndex);
+	}
+
+	$scope.previousPhoto = function() {
+		if($scope.currentPhotoIndex - 1 < 0) {
+			$scope.currentPhotoIndex = $scope.listing.photos.length - 1;
+		} else{
+			$scope.currentPhotoIndex--;
+		}
+		console.log($scope.currentPhotoIndex);
+	}
 
 	//Get related listings
 	Listings.query(function(listings) {
@@ -51,4 +92,27 @@ listing.controller('listingController', function($scope, Listings) {
 
 	/*listing.pageViews += 1;
 	listing.$update();*/
+
+	$scope.startEditing = function() {
+		$scope.oldListing = angular.copy(listing);
+		$scope.editListing = listing;
+		$scope.isEditing = true;
+	};
+
+	$scope.cancelEditing = function() {
+		$scope.isEditing = false;
+	};
+
+	$scope.saveEditing = function() {
+		$scope.isEditing = false;
+
+		var price = $scope.editListing.price.toString();
+
+		price = price.replace(/[^0-9\.]+/g, '');
+		$scope.editListing.price = parseFloat(price);
+
+		$scope.editListing.$update({listingId: $scope.editListing._id}, function(listing) {
+			console.log(listing);
+		});
+	};
 });
