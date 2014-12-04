@@ -44,7 +44,7 @@ function main(onFinish) {
 }
 
 var mainFunction = new main(function(){process.exit(0);});
-mainFunction.removeAll();
+//mainFunction.removeAll();
 mainFunction.runTest();
 
 // -------------------------------------------

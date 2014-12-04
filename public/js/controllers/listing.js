@@ -19,6 +19,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
 		//console.log(listing);
+		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
 
 		// if(listing.userId === $scope.user._id)
@@ -56,9 +57,32 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		isActive: true
 	};*/
 
-	$scope.showPhoto = function(photo){
-		$scope.currentPhoto = photo;
+	$scope.showPhoto = function(index){
+		if(index > $scope.listing.photos.length) {
+			index = 0;
+		}
+		$scope.currentPhotoIndex = index;
+		$scope.currentPhoto = $scope.listing.photos[$scope.currentPhotoIndex];
+		console.log($scope.currentPhotoIndex);
 	};
+
+	$scope.nextPhoto = function() {
+		if(($scope.currentPhotoIndex + 1) >= $scope.listing.photos.length) {
+			$scope.currentPhotoIndex = 0;
+		} else{
+			$scope.currentPhotoIndex++;
+		}
+		console.log($scope.currentPhotoIndex);
+	}
+
+	$scope.previousPhoto = function() {
+		if($scope.currentPhotoIndex - 1 < 0) {
+			$scope.currentPhotoIndex = $scope.listing.photos.length - 1;
+		} else{
+			$scope.currentPhotoIndex--;
+		}
+		console.log($scope.currentPhotoIndex);
+	}
 
 	//Get related listings
 	Listings.query(function(listings) {
