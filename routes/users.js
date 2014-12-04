@@ -128,7 +128,7 @@ router.post('/login', function(req, res) {
 			{
 				console.log("Okay, we're here.");
 				// Authentication successful, send token to client
-				var token = jwt.sign(doc, config.get('secret'), {expiresInMinutes: 3 * 60});
+				var token = jwt.sign({user: doc}, config.get('secret'), {expiresInMinutes: config.get('loginDuration')});
 				res.status(200).send({"token": token});
 			}
 			else
