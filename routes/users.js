@@ -5,6 +5,10 @@ var router = express.Router();
 var bcrypt = require('bcryptjs');
 var config = require('config');
 var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
+var config = require('config');
+
+var _secret = config.get('secret');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -62,29 +66,26 @@ router.get('/:userId', function(req, res) {
 	});
 });
 
-router.put('/:userId', function(req, res) {
+router.put('/:userId', expressJwt({secret: _secret}), function(req, res) {
 	var user = req.body;
+
+	// Verify modifying only current user
+	var curUser = req.user.user;
+	if(req.params.userId != curUser._id)
+	{
+		res.status(401).send("Not authorized");
+		return;
+	}
 
 	// We have to update manually because mongoose's update function
 	// 	doesn't run validators on update command (cool, huh?)
 	User.findOne({'_id': req.params.userId}, function(err, doc) {
-		if(err)
+		if(err || !doc)
 		{
-			res.status(500).send('Could not update user');
-		}
-		else if(!doc)
-		{
-			// Document not found, create a new document
-			User(user).save(function(err) {
-				if(err)
-					res.status(400).send('Invalid user');
-				else
-					res.status(200).send(user);
-			});
+			res.status(400).send('Could not update user');
 		}
 		else
 		{
-			doc.username = req.body.username;
 			doc.password = req.body.password;
 			doc.name = req.body.name;
 			doc.location = req.body.location;

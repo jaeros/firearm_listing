@@ -12,7 +12,6 @@ var config = require('config');
 // -------------------------------------------
 var Listing = model.Listing;
 var _secret = config.get('secret');
-console.log("Secret: " + _secret);
 
 // -------------------------------------------
 // ENDPOINTS
