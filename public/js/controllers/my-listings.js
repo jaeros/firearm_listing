@@ -122,13 +122,13 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 
 	this.init();
 
-	// $scope.startEditing = function(listing) {
-	// 	$scope.oldListing = angular.copy(listing);
-	// 	$scope.editListing = listing;
-	// 	$scope.editing = true;
-	//
-	// 	window.location = "#/listings/" + listing._id + "?editing=true";
-	// };
+	$scope.startEditing = function(listing) {
+		// $scope.oldListing = angular.copy(listing);
+		// $scope.editListing = listing;
+		// $scope.editing = true;
+
+		window.location = "#/listings/" + listing._id + "?editing=true";
+	};
 	//
 	// $scope.saveEditing = function() {
 	// 	$scope.editing = false;
