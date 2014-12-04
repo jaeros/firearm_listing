@@ -44,7 +44,7 @@ function main(onFinish) {
 }
 
 var mainFunction = new main(function(){process.exit(0);});
-mainFunction.removeAll();
+//mainFunction.removeAll();
 mainFunction.runTest();
 
 // -------------------------------------------
@@ -110,10 +110,16 @@ function addTestListing(onComplete) {
 	var testListing1 = {
 		title: "Like-new AK-47",
 		gunTypeId: "abc123",
-		customGunSpecs: {
-			"Scope": "Bushnell",
-			"Trigger": "Bravo"
-		},
+		customGunSpecs: [
+			{
+				name: "Scope",
+				value: "Bushnell"
+			},
+			{
+				name: "Trigger",
+				value: "Bravo"
+			}
+		],
 		description: "This is a like-new firearm. Bought " +
 		"it a few years back, only took it to the range twice. " +
 		"Price is firm.",
@@ -145,11 +151,20 @@ function addTestListing(onComplete) {
 	var testListing2 = {
 		title: "Dirt Cheap DPMS AR-15",
 		gunTypeId: "abc124",
-		customGunSpecs: {
-			"Buttstock": "Magpul",
-			"Rail": "Picatinny Quad Rail",
-			"Trigger": "Rock River Arms 2-stage trigger"
-		},
+		customGunSpecs: [
+			{
+				name: "Buttstock",
+				value: "Magpul"
+			},
+			{
+				name: "Rail",
+				value: "Picatinny Quad Rail"
+			},
+			{
+				name: "Trigger",
+				value: "Rock River Arms 2-stage trigger"
+			}
+		],
 		description: "I have used this AR extensively. It works " +
 		"extremely well, but has had thousands of rounds put through it.",
 		price: 249.99,
@@ -180,10 +195,12 @@ function addTestListing(onComplete) {
 	var testListing3 = {
 		title: "Glock 19",
 		gunTypeId: "abc125",
-		customGunSpecs: {
-			"Scope": "Bushnell",
-			"Trigger": "Bravo"
-		},
+		customGunSpecs: [
+			{
+				name: "Trigger",
+				value: "Bravo"
+			}
+		],
 		description: "This is a like-new firearm. Bought " +
 		"it a few years back, only took it to the range twice. " +
 		"Price is firm.",

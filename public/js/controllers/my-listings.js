@@ -106,11 +106,13 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// Actual implementation
 
 	this.init = function() {
+		$scope.user = JSON.parse(localStorage.getItem('user'));
+
 		$scope.editing = false;
 		$scope.editListing = {};
 		$scope.activeListings = 0;
 
-		$scope.myListings = Listings.query({userId: 'abc123'}, function(listings) {
+		$scope.myListings = Listings.query({userId: $scope.user._id}, function(listings) {
 			listings.forEach(function(listing) {
 				if(listing.isActive)
 					$scope.activeListings++;
@@ -121,26 +123,11 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	this.init();
 
 	$scope.startEditing = function(listing) {
-		$scope.oldListing = angular.copy(listing);
-		$scope.editListing = listing;
-		$scope.editing = true;
-	};
+		// $scope.oldListing = angular.copy(listing);
+		// $scope.editListing = listing;
+		// $scope.editing = true;
 
-	$scope.saveEditing = function() {
-		$scope.editing = false;
-
-		$scope.editListing.$update({listingId: $scope.editListing._id});
-	};
-
-	$scope.cancelEditing = function(listing) {
-		$timeout(function() {
-			for(var i = 0; i < $scope.myListings.length; i++) {
-				if($scope.myListings[i]._id === listing._id)
-					$scope.myListings[i] = $scope.oldListing;
-			}
-
-			$scope.editing = false;
-		});
+		window.location = "#/listings/" + listing._id + "?editing=true";
 	};
 
 	$scope.sellListing = function(listing) {

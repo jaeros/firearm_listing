@@ -12,7 +12,6 @@ var config = require('config');
 // -------------------------------------------
 var Listing = model.Listing;
 var _secret = config.get('secret');
-console.log("Secret: " + _secret);
 
 // -------------------------------------------
 // ENDPOINTS
@@ -21,7 +20,7 @@ console.log("Secret: " + _secret);
 /* Create new listing */
 /* PROTECTED */
 router.post('/', jwt({secret: _secret}), function(req, res) {
-  
+
   console.log("User: ", req.user);
 
   var listing = Listing(req.body);
@@ -46,15 +45,17 @@ router.get('/', function(req, res) {
   };
 
   if(req.query.userId) {
-    Listing.find({userId: 'abc123'}, findListings);
+    Listing.find({userId: req.query.userId}, findListings);
   }
   else {
     Listing.find({}, findListings);
   }
 });
 
+var queryParams = [];
+
 /* GET a listing based on the listing's id */
-router.get('/:listingId', function(req, res) {
+router.get('/:listingId', queryParams, function(req, res) {
   listingId = req.params.listingId;
   console.log(listingId);
 

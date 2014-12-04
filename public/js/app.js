@@ -4,6 +4,7 @@ var app = angular.module('firearm-listings', [
 	'GlobalController',
 	'IndexController',
 	'AccountController',
+	'addListingController',
 	'AdminController',
 	'ContactController',
 	'LegalController',
@@ -18,17 +19,23 @@ app.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 	return {
 		request: function(config) {
 			config.headers = config.headers || {};
-
-			if($window.sessionStorage.token)
-				config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+			if($window.localStorage.getItem('token'))
+				config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
 
 			return config;
 		},
 		responseError: function(rejection) {
+			// TODO - CHECK WHETHER UNAUTHORIZED OR TOKEN EXPIRED
 			if(rejection.data == "Unauthorized")
 			{
 				console.log("Response error 401. Redirecting to login.");
 				$location.path('/');
+			}
+			else if(rejection.data == "TokenExpired")
+			{
+				console.log("Response error 401 - Token was expired. Deleting token.")
+				$window.localStorage.setItem('token', null);
+				$scope.setLoggedIn(false);
 			}
 			return $q.reject(rejection);
 		}
@@ -59,7 +66,7 @@ app.config(['$routeProvider', '$httpProvider',
 			templateUrl: 'partials/search.html',
 			controller: 'searchController'
 		}).
-		when('/listing/:listingId', {
+		when('/listings/:listingId', {
 			templateUrl: 'partials/listing.html',
 			controller: 'listingController'
 		}).
