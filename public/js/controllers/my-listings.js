@@ -127,7 +127,7 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// 	$scope.editListing = listing;
 	// 	$scope.editing = true;
 	//
-	// 	window.location = "#/listing/" + listing._id + "?editing=true";
+	// 	window.location = "#/listings/" + listing._id + "?editing=true";
 	// };
 	//
 	// $scope.saveEditing = function() {

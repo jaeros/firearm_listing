@@ -97,7 +97,7 @@
 				<h3>Related Items</h3>
 				<div class="row no-padding">
 					<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="relatedListing in relatedListings | limitTo:3">
-						<a ng-href="#/listing/{{relatedListing._id}}">
+						<a ng-href="#/listings/{{relatedListing._id}}">
 							<div class="thumbnail">
 								<img ng-src="{{relatedListing.photos[0].url}}" class="thumbnail-size">
 								<div class="row caption listing-header no-margin no-padding">
