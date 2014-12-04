@@ -24,10 +24,17 @@ app.factory('authInterceptor', function($rootScope, $q, $window, $location) {
 			return config;
 		},
 		responseError: function(rejection) {
+			// TODO - CHECK WHETHER UNAUTHORIZED OR TOKEN EXPIRED
 			if(rejection.data == "Unauthorized")
 			{
 				console.log("Response error 401. Redirecting to login.");
 				$location.path('/');
+			}
+			else if(rejection.data == "TokenExpired")
+			{
+				console.log("Response error 401 - Token was expired. Deleting token.")
+				$window.localStorage.setItem('token', null);
+				$scope.setLoggedIn(false);
 			}
 			return $q.reject(rejection);
 		}

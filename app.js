@@ -51,9 +51,9 @@ app.use(function(err, req, res, next){
   console.log("Error name: ", err.inner.name);
   if (err.constructor.name === 'UnauthorizedError') {
     if(err.inner.name == "TokenExpiredError")
-        res.status(401).send({'message': 'Not authorized', 'type': 'token_expired'});
+        res.status(401).send('TokenExpired');
     else
-        res.status(401).send({'message': 'Not authorized', 'type': 'invalid_token'});
+        res.status(401).send('Unauthorized');
   }
 });
 

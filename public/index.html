@@ -41,9 +41,13 @@
 											</form>
 										</div>
 										<div class="col-sm-4 col-md-3 col-lg-2">
-											<ul class="nav navbar-nav">
+											<ul class="nav navbar-nav" ng-show="!isLoggedIn">
 												<li><a href="" data-toggle="modal" data-target="#loginModal">Login</a></li>
 												<li><a href="#/register">Register</a></li>
+											</ul>
+											<ul class="nav navbar-nav" ng-show="isLoggedIn">
+												<li><a href="#/my-listings" >My Listings</a></li>
+												<li><a href="" ng-click="doLogout()">Log Out</a></li>
 											</ul>
 										</div>
 									</div>
