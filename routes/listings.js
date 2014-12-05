@@ -37,19 +37,29 @@ router.post('/', jwt({secret: _secret}), function(req, res) {
 
 /* GET all listings */
 router.get('/', function(req, res) {
-  var findListings = function(err, docs) {
-    if(err)
-      res.status(500).send('Couldn\'t retrieve listings');
-    else
-      res.status(200).send(docs);
-  };
 
-  if(req.query.userId) {
-    Listing.find({userId: req.query.userId}, findListings);
-  }
-  else {
-    Listing.find({}, findListings);
-  }
+  // Construct listing query
+  var queryObj = new ListingSearch();
+  queryObj.setMinPrice(req.query['min_price']);
+  queryObj.setMaxPrice(req.query['max_price']);
+  queryObj.setManufacturer(req.query['manufacturer']);
+  queryObj.setCaliber(req.query['caliber']);
+  queryObj.setSearchString(req.query['search']);
+
+  console.log("Mongo query: ", queryObj.getQuery());
+
+  Listing
+  	.find(queryObj.getQuery())
+  	.limit(100)
+  	.exec(function(err, docs) {
+  		if(err)
+  			res.status(500).send("Couldn't retrieve listings");
+  		else
+  		{
+  			res.status(200).send(docs);
+  			console.log("Results: " + docs.length);
+  		}
+  	});
 });
 
 var queryParams = [];
@@ -126,3 +136,85 @@ router.put('/:listingId', function(req, res) {
 });
 
 module.exports = router;
+
+// -------------------------------------------
+// HELPER FUNCTIONS AND CLASSES
+// -------------------------------------------
+
+function ListingSearch() {
+
+	var filterManufacturer = null;
+	var filterCaliber = null;
+	var filterMinPrice = null;
+	var filterMaxPrice = null;
+	var filterOwnerId = null;
+	var searchTerms = [];
+
+	this.setSearchString = function(search) {
+		if(!search)
+			return;
+		searchTerms = search.split(' ');
+	};
+
+	this.setManufacturer = function(m) {
+		if(typeof m !== 'undefined')
+			filterManufacturer = m;
+	};
+
+	this.setCaliber = function(c) {
+		if(typeof c !== 'undefined')
+			filterCaliber = c;
+	};
+
+	this.setMinPrice = function(price) {
+		if(typeof price !== 'undefined')
+			filterMinPrice = price;
+	};
+
+	this.setMaxPrice = function(price) {
+		if(typeof price !== 'undefined')
+			filterMaxPrice = price;
+	};
+
+	this.setOwnerId = function(owner) {
+		if(typeof owner !== 'undefined')
+			filterOwnerId = owner;
+	};
+
+	this.getQuery = function() {
+		var query = {};
+		if(filterMinPrice)
+		{
+			query['price'] = query['price'] || {};
+			query['price']['$gte'] = filterMinPrice;
+		}
+		if(filterMaxPrice)
+		{
+			query['price'] = query['price'] || {};
+			query['price']['$lte'] = filterMaxPrice;
+		}
+		if(filterManufacturer)
+		{
+			query['manufacturer'] = filterManufacturer;
+		}
+		if(filterCaliber)
+		{
+			query['caliber'] = filterCaliber;
+		}
+		if(searchTerms && searchTerms.length > 0)
+		{
+			query['description'] = {$in: []};
+			// Iterate all search terms
+			searchTerms.forEach(function(term) {
+				var r = new RegExp('.*' + term + '.*', 'i');
+				query['description']['$in'].push(r);
+			});
+		}
+		if(filterOwnerId)
+		{
+			query['ownerId'] = filterOwnerId;
+		}
+
+		return query;
+	};
+};
