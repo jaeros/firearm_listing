@@ -18,10 +18,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	var listingId = $routeParams.listingId;
 	//Get main listing
 	var listing = Listings.get({listingId: listingId}, function(listing){
-		if($scope.user) {
-			if($scope.user._id === listing.userId)
-				$scope.isOwner = true;
-		}
+		if($scope.user && $scope.user._id === listing.userId)
+			$scope.isOwner = true;
 
 		listing.pageViews += 1;
 		$scope.listing = listing;
@@ -29,11 +27,6 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		//console.log(listing);
 		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
-
-		// if(listing.userId === $scope.user._id)
-		// 	$scope.isOwner = true;
-		// else
-		// 	$scope.isOwner = false;
 
 		if($location.search().editing) {
 			$scope.oldListing = angular.copy(listing);
@@ -155,7 +148,11 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 				data: {userId: $scope.user._id},
 				file: file
 			}).success(function(data, status, headers, config) {
-				console.log(data, status, headers, config);
+				var photo = {};
+				photo.url = data.pathname;
+
+				$scope.editListing.photos.push(photo);
+				$scope.editListing.$update({listingId: $scope.editListing._id});
 			});
 		}
 	});

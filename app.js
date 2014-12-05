@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var listings = require('./routes/listings');
 var firearms = require('./routes/firearms');
+var upload = require('./routes/upload');
 
 var app = express();
 
