@@ -37,6 +37,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/listings/', listings);
 app.use('/firearms/', firearms);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

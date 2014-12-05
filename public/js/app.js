@@ -1,4 +1,5 @@
 var app = angular.module('firearm-listings', [
+	'angularFileUpload',
 	'ngRoute',
 	'ngResource',
 	'GlobalController',
