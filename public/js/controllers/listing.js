@@ -79,7 +79,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			$scope.currentPhotoIndex++;
 		}
 		console.log($scope.currentPhotoIndex);
-	}
+	};
 
 	$scope.previousPhoto = function() {
 		if($scope.currentPhotoIndex - 1 < 0) {
@@ -88,7 +88,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			$scope.currentPhotoIndex--;
 		}
 		console.log($scope.currentPhotoIndex);
-	}
+	};
 
 	//Get related listings
 	Listings.query(function(listings) {
@@ -123,9 +123,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			price = price.replace(/[^0-9\.]+/g, '');
 			$scope.editListing.price = parseFloat(price);
 
-			$scope.editListing.$update({listingId: $scope.editListing._id}, function(listing) {
-				console.log(listing);
-			});
+			$scope.editListing.$update({listingId: $scope.editListing._id});
 		}
 	};
 

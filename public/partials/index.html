@@ -76,7 +76,7 @@
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings">
 				<a ng-href="#/listings/{{listing._id}}">
 					<div class="thumbnail">
-						<img ng-show="listing.photos.length" src="{{listing.photos[0].url}}" class="thumbnail-size">
+						<img ng-show="listing.photos.length" ng-src="{{listing.photos[0].url}}" class="thumbnail-size">
 						<div class="row caption listing-header no-margin no-padding">
 							<div class="col-xs-6 text-left white-small">{{listing.title}}</div>
 							<div class="col-xs-6 text-right white-small">{{listing.price | currency}}</div>
