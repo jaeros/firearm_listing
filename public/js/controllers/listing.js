@@ -17,8 +17,10 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	var listingId = $routeParams.listingId;
 	//Get main listing
 	var listing = Listings.get({listingId: listingId}, function(listing){
-		if($scope.user._id === listing.userId)
-			$scope.isOwner = true;
+		if($scope.user) {
+			if($scope.user._id === listing.userId)
+				$scope.isOwner = true;
+		}
 
 		listing.pageViews += 1;
 		$scope.listing = listing;
