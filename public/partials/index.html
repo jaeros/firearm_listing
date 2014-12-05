@@ -61,7 +61,7 @@
 	<div class="row col-xs-12 space-sm"></div>
 	<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		<h3>Popular Listings<h3>
-		<div class="row no-padding" >
+		<div class="row no-padding">
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4">
 				<a href="#/listings/1">
 					<div class="thumbnail border-orange">
@@ -73,13 +73,13 @@
 					</div>
 				</a>
 			</div>
-			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4">
-				<a href="#/listings/1">
+			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings">
+				<a ng-href="#/listings/{{listing._id}}">
 					<div class="thumbnail">
-						<img src="img/revolver.png" class="thumbnail-size">
+						<img ng-show="listing.photos.length" src="{{listing.photos[0].url}}" class="thumbnail-size">
 						<div class="row caption listing-header no-margin no-padding">
-							<div class="col-xs-6 text-left white-small">Gun</div>
-							<div class="col-xs-6 text-right white-small">$150.00</div>
+							<div class="col-xs-6 text-left white-small">{{listing.title}}</div>
+							<div class="col-xs-6 text-right white-small">{{listing.price | currency}}</div>
 						</div>
 					</div>
 				</a>
