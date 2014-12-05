@@ -40,10 +40,11 @@ router.get('/', function(req, res) {
 
   // Construct listing query
   var queryObj = new ListingSearch();
-  queryObj.setMinPrice(req.query['min_price']);
-  queryObj.setMaxPrice(req.query['max_price']);
+  queryObj.setMinPrice(req.query['minPrice']);
+  queryObj.setMaxPrice(req.query['maxPrice']);
   queryObj.setManufacturer(req.query['manufacturer']);
   queryObj.setCaliber(req.query['caliber']);
+  queryObj.setUserId(req.query['userId']);
   queryObj.setSearchString(req.query['search']);
 
   console.log("Mongo query: ", queryObj.getQuery());
@@ -147,7 +148,7 @@ function ListingSearch() {
 	var filterCaliber = null;
 	var filterMinPrice = null;
 	var filterMaxPrice = null;
-	var filterOwnerId = null;
+	var filterUserId = null;
 	var searchTerms = [];
 
 	this.setSearchString = function(search) {
@@ -176,9 +177,9 @@ function ListingSearch() {
 			filterMaxPrice = price;
 	};
 
-	this.setOwnerId = function(owner) {
+	this.setUserId = function(owner) {
 		if(typeof owner !== 'undefined')
-			filterOwnerId = owner;
+			filterUserId = owner;
 	};
 
 	this.getQuery = function() {
@@ -210,9 +211,9 @@ function ListingSearch() {
 				query['description']['$in'].push(r);
 			});
 		}
-		if(filterOwnerId)
+		if(filterUserId)
 		{
-			query['ownerId'] = filterOwnerId;
+			query['userId'] = filterOwnerId;
 		}
 
 		return query;
