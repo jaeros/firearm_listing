@@ -1,9 +1,10 @@
 var listing = angular.module('ListingController', []);
 
-listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout) {
+listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout, $upload) {
 	$scope.globalTest = "Listing Controller Text";
 	$scope.isOwner = false;
 	$scope.isEditing = false;
+	$scope.files = [];
 
 	this.init = function() {
 		$scope.user = JSON.parse(localStorage.getItem('user'));
@@ -17,10 +18,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	var listingId = $routeParams.listingId;
 	//Get main listing
 	var listing = Listings.get({listingId: listingId}, function(listing){
-		if($scope.user) {
-			if($scope.user._id === listing.userId)
-				$scope.isOwner = true;
-		}
+		if($scope.user && $scope.user._id === listing.userId)
+			$scope.isOwner = true;
 
 		listing.pageViews += 1;
 		$scope.listing = listing;
@@ -28,11 +27,6 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		//console.log(listing);
 		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
-
-		// if(listing.userId === $scope.user._id)
-		// 	$scope.isOwner = true;
-		// else
-		// 	$scope.isOwner = false;
 
 		if($location.search().editing) {
 			$scope.oldListing = angular.copy(listing);
@@ -140,4 +134,26 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	$scope.addSpec = function() {
 		$scope.editListing.customGunSpecs.push({name:"", value:""});
 	};
+
+	/*jshint loopfunc: true */
+	$scope.$watch('files', function() {
+		for(var i = 0; i < $scope.files.length; i++) {
+			var file = $scope.files[i];
+
+			$scope.upload = $upload.upload({
+				url: '/upload',
+				method: 'POST',
+				headers: {'Authorization': 'Bearer' + localStorage.getItem('token')},
+				withCredentials: true,
+				data: {userId: $scope.user._id},
+				file: file
+			}).success(function(data, status, headers, config) {
+				var photo = {};
+				photo.url = data.pathname;
+
+				$scope.editListing.photos.push(photo);
+				$scope.editListing.$update({listingId: $scope.editListing._id});
+			});
+		}
+	});
 });
