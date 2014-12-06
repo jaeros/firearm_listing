@@ -1,6 +1,6 @@
 {
 	"secret": "abc123",
-	"loginDuration": 5,
+	"loginDuration": 300,
 	"userPermissions": {
 		"personal": {
 			"maxPostsPerMonth": 5
