@@ -172,4 +172,139 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			});
 		}
 	});
+
+	$scope.firearmSpecs = [
+		{
+			id: "1",
+			specs: [
+				{
+					name: "Manufacturer",
+					value: "Glock"
+				},
+				{
+					name: "Model",
+					value: "19"
+				},
+				{
+					name: "Caliber",
+					value: "9mm"
+				},
+				{
+					name: "Capacity",
+					value: "15"
+				},
+				{
+					name: "Action",
+					value: "Semi-Auto"
+				},
+				{
+					name: "Barrel Length",
+					value: "102 mm/4.01 in."
+				},
+				{
+					name: "Length",
+					value: "187 mm / 7.36 in."
+				}
+			]
+		},
+		{
+			id: "2",
+			specs: [
+				{
+					name: "Manufacturer",
+					value: "Glock"
+				},
+				{
+					name: "Model",
+					value: "22"
+				},
+				{
+					name: "Caliber",
+					value: ".40"
+				},
+				{
+					name: "Capacity",
+					value: "15"
+				},
+				{
+					name: "Action",
+					value: "Semi-Auto"
+				},
+				{
+					name: "Barrel Length",
+					value: "114 mm / 4.49 in."
+				},
+				{
+					name: "Length",
+					value: "204 mm / 8.03 in."
+				}
+			]
+		},
+		{
+			id: "3",
+			specs : [
+				{
+					name: "Manufacturer",
+					value: "Century Arms International"
+				},
+				{
+					name: "Model",
+					value: "WASR-10"
+				},
+				{
+					name: "Caliber",
+					value: "7.62x39mm"
+				},
+				{
+					name: "Capacity",
+					value: "30"
+				},
+				{
+					name: "Action",
+					value: "Semi-Auto"
+				},
+				{
+					name: "Barrel Length",
+					value: "415 mm / 16.3 in."
+				},
+				{
+					name: "Length",
+					value: "880 mm / 34.6 in."
+				}
+			]
+		},
+		{
+			id: "4",
+			specs: [
+				{
+					name: "Manufacturer",
+					value: "DPMS Firearms"
+				},
+				{
+					name: "Model",
+					value: "Carbine"
+				},
+				{
+					name: "Caliber",
+					value: ".223/5.56 NATO"
+				},
+				{
+					name: "Capacity",
+					value: "15"
+				},
+				{
+					name: "Action",
+					value: "Semi-Auto"
+				},
+				{
+					name: "Barrel Length",
+					value: "16 in."
+				},
+				{
+					name: "Length",
+					value: "36.5 in."
+				}
+			]
+		}
+	];
 });
