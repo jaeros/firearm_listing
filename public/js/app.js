@@ -2,6 +2,7 @@ var app = angular.module('firearm-listings', [
 	'angularFileUpload',
 	'ngRoute',
 	'ngResource',
+	'textAngular',
 	'GlobalController',
 	'IndexController',
 	'AccountController',

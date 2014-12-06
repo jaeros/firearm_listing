@@ -119,6 +119,20 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			price = price.replace(/[^0-9\.]+/g, '');
 			$scope.editListing.price = parseFloat(price);
 
+			var description = $scope.editListing.description;
+
+			console.log(description);
+
+			while(description.search("<p><span><br\/><\/span><\/p><p><span><br\/><\/span><\/p>") != -1) {
+				description = description.replace('<p><span><br\/><\/span><\/p><p><span><br\/><\/span><\/p>', '<p><span><br\/><\/span><\/p>');
+			}
+
+			while(description.search(/\s\s/) != -1) {
+				description = description.replace(/\s\s/, " ");
+			}
+
+			$scope.editListing.description = description;
+
 			$scope.editListing.$update({listingId: $scope.editListing._id});
 		}
 	};
