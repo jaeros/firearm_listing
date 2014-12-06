@@ -22,8 +22,8 @@
 				<h4 div class="listing-status-sold" ng-if="listing.isSold">SOLD</h4>
 			</div>
 			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-6">
-				<h5>
-					{{listing.description}}
+				<h5 ng-bind-html="listing.description">
+					<!-- {{listing.description}} -->
 				</h5>
 			</div>
 			<div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-0">
