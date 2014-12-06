@@ -154,6 +154,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		for(var i = 0; i < $scope.files.length; i++) {
 			var file = $scope.files[i];
 
+			console.log($scope.editListing);
+
 			$scope.upload = $upload.upload({
 				url: '/upload',
 				method: 'POST',

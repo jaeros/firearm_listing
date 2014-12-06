@@ -36,7 +36,7 @@
 					</div>
 				</div>
 
-				<button class="btn btn-default blue-btn no-padding" ng-file-select ng-model="files" multiple="true" accept="image/*" ng-if="isEditing &amp;&amp; isOwner"><small>Add Photos</small></button>
+				<button class="btn btn-default blue-btn no-padding" ng-file-select ng-model="files" ng-multiple="false" accept="image/*" ng-show="isEditing &amp;&amp; isOwner"><small>Add Photo</small></button>
 
 				<br><h4>Page Views: {{listing.pageViews}}</h4>
 				<br><h4>Listed on: {{listing.listedOn | date}}</h4>
