@@ -213,7 +213,7 @@ function ListingSearch() {
 		}
 		if(filterUserId)
 		{
-			query['userId'] = filterOwnerId;
+			query['userId'] = filterUserId;
 		}
 
 		return query;
