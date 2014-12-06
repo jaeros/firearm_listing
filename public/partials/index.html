@@ -3,66 +3,102 @@
 
 		<h3>Browse</h3>
 
-		<div class="row">
+		<section class="tab" ng-controller="TabController as tab">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 no-padding">
+					<a href="" class="browse-tab" ng-click="tab.setTab(1)">
+						<div class="col-xs-12 selected">
+							<br ng-class="{ active: tab.isSet(1) }"><br>
+							<h1>By Type</h1>
+							<br><br>
+						</div>
+					</a>
+					<a href="" class="browse-tab" ng-click="tab.setTab(2)">
+						<div class="col-xs-12 unselected">
+							<br ng-class="{ active: tab.isSet(2) }"><br>
+							<h1>By Model</h1>
+							<br><br>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-sm-8 browse-table" ng-show="tab.isSet(1)">
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/revolver1.png" class="thumbnail-size">
 
-			<div class="col-xs-12 col-sm-4 no-padding">
-				<a href="" class="browse-tab">
-					<div class="col-xs-12 selected">
-						<br><br>
-						<h1>By Type</h1>
-						<br><br>
+							</div>
+						</a>
 					</div>
-				</a>
-				<div class="col-xs-12 unselected">
-					<br><br>
-					<h1>By Model</h1>
-					<br><br>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/pistol_outline1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/rifle_outline1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/shotgun_outline1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
 				</div>
+				<div class="col-xs-12 col-sm-8 browse-table" ng-show="tab.isSet(2)">
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/revolver1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/revolver1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/revolver1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
+						<a href="#/search">
+							<div class="thumbnail border-black">
+								<img src="img/revolver1.png" class="thumbnail-size">
+
+							</div>
+						</a>
+					</div>
+				</div>
+
 			</div>
-			<div class="col-xs-12 col-sm-8 browse-table">
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-					<a href="#/search">
-						<div class="thumbnail border-black">
-							<img src="img/revolver1.png" class="thumbnail-size">
-
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-					<a href="#/search">
-						<div class="thumbnail border-black">
-							<img src="img/pistol_outline1.png" class="thumbnail-size">
-
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-					<a href="#/search">
-						<div class="thumbnail border-black">
-							<img src="img/rifle_outline1.png" class="thumbnail-size">
-
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-					<a href="#/search">
-						<div class="thumbnail border-black">
-							<img src="img/shotgun_outline1.png" class="thumbnail-size">
-
-						</div>
-					</a>
-				</div>
-			</div>
-
-		</div>
-
+		</section>
 
 	</div>
 	<div class="row col-xs-12 space-sm"></div>
 	<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		<h3>Popular Listings<h3>
 		<div class="row no-padding">
-			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4">
+			<!-- <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4">
 				<a href="#/listings/1">
 					<div class="thumbnail border-orange">
 						<img src="img/revolver.png" class="thumbnail-size">
@@ -72,8 +108,8 @@
 						</div>
 					</div>
 				</a>
-			</div>
-			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings">
+			</div> -->
+			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings | orderBy:'-pageViews' | limitTo:3">
 				<a ng-href="#/listings/{{listing._id}}">
 					<div class="thumbnail">
 						<img ng-show="listing.photos.length" ng-src="{{listing.photos[0].url}}" class="thumbnail-size">
@@ -84,7 +120,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0 col-md-4 hidden-sm" >
+			<!-- <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0 col-md-4 hidden-sm" >
 				<a href="#/listings/1">
 					<div class="thumbnail">
 						<img src="img/revolver.png" class="thumbnail-size">
@@ -94,7 +130,7 @@
 						</div>
 					</div>
 				</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
