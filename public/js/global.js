@@ -51,5 +51,10 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		alert("You were logged out successfully");
 
 		$location.path('/');
-	}
+	};
+
+	$scope.doSearch = function() {
+		console.log("Searching for " + $scope.searchBar);
+		$location.path('/search').search('search', $scope.searchBar);
+	};
 });
