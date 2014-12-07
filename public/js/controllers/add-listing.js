@@ -40,10 +40,12 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
         var photo = {};
         photo.url = data.pathname;
 
+        $scope.newListing.photos = [];
+
         $scope.newListing.photos.push(photo);
         completedUploads++;
         //$scope.newListing.$update({listingId: $scope.editListing._id});
-        if(completedUploads == files.length) {
+        if(completedUploads == $scope.files.length) {
           saveNewListing();
         }
       }).error(function(data, satus, headers, config) {
@@ -56,7 +58,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
     }
   };
 
-  $scope.deletePhoto = function(index) { 
+  $scope.deletePhoto = function(index) {
     $scope.files.splice(index, 1);
   };
 
@@ -68,7 +70,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
   $scope.$watch('file', function() {
     if($scope.file !== undefined && $scope.file !== "") {
       console.log($scope.file);
-      $scope.files.push($scope.file[0]);  
+      $scope.files.push($scope.file[0]);
     }
   });
 
