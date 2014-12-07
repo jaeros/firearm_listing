@@ -3,7 +3,9 @@ var addListing = angular.module('addListingController', []);
 addListing.controller('addListingController', function($scope, $upload, $http, Listings) {
   this.init = function() {
     $scope.user = JSON.parse(localStorage.getItem('user'));
-    $scope.newListing = {};
+    $scope.newListing = {
+      userId : $scope.user._id
+    };
     //$scope.file = {};
     $scope.files = [];
   };
@@ -26,6 +28,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
     for(var i = 0; i < $scope.files.length; i++) {
       var file = $scope.files[i];
       var completedUploads = 0;
+      $scope.newListing.photos = [];
 
       console.log($scope.editListing);
 
@@ -38,9 +41,8 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
         file: file
       }).success(function(data, status, headers, config) {
         var photo = {};
-        photo.url = data.pathname;
+        photo.url = data.pathname.replace('\\', '/');
 
-        $scope.newListing.photos = [];
 
         $scope.newListing.photos.push(photo);
         completedUploads++;
@@ -75,6 +77,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
   });
 
   function saveNewListing() {
+    console.log("Saving new listing: " + $scope.newListing);
     $http.post('listings/', $scope.newListing).
       success(function(data, status, headers, config) {
         console.log("Saved new listing: ", data);
