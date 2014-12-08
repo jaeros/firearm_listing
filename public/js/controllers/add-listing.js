@@ -131,4 +131,12 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
       length: "36.5 in."
     }
   ];
+
+  // $scope.$on('$locationChangeStart', function( event ) {
+  //   var answer = confirm("Are you sure you want to leave this page?")
+  //   if (!answer) {
+  //       event.preventDefault();
+  //   }
+  // });
+  
 });
