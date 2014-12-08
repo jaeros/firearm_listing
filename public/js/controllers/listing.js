@@ -1,6 +1,6 @@
 var listing = angular.module('ListingController', []);
 
-listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout, $upload) {
+listing.controller('listingController', function($scope, Listings, $location, $routeParams, $timeout, $upload, $http) {
 	$scope.globalTest = "Listing Controller Text";
 	$scope.isOwner = false;
 	$scope.isEditing = false;
@@ -58,6 +58,15 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		isSold: false,
 		isActive: true
 	};*/
+
+	$scope.sendMessage = function(){
+		$http.post('/listings/message/',$scope.message).success(function(data, status, headers, config){
+			console.log("My data ",data);
+		}).error(function(data, status, headers, config){
+			console.log("My data ",data);
+			console.log("Message not received properly!");
+		});
+	}
 
 	$scope.showPhoto = function(index){
 		if(index > $scope.listing.photos.length) {
