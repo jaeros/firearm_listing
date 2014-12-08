@@ -1,14 +1,25 @@
 var addListing = angular.module('addListingController', []);
 
-addListing.controller('addListingController', function($scope, Listings) {
+addListing.controller('addListingController', function($scope, $upload, $http, Listings) {
   this.init = function() {
-    this.newListing = {};
+    $scope.user = JSON.parse(localStorage.getItem('user'));
+    $scope.newListing = {
+      userId : $scope.user._id,
+      isActive: 'true',
+      isSold: 'false'
+    };
+    //$scope.file = {};
+    $scope.files = [];
   };
 
   this.init();
 
   $scope.addListing = function() {
-
+    if($scope.files.length) {
+      $scope.uploadPhotos();
+    } else {
+      saveNewListing();
+    }
   };
 
   $scope.previewListing = function() {
@@ -16,13 +27,67 @@ addListing.controller('addListingController', function($scope, Listings) {
   };
 
   $scope.uploadPhotos = function() {
+    for(var i = 0; i < $scope.files.length; i++) {
+      var file = $scope.files[i];
+      var completedUploads = 0;
+      $scope.newListing.photos = [];
 
+      console.log($scope.editListing);
+
+      $scope.upload = $upload.upload({
+        url: '/upload',
+        method: 'POST',
+        headers: {'Authorization': 'Bearer' + localStorage.getItem('token')},
+        withCredentials: true,
+        data: {userId: $scope.user._id},
+        file: file
+      }).success(function(data, status, headers, config) {
+        var photo = {};
+        photo.url = data.pathname.replace('\\', '/');
+
+
+        $scope.newListing.photos.push(photo);
+        completedUploads++;
+        //$scope.newListing.$update({listingId: $scope.editListing._id});
+        if(completedUploads == $scope.files.length) {
+          saveNewListing();
+        }
+      }).error(function(data, satus, headers, config) {
+        console.log("Photo upload failed!");
+        completedUploads++;
+        if(completedUploads == $scope.files.length) {
+          saveNewListing();
+        }
+      });
+    }
+  };
+
+  $scope.deletePhoto = function(index) {
+    $scope.files.splice(index, 1);
   };
 
   //maybe
   $scope.addSpec = function() {
 
   };
+
+  $scope.$watch('file', function() {
+    if($scope.file !== undefined && $scope.file !== "") {
+      console.log($scope.file);
+      $scope.files.push($scope.file[0]);
+    }
+  });
+
+  function saveNewListing() {
+    console.log("Saving new listing: " + $scope.newListing);
+    $http.post('listings/', $scope.newListing).
+      success(function(data, status, headers, config) {
+        console.log("Saved new listing: ", data);
+      }).
+      error(function(data, status, headers, config) {
+        console.log("Error creating new listing: ", data);
+      });
+  }
 
   $scope.firearmSpecs = [
     {
@@ -65,5 +130,13 @@ addListing.controller('addListingController', function($scope, Listings) {
       barrelLength: "16 in.",
       length: "36.5 in."
     }
-  ]
+  ];
+
+  // $scope.$on('$locationChangeStart', function( event ) {
+  //   var answer = confirm("Are you sure you want to leave this page?")
+  //   if (!answer) {
+  //       event.preventDefault();
+  //   }
+  // });
+  
 });
