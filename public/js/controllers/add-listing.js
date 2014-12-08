@@ -4,7 +4,9 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
   this.init = function() {
     $scope.user = JSON.parse(localStorage.getItem('user'));
     $scope.newListing = {
-      userId : $scope.user._id
+      userId : $scope.user._id,
+      isActive: 'true',
+      isSold: 'false'
     };
     //$scope.file = {};
     $scope.files = [];
@@ -128,5 +130,5 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
       barrelLength: "16 in.",
       length: "36.5 in."
     }
-  ]
+  ];
 });
