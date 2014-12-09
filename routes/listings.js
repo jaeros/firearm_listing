@@ -3,6 +3,7 @@
 // -------------------------------------------
 var express = require('express');
 var model = require('../models/listing');
+var user = require('../models/user');
 var router = express.Router();
 var jwt = require('express-jwt');
 var config = require('config');
@@ -11,6 +12,7 @@ var config = require('config');
 // SETUP
 // -------------------------------------------
 var Listing = model.Listing;
+var User = model.User;
 var _secret = config.get('secret');
 
 // -------------------------------------------
@@ -80,6 +82,43 @@ router.get('/:listingId', queryParams, function(req, res) {
   	else
   	  res.status(404).send('Specified listing not found');
   });
+});
+
+/* POST a message to a seller */
+router.post('/message/', function(req,res) {
+	console.log("Let's send an email!");
+
+	// console.log(req);
+
+	var email   = require("../node_modules/emailjs/");
+	var server  = email.server.connect({
+	   user:    "firearm.listings", 
+	   password:"jeffisstupid", 
+	   host:    "smtp.gmail.com", 
+	   ssl:     true
+	});
+
+	// send the message and get a callback with an error or details of the message that was sent
+	server.send({
+	   text:    "i hope this works", 
+	   from:    "firearm.listings@gmail.com", 
+	   to:      "nicholas.martin90@gmail.com",
+	   subject: "testing emailjs"
+	}, function(err, message) { console.log(err || message); });
+
+	// User.findOne({},function(err, doc) {
+	// 	if (err){
+	// 		res.status(500).send('Could not send message');
+	// 	}
+	// 	else if (!doc){
+	// 		if (err){
+	// 			res.status(400).send('Invalid listing');
+	// 		}
+	// 		else {
+	// 			res.status(201).send('Message sent successfully');
+	// 		}
+	// 	}
+	// });
 });
 
 /* UPDATE an existing listing */

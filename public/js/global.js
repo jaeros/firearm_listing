@@ -4,6 +4,19 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
 
+	$scope.checkLogin = function() {
+		$http.get('/users/test')
+			.success(function(data, status, headers, config) {
+				console.log("User expires at " + data.expires);
+			})
+			.error(function(data, status, headers, config) {
+				if(status == 401)
+					$scope.doLogout(true);
+			});
+	};
+
+	$scope.checkLogin();
+
 	/* Login dialog */
 	$scope.doLogin = function() {
 		console.log("Logging in with user " + $scope.login_username + ", password " + $scope.login_password);
@@ -46,7 +59,7 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		});
 	};
 
-	$scope.doLogout = function() {
+	$scope.doLogout = function(skipAlert) {
 
 		// Set user as not logged in
 		$scope.isLoggedIn = false;
@@ -55,7 +68,8 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		$window.localStorage.removeItem('token');
 		$window.localStorage.removeItem('user');
 
-		alert("You were logged out successfully");
+		if(!skipAlert)
+			alert("You were logged out successfully");
 
 		$location.path('/');
 	};

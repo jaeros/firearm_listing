@@ -26,7 +26,6 @@
 						<a href="#/search">
 							<div class="thumbnail border-black">
 								<img src="img/revolver1.png" class="thumbnail-size">
-
 							</div>
 						</a>
 					</div>
@@ -34,7 +33,6 @@
 						<a href="#/search">
 							<div class="thumbnail border-black">
 								<img src="img/pistol_outline1.png" class="thumbnail-size">
-
 							</div>
 						</a>
 					</div>
@@ -42,7 +40,6 @@
 						<a href="#/search">
 							<div class="thumbnail border-black">
 								<img src="img/rifle_outline1.png" class="thumbnail-size">
-
 							</div>
 						</a>
 					</div>
@@ -50,46 +47,40 @@
 						<a href="#/search">
 							<div class="thumbnail border-black">
 								<img src="img/shotgun_outline1.png" class="thumbnail-size">
-
 							</div>
 						</a>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-8 browse-table" ng-show="tab.isSet(2)">
-					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-						<a href="#/search">
-							<div class="thumbnail border-black">
-								<img src="img/revolver1.png" class="thumbnail-size">
-
-							</div>
-						</a>
+					<br></br>
+					<label class="col-sm-2 control-label">Manufacturer</label>
+					<div class="col-sm-20">
+						<select class="form-control" ng-model="user.accountType">
+							<option type="checkbox">Glock</option>
+							<option>Karh</option>
+							<option>Mossberg</option>
+							<option>Remington</option>
+							<option>Sako</option>
+							<option>Springfield</option>
+						</select>
 					</div>
-					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-						<a href="#/search">
-							<div class="thumbnail border-black">
-								<img src="img/revolver1.png" class="thumbnail-size">
-
-							</div>
-						</a>
+					<br></br>
+					<label class="col-sm-2 control-label">Model</label>
+					<div class="col-sm-20">
+						<select class="form-control" ng-model="user.accountType">
+							<option>19</option>
+							<option>Cm9</option>
+							<option>590</option>
+							<option>A-Bolt</option>
+							<option>TRG</option>
+							<option>XDM</option>
+						</select>
 					</div>
-					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-						<a href="#/search">
-							<div class="thumbnail border-black">
-								<img src="img/revolver1.png" class="thumbnail-size">
-
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6">
-						<a href="#/search">
-							<div class="thumbnail border-black">
-								<img src="img/revolver1.png" class="thumbnail-size">
-
-							</div>
-						</a>
+					<br></br>
+					<div class="col-sm-offset-5 col-sm-10">
+						<button type="submit" class="btn btn-default">Search</button>
 					</div>
 				</div>
-
 			</div>
 		</section>
 
@@ -98,17 +89,6 @@
 	<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		<h3>Popular Listings<h3>
 		<div class="row no-padding">
-			<!-- <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4">
-				<a href="#/listings/1">
-					<div class="thumbnail border-orange">
-						<img src="img/revolver.png" class="thumbnail-size">
-						<div class="row caption listing-header no-margin no-padding orange">
-							<div class="col-xs-6 text-left white-small">Gun</div>
-							<div class="col-xs-6 text-right white-small">$150.00</div>
-						</div>
-					</div>
-				</a>
-			</div> -->
 			<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings | orderBy:'-pageViews' | limitTo:3">
 				<a ng-href="#/listings/{{listing._id}}">
 					<div class="thumbnail">
@@ -120,17 +100,6 @@
 					</div>
 				</a>
 			</div>
-			<!-- <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0 col-md-4 hidden-sm" >
-				<a href="#/listings/1">
-					<div class="thumbnail">
-						<img src="img/revolver.png" class="thumbnail-size">
-						<div class="row caption listing-header no-margin no-padding">
-							<div class="col-xs-6 text-left white-small">Gun</div>
-							<div class="col-xs-6 text-right white-small">$150.00</div>
-						</div>
-					</div>
-				</a>
-			</div> -->
 		</div>
 	</div>
 

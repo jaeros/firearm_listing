@@ -23,6 +23,7 @@
     "jsonwebtoken": "~1.2.0",
     "connect-busboy": "0.0.2",
     "fs-extra": "0.12.0",
+    "emailjs":"0.3.12",
     "fast-csv": "0.5.4"
   }
 }

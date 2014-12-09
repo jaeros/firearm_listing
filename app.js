@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 // error handlers
 app.use(function(err, req, res, next){
   console.log("Error: ", err);
-  console.log("Error name: ", err.inner.name);
+  // console.log("Error name: ", err.inner.name);
   if (err.constructor.name === 'UnauthorizedError') {
     if(err.inner.name == "TokenExpiredError")
         res.status(401).send('TokenExpired');
