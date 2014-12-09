@@ -1,6 +1,6 @@
 var index = angular.module('IndexController', []);
 
-index.controller('indexController', function($scope, Listings) {
+index.controller('indexController', function($scope, Listings, Manufacturers) {
 	$scope.globalTest = "Index Controller Text";
 
 	//Get related listings
@@ -8,6 +8,16 @@ index.controller('indexController', function($scope, Listings) {
 		$scope.listings = listings;
 		console.log(listings);
 	});
+	//Manufacturers.query(function(manufacturers)) {
+	//	$scope.manufacturers = manufacturers;
+	//	console.log(manufacturers);
+	//});
+
+	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
+	//$(".myDropdownCheckbox").dropdownCheckbox({
+	//  data: myData,
+	//  title: "Manufacturers"
+	//});
 });
 
 //browse tab
