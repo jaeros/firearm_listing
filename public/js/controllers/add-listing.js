@@ -1,13 +1,16 @@
 var addListing = angular.module('addListingController', []);
 
-addListing.controller('addListingController', function($scope, $upload, $http, Listings) {
+addListing.controller('addListingController', function($scope, $upload, $http, $timeout, $location, Listings) {
   this.init = function() {
     $scope.user = JSON.parse(localStorage.getItem('user'));
+    $scope.currentPhoto = {};
     $scope.newListing = {
+      photos: [],
       userId : $scope.user._id,
       isActive: 'true',
       isSold: 'false'
     };
+    $scope.isPreview = false;
     //$scope.file = {};
     $scope.files = [];
   };
@@ -15,22 +18,40 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
   this.init();
 
   $scope.addListing = function() {
-    if($scope.files.length) {
-      $scope.uploadPhotos();
+    console.log("Saving new listing: " + $scope.newListing);
+    $http.post('listings/', $scope.newListing).
+      success(function(data, status, headers, config) {
+        console.log("Saved new listing: ", data);
+        $scope.newListing = {
+          photos: [],
+          userId : $scope.user._id,
+          isActive: 'true',
+          isSold: 'false'
+        };
+        $location.path('/my-listings');
+      }).
+      error(function(data, status, headers, config) {
+        console.log("Error creating new listing: ", data);
+      });
+  };
+
+  $scope.showPreview = function() {
+    if($scope.newListing.photos.length) {
+     $scope.currentPhoto = $scope.newListing.photos[0]  
     } else {
-      saveNewListing();
+      $scope.currentPhoto = {
+        url: 'http://placehold.it/200x200'
+      };
     }
+    $scope.isPreview = true;
   };
 
-  $scope.previewListing = function() {
+  $scope.hidePreview = function() {
+    $scope.isPreview = false;
+  }
 
-  };
-
-  $scope.uploadPhotos = function() {
-    for(var i = 0; i < $scope.files.length; i++) {
-      var file = $scope.files[i];
+  function uploadPhoto(file) {
       var completedUploads = 0;
-      $scope.newListing.photos = [];
 
       console.log($scope.editListing);
 
@@ -44,26 +65,24 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
       }).success(function(data, status, headers, config) {
         var photo = {};
         photo.url = data.pathname.replace('\\', '/');
+        photo.name = file.name;
+        console.log(photo);
 
 
         $scope.newListing.photos.push(photo);
-        completedUploads++;
         //$scope.newListing.$update({listingId: $scope.editListing._id});
-        if(completedUploads == $scope.files.length) {
-          saveNewListing();
-        }
       }).error(function(data, satus, headers, config) {
         console.log("Photo upload failed!");
-        completedUploads++;
-        if(completedUploads == $scope.files.length) {
-          saveNewListing();
-        }
+        //show failure display
       });
-    }
-  };
+  }
 
   $scope.deletePhoto = function(index) {
-    $scope.files.splice(index, 1);
+    $scope.newListing.photos.splice(index, 1);
+  };
+
+  $scope.showPhoto = function(index) {
+    $scope.currentPhoto = $scope.newListing.photos[index];
   };
 
   //maybe
@@ -74,20 +93,9 @@ addListing.controller('addListingController', function($scope, $upload, $http, L
   $scope.$watch('file', function() {
     if($scope.file !== undefined && $scope.file !== "") {
       console.log($scope.file);
-      $scope.files.push($scope.file[0]);
+      uploadPhoto($scope.file[0]);
     }
   });
-
-  function saveNewListing() {
-    console.log("Saving new listing: " + $scope.newListing);
-    $http.post('listings/', $scope.newListing).
-      success(function(data, status, headers, config) {
-        console.log("Saved new listing: ", data);
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error creating new listing: ", data);
-      });
-  }
 
   $scope.firearmSpecs = [
     {
