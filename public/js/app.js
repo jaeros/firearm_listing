@@ -2,6 +2,7 @@ var app = angular.module('firearm-listings', [
 	'angularFileUpload',
 	'ngRoute',
 	'ngResource',
+	'textAngular',
 	'GlobalController',
 	'IndexController',
 	'AccountController',
@@ -94,3 +95,16 @@ app.config(['$routeProvider', '$httpProvider',
 		// AUTHENTICATION INTERCEPTOR
 		$httpProvider.interceptors.push('authInterceptor');
 	}]);
+
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});

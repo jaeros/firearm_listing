@@ -1,7 +1,6 @@
 var indexController = angular.module('GlobalController', []);
 
 indexController.controller('globalController', function($scope, $http, $window, $location) {
-	$scope.globalTest = "Global Controller Text";
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
 
@@ -16,40 +15,53 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		}).
 		success(function(data, status, headers, config) {
 			if(!data)
-				console.error('No data received!');
+			{
+				$scope.loginError = "Error while logging in. Please try back later."
+				return;
+			}
+
 			// Retrieve token and user from results
 			var token = data.token;
 			var user = JSON.stringify(data.user);
 
-			// Save token to storage
-			console.log("Got token: ", token);
+			// Save token and user to storage
 			$window.localStorage.setItem('token', token);
-
-			// Save the user
 			$window.localStorage.setItem('user', user);
 
-			console.log("Setting isLoggedIn to true");
-			$scope.isLoggedIn = true;
+			// Clear login fields
+			$scope.login_username = '';
+			$scope.login_password = '';
+			$scope.loginError = false;
 
+			// Complete login process on UI
+			$scope.isLoggedIn = true;
 			$('#loginModal').modal('hide');
 		}).
 		error(function(data, status, headers, config) {
-			console.error('Error while logging in: ', data);
+			// Display appropriate error message in modal
+			if(status == 401)
+				$scope.loginError = "Bad username or password";
+			else
+				$scope.loginError = "Error while logging in. Please try back later.";
 		});
 	};
 
 	$scope.doLogout = function() {
 
-		console.log("Logging out!");
-
 		// Set user as not logged in
 		$scope.isLoggedIn = false;
 
-		// Clear token
+		// Clear token and user
 		$window.localStorage.removeItem('token');
+		$window.localStorage.removeItem('user');
 
 		alert("You were logged out successfully");
 
 		$location.path('/');
-	}
+	};
+
+	// Called by main search bar, redirects to search page
+	$scope.doSearch = function() {
+		$location.path('/search').search('search', $scope.searchBar);
+	};
 });

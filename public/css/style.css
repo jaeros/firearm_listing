@@ -273,6 +273,11 @@ a h1:hover {
   cursor: pointer;
 }
 
+.ta-toolbar {
+  display: none;
+  visibility: hidden;
+}
+
 /*********************************************************************************/
 /*LISTING STYLES*/
 /*********************************************************************************/
@@ -295,7 +300,9 @@ h4 a:hover {
 .search-button {
 	border-radius: 0 6 6 0;
 	position: fixed;
+	/*left: 0;*/
 	z-index: 1;
+	background-color: orange !important;
 }
 
 /*********************************************************************************/

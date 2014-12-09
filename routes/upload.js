@@ -19,7 +19,7 @@ router.post('/', function(req, res) {
     fstream.on('close', function() {
       console.log("Upload finished for " + filename);
 
-      var serverPathIndex = pathname.indexOf("/uploads");
+      var serverPathIndex = pathname.indexOf("uploads");
       var serverPath = pathname.substring(serverPathIndex, pathname.length);
       console.log(serverPath);
 

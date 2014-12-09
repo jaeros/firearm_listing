@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Droid+Sans' />
+		<link rel="stylesheet" type="text/css" href="components/textAngular/src/textAngular.css" />
 		<title>Firearm Listings | Home</title>
 		<link rel="shortcut icon" href="img/pistol_outline.png">
 
@@ -32,9 +33,9 @@
 											<form class="navbar-form navbar-left no-border" role="search">
 												<div class="form-group">
 													<div class="input-group">
-														<input type="text" class="form-control" placeholder="Search"/>
-														<span class="input-group-addon">
-														<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+														<input type="text" class="form-control" placeholder="Search" ng-model="searchBar" ng-enter="doSearch()" />
+														<span class="input-group-addon" ng-click="doSearch()">
+															<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 														</span>
 													</div>
 												</div>
@@ -66,17 +67,26 @@
 							</div>
 							<div class="modal-body">
 								<div class="row">
+									<div class="col-sm-12">
+										<div class="alert alert-danger" role="alert" ng-show="loginError">
+										  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+										  <span class="sr-only">Error:</span>
+										  	{{loginError}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
 									<div class="form-group">
 
 										<div class="col-sm-12">
-											<input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="login_username">
+											<input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="login_username" ng-enter="doLogin()">
 										</div>
 									</div>
 									<div class="row col-xs-12 space-xs"></div>
 									<div class="form-group">
 
 										<div class="col-sm-12">
-											<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="login_password">
+											<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="login_password" ng-enter="doLogin()">
 										</div>
 									</div>
 								</div>
@@ -95,9 +105,12 @@
 				<script type="text/javascript" src="components/angular/angular.js" defer="defer"></script>
 				<script type="text/javascript" src="components/angular-route/angular-route.js" defer="defer"></script>
 				<script type="text/javascript" src="components/angular-resource/angular-resource.js" defer="defer"></script>
-				<script type="text/javascript" src="components/ng-file-upload/angular-file-upload-all.js" defer="defer"></script>
 				<script type="text/javascript" src="components/bootstrap/dist/js/bootstrap.js" defer="defer"></script>
 				<script type="text/javascript" src="components/jquery/dist/jquery.js"></script>
+				<script type="text/javascript" src="components/ng-file-upload/angular-file-upload-all.js" defer="defer"></script>
+				<script type="text/javascript" src="components/textAngular/dist/textAngular-rangy.min.js" defer="defer"></script>
+				<script type="text/javascript" src="components/textAngular/dist/textAngular-sanitize.min.js" defer="defer"></script>
+				<script type="text/javascript" src="components/textAngular/dist/textAngular.min.js" defer="defer"></script>
 				<script type="text/javascript" src="js/app.js" defer="defer"></script>
 				<script type="text/javascript" src="js/global.js" defer="defer"></script>
 				<script type="text/javascript" src="js/index.js" defer="defer"></script>
