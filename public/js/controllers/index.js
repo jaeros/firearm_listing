@@ -21,14 +21,15 @@ index.controller('indexController', function($scope, Listings, Manufacturers) {
 });
 
 //browse tab
-	index.controller('TabController', function(){
-this.tab = 1;
+index.controller('TabController', function() {
+    this.tab = 1;
 
-this.setTab = function(newValue){
-  this.tab = newValue;
-};
+    this.setTab = function(newValue) {
+        this.tab = newValue;
+    };
 
-this.isSet = function(tabName){
-  return this.tab === tabName;
-};
+    this.isSet = function(tabName) {
+    	console.log("tab = ", tabName);
+        return this.tab === tabName;
+    };
 });
