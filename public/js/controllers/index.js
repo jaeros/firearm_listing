@@ -29,7 +29,7 @@ index.controller('TabController', function() {
     };
 
     this.isSet = function(tabName) {
-    	console.log("tab = ", tabName);
+    	console.log(tabName);
         return this.tab === tabName;
     };
 });
