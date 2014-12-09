@@ -17,7 +17,7 @@
 				<nav class="navbar navbar-default" role="navigation">
 					<div id="site-header" class="row">
 						<div class="container-fluid">
-							<div class="navbar-header col-sm-3 col-md-2 col-lg-2">
+							<div class="navbar-header col-sm-3">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
@@ -26,10 +26,10 @@
 								</button>
 								<a class="navbar-brand" href="#">Firearm Listings</a>
 							</div>
-							<div class="col-sm-9 col-md-10 col-lg-10">
+							<div class="col-sm-9">
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<div class="row">
-										<div class="col-sm-8 col-md-9 col-lg-10">
+										<div class="col-sm-5 col-md-7 col-lg-8">
 											<form class="navbar-form navbar-left no-border" role="search">
 												<div class="form-group">
 													<div class="input-group">
@@ -41,13 +41,14 @@
 												</div>
 											</form>
 										</div>
-										<div class="col-sm-4 col-md-3 col-lg-2">
+										<div class="col-sm-7 col-md-5 col-lg-4">
 											<ul class="nav navbar-nav" ng-show="!isLoggedIn">
 												<li><a href="" data-toggle="modal" data-target="#loginModal">Login</a></li>
 												<li><a href="#/register">Register</a></li>
 											</ul>
 											<ul class="nav navbar-nav" ng-show="isLoggedIn">
 												<li><a href="#/my-listings" >My Listings</a></li>
+												<li><a href="#/account" >My Account</a></li>
 												<li><a href="" ng-click="doLogout()">Log Out</a></li>
 											</ul>
 										</div>
