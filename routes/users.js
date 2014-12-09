@@ -25,6 +25,16 @@ router.get('/', function(req, res) {
 });
 
 /**
+ * Test endpoint to see if token is valid
+ */
+router.get('/test', expressJwt({secret: _secret}), function(req, res) {
+	console.log("User: ", req.user);
+	res.status(200).send({
+		'expires': req.user.exp + 3
+	});
+});
+
+/**
  * Creates a new user
  */
 router.post('/', function(req, res) {
