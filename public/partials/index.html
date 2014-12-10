@@ -52,40 +52,14 @@
 									<label class="col-sm-3 control-label">Manufacturer</label>
 									<div class="col-sm-9">
 										<select class="form-control" ng-model="user.accountType" ng-options="manufacturer.name for manufacturer in manufacturers">
-											<option>Karh</option>
-											<option>Mossberg</option>
-											<option>Remington</option>
-											<option>Sako</option>
-											<option>Springfield</option>
+											<option value="">-Select A Manufacturer-</option>
 										</select>
 									</div>
 								</div>
-
-
-								<!--<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings | orderBy:'-pageViews' | limitTo:3">
-									<a ng-href="#/listings/{{listing._id}}">
-										<div class="thumbnail">
-											<img ng-show="listing.photos.length" ng-src="{{listing.photos[0].url}}" class="thumbnail-size">
-											<div class="row caption listing-header no-margin no-padding">
-												<div class="col-xs-6 text-left white-small">{{listing.title}}</div>
-												<div class="col-xs-6 text-right white-small">{{listing.price | currency}}</div>
-											</div>
-										</div>
-									</a>
-								</div>-->
-
-
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Model</label>
 									<div class="col-sm-9">
-										<select class="form-control" ng-model="user.accountType">
-											<option>19</option>
-											<option>Cm9</option>
-											<option>590</option>
-											<option>A-Bolt</option>
-											<option>TRG</option>
-											<option>XDM</option>
-										</select>
+										<input type="text" class="form-control" id="inputModel" placeholder="-Enter a Model-" ng-model="user.accountType">
 									</div>
 								</div>
 								<div class="col-sm-offset-5 col-sm-7">
