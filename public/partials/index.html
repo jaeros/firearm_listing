@@ -5,80 +5,82 @@
 			<div class="row">
 
 				<div id="content">
-				    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-				        <li class="active"><a href="#byType" data-toggle="tab">Type</a></li>
-				        <li><a href="#byModel" class="tabColor" data-toggle="tab">Model</a></li>
+				    <ul id="myTab" class="nav nav-tabs" role="tablist">
+				    	 <li role="presentation" class="active"><a href="#type" aria-controls="type" role="tab" data-toggle="tab">Type</a></li>
+				    	  <li role="presentation"><a href="#model" aria-controls="model" role="tab" data-toggle="tab">Model</a></li>
+				        <!-- <li class="active"><a href="#byType" data-toggle="tab">Type</a></li> -->
+				        <!-- <li><a href="#byModel" class="tabColor" data-toggle="tab">Model</a></li> -->
 				    </ul>
-				    <div id="my-tab-content" class="tab-content">
-				        <div class="tab-pane active" id="byType">
+				    <div class="tab-content">
+				        <div class="tab-pane fade in active" id="type">
 				            <br></br>
-				        <div class="col-md-3">
-							<a href="#/search">
-								<div class="thumbnail border-black">
-									<img src="img/revolver1.png" class="thumbnail-size ">
-								</div>
-							</a>
-				        </div>
-				        <div class="col-md-3"> 
-				         	<a href="#/search">
-								<div class="thumbnail border-black">
-									<img src="img/pistol_outline1.png" class="thumbnail-size">
-								</div>
-							</a>
-				        </div>
-				        <div class="col-md-3"> 
-				          	<a href="#/search">
-								<div class="thumbnail border-black">
-									<img src="img/rifle_outline1.png" class="thumbnail-size">
-								</div>
-							</a>
-				        </div>
-				        <div class="col-md-3"> 
-				         	<a href="#/search">
-								<div class="thumbnail border-black">
-									<img src="img/shotgun_outline1.png" class="thumbnail-size">
-								</div>
-							</a>
-				        </div>
-				        </div>
-				        <div class="tab-pane" id="byModel">
-				            <div class="row col-xs-12 space-sm"></div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Manufacturer</label>
-							<div class="col-sm-9">
-								<select class="form-control" ng-model="user.accountType">
-									<option>Glock</option>
-									<option>Karh</option>
-									<option>Mossberg</option>
-									<option>Remington</option>
-									<option>Sako</option>
-									<option>Springfield</option>
-								</select>
-								<!-- <li>
-									<div class="layout">
-										<input type="checkbox" id="{{Manufacturers.manufacturerId}}">
-										<label for=" ">{{Manufacturers.ManufacturerValue}}</label>
+					        <div class="col-md-3">
+								<a href="#/search">
+									<div class="thumbnail border-black">
+										<img src="img/revolver1.png" class="thumbnail-size ">
 									</div>
-								</li> -->
+								</a>
+					        </div>
+					        <div class="col-md-3"> 
+					         	<a href="#/search">
+									<div class="thumbnail border-black">
+										<img src="img/pistol_outline1.png" class="thumbnail-size">
+									</div>
+								</a>
+					        </div>
+					        <div class="col-md-3"> 
+					          	<a href="#/search">
+									<div class="thumbnail border-black">
+										<img src="img/rifle_outline1.png" class="thumbnail-size">
+									</div>
+								</a>
+					        </div>
+					        <div class="col-md-3"> 
+					         	<a href="#/search">
+									<div class="thumbnail border-black">
+										<img src="img/shotgun_outline1.png" class="thumbnail-size">
+									</div>
+								</a>
+					        </div>
+				        </div>
+				        <div class="tab-pane fade" id="model">
+				            <div class="row col-xs-12 space-sm"></div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Manufacturer</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="user.accountType">
+										<option>Glock</option>
+										<option>Karh</option>
+										<option>Mossberg</option>
+										<option>Remington</option>
+										<option>Sako</option>
+										<option>Springfield</option>
+									</select>
+									<!-- <li>
+										<div class="layout">
+											<input type="checkbox" id="{{Manufacturers.manufacturerId}}">
+											<label for=" ">{{Manufacturers.ManufacturerValue}}</label>
+										</div>
+									</li> -->
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Model</label>
-							<div class="col-sm-9">
-								<select class="form-control" ng-model="user.accountType">
-									<option>19</option>
-									<option>Cm9</option>
-									<option>590</option>
-									<option>A-Bolt</option>
-									<option>TRG</option>
-									<option>XDM</option>
-								</select>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Model</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="user.accountType">
+										<option>19</option>
+										<option>Cm9</option>
+										<option>590</option>
+										<option>A-Bolt</option>
+										<option>TRG</option>
+										<option>XDM</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="col-sm-offset-5 col-sm-7">
-							<button type="submit" class="btn btn-default">Search</button>
-						</div>
-						<div class="row col-xs-12 space-sm"></div>
+							<div class="col-sm-offset-5 col-sm-7">
+								<button type="submit" class="btn btn-default">Search</button>
+							</div>
+							<div class="row col-xs-12 space-sm"></div>
 				        </div>
 				    </div>
 				</div>
@@ -199,3 +201,10 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('#myTab a').click(function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	});
+</script>
