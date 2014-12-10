@@ -106,19 +106,6 @@ router.post('/message/', function(req,res) {
 	   subject: "testing emailjs"
 	}, function(err, message) { console.log(err || message); });
 
-	// User.findOne({},function(err, doc) {
-	// 	if (err){
-	// 		res.status(500).send('Could not send message');
-	// 	}
-	// 	else if (!doc){
-	// 		if (err){
-	// 			res.status(400).send('Invalid listing');
-	// 		}
-	// 		else {
-	// 			res.status(201).send('Message sent successfully');
-	// 		}
-	// 	}
-	// });
 });
 
 /* UPDATE an existing listing */
