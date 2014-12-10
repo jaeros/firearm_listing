@@ -154,4 +154,8 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 			$scope.activeListings--;
 		}
 	};
+
+	$scope.addListing = function() {
+		window.location = '#/add-listing';
+	};
 });

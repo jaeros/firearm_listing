@@ -289,10 +289,11 @@ a h1:hover {
   cursor: pointer;
 }
 
-.add-spec {
+.add-button {
   width: 20px;
   height: 20px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .ta-toolbar {
