@@ -25,11 +25,16 @@
 				<h5 ng-bind-html="listing.description">
 				</h5>
 			</div>
-			<div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-0">
+			<div class="my-listing-buttons">
+				<div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-0 pull-right">
 
-				<button type="button" class="btn btn-default blue-btn no-padding" ng-click="sellListing(listing)"><small>Mark as Sold</small></button>
-				<button type="button" class="btn btn-default blue-btn no-padding" ng-click="deleteListing(listing)"><small>Delete Listing</small></button>
-			</div>
+					<button type="button" class="btn btn-default blue-btn no-padding" ng-click="sellListing(listing)"><small>Mark as Sold</small></button>
+				</div>
+				<div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-0 pull-right">
+
+					<button type="button" class="btn btn-default blue-btn no-padding" ng-click="deleteListing(listing)"><small>Delete Listing</small></button>
+				</div>
+			</diV>
 			<div class="row col-xs-12 space-sm"></div>
 		</div>
 
