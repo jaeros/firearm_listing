@@ -160,6 +160,15 @@ header .navbar-form .form-group {
 	border-left: 1px dotted black;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
+.padding-top {
+	padding-top: 50%;
+	padding-bottom: 50%;
+}
+
 .selected {
 	background: lightgray;
 	border: 1px solid black;
