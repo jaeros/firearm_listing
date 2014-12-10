@@ -167,6 +167,10 @@ header .navbar-form .form-group {
 	border: 1px solid black;
 }
 
+.tabColor {
+	color: rgb(230, 121, 26);
+}
+
 a h1 {
 	color:black;
 }
@@ -300,9 +304,7 @@ h4 a:hover {
 .search-button {
 	border-radius: 0 6 6 0;
 	position: fixed;
-	/*left: 0;*/
 	z-index: 1;
-	background-color: orange !important;
 }
 
 /*********************************************************************************/

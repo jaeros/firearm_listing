@@ -8,10 +8,10 @@ index.controller('indexController', function($scope, Listings, Manufacturers) {
 		$scope.listings = listings;
 		console.log(listings);
 	});
-	//Manufacturers.query(function(manufacturers)) {
-	//	$scope.manufacturers = manufacturers;
-	//	console.log(manufacturers);
-	//});
+	Manufacturers.query(function(manufacturers)) {
+		$scope.manufacturers = manufacturers;
+		console.log(manufacturers);
+	});
 
 	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
 	//$(".myDropdownCheckbox").dropdownCheckbox({
