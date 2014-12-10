@@ -151,9 +151,13 @@ header .navbar-form .form-group {
 /*********************************************************************************/
 .browse-table {
 	background:lightgray;
-	padding-top: 15px;
+	/*padding-top: 15px;*/
 	border: 1px solid black;
-	border-left: none;
+	/*border-left: none;*/
+}
+
+.left-border {
+	border-left: 1px dotted black;
 }
 
 .selected {
@@ -167,7 +171,12 @@ header .navbar-form .form-group {
 	border: 1px solid black;
 }
 
-.tabColor {
+.tabText.active {
+	color: rgb(230, 121, 26);
+}
+
+.tabColor.active {
+	background-color: lightgray;
 	color: rgb(230, 121, 26);
 }
 
