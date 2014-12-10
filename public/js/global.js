@@ -18,7 +18,7 @@ indexController.controller('globalController', function($scope, $http, $window, 
 	$scope.checkLogin();
 
 	/* Login dialog */
-	$scope.doLogin = function() {
+	$scope.doLogin = function(loginData) {
 		console.log("Logging in with user " + $scope.login_username + ", password " + $scope.login_password);
 
 		$http.post('users/login',
@@ -33,13 +33,8 @@ indexController.controller('globalController', function($scope, $http, $window, 
 				return;
 			}
 
-			// Retrieve token and user from results
-			var token = data.token;
-			var user = JSON.stringify(data.user);
-
-			// Save token and user to storage
-			$window.localStorage.setItem('token', token);
-			$window.localStorage.setItem('user', user);
+			// Store token and user data
+			$scope.setLoginData(data);
 
 			// Clear login fields
 			$scope.login_username = '';
@@ -47,7 +42,6 @@ indexController.controller('globalController', function($scope, $http, $window, 
 			$scope.loginError = false;
 
 			// Complete login process on UI
-			$scope.isLoggedIn = true;
 			$('#loginModal').modal('hide');
 		}).
 		error(function(data, status, headers, config) {
@@ -57,6 +51,19 @@ indexController.controller('globalController', function($scope, $http, $window, 
 			else
 				$scope.loginError = "Error while logging in. Please try back later.";
 		});
+	};
+
+	$scope.setLoginData = function(data) {
+		// Retrieve token and user from results
+		var token = data.token;
+		var user = JSON.stringify(data.user);
+
+		// Save token and user to storage
+		$window.localStorage.setItem('token', token);
+		$window.localStorage.setItem('user', user);	
+
+		// Set user as logged in
+		$scope.isLoggedIn = true;	
 	};
 
 	$scope.doLogout = function(skipAlert) {
