@@ -167,7 +167,12 @@ header .navbar-form .form-group {
 	border: 1px solid black;
 }
 
-.tabColor {
+.tabText.active {
+	color: rgb(230, 121, 26);
+}
+
+.tabColor.active {
+	background-color: lightgray;
 	color: rgb(230, 121, 26);
 }
 
