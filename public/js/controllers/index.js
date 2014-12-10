@@ -19,18 +19,3 @@ index.controller('indexController', function($scope, Listings, Manufacturers) {
 	//  title: "Manufacturers"
 	//});
 });
-
-//browse tab
-index.controller('TabController', function() {
-    this.tab = 1;
-
-    this.setTab = function(newValue) {
-    	console.log("Clicked tab!");
-        this.tab = newValue;
-    };
-
-    this.isSet = function(tabName) {
-    	console.log(tabName);
-        return this.tab === tabName;
-    };
-});
