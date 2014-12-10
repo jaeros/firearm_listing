@@ -1,5 +1,7 @@
 <div class="row">
-	<h1 class="text-center">My Listings</h1>
+	<h1 class="text-center">My Listings
+		<img class="add-button" src="../img/add-icon.png" ng-click="addListing()" title="Add listing" data-toggle="tooltip" data-position="top" tooltip />
+	</h1>
 	<div ng-repeat="listing in myListings" ng-if="listing.isActive">
 		<div class="row">
 			<div class="col-xs-12 listing-header">

@@ -29,8 +29,8 @@ var userSchema = mongoose.Schema({
 	},
 	email: {type: String, validate: emailValidator},
 	phone: String,
-	accountType: {type: String, enum: accountTypeValidator},
-	profileImageUrl: String,
+	accountType: {type: String, enum: accountTypeValidator, default: 'Personal'},
+	profileImageUrl: {type: String, default: 'img/headshot.png'},
 	isActive: Boolean
 });
 
