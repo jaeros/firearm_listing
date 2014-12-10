@@ -175,6 +175,12 @@ router.put('/:listingId', function(req, res) {
 
 });
 
+// router.put('/:listingId/addView', function(req, res) {
+// 	Listing.findByIdAndUpdate(id, {$inc: {pageViews: 1}}, function(err, doc) {
+		
+// 	});
+// });
+
 module.exports = router;
 
 // -------------------------------------------

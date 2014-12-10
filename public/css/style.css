@@ -167,6 +167,10 @@ header .navbar-form .form-group {
 	border: 1px solid black;
 }
 
+.tabColor {
+	color: rgb(230, 121, 26);
+}
+
 a h1 {
 	color:black;
 }
@@ -299,10 +303,22 @@ h4 a:hover {
 /*********************************************************************************/
 .search-button {
 	border-radius: 0 6 6 0;
+	color: white;
+	width: 200px;
 	position: fixed;
-	/*left: 0;*/
+	left: 15;
 	z-index: 1;
-	background-color: orange !important;
+	background-color: #E6791A !important;
+	background-image: linear-gradient(to bottom, #E6791A 0%, #D97218 100%);
+	border: none;
+}
+.search-button:hover {
+	border-radius: 0 6 6 0;
+	color: white;
+	position: fixed;
+	z-index: 1;
+	background-color: #E6791A !important;
+	background-image: linear-gradient(to bottom, #E6791A 0%, #D97218 100%);
 }
 
 /*********************************************************************************/
