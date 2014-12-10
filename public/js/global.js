@@ -76,9 +76,10 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		$window.localStorage.removeItem('user');
 
 		if(!skipAlert)
+		{
 			alert("You were logged out successfully");
-
-		$location.path('/');
+			$location.path('/');
+		}
 	};
 
 	// Called by main search bar, redirects to search page
