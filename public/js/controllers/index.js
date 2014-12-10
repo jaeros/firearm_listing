@@ -8,7 +8,7 @@ index.controller('indexController', function($scope, Listings, Manufacturers) {
 		$scope.listings = listings;
 		console.log(listings);
 	});
-	Manufacturers.query(function(manufacturers)) {
+	Manufacturers.query(function(manufacturers) {
 		$scope.manufacturers = manufacturers;
 		console.log(manufacturers);
 	});
@@ -25,6 +25,7 @@ index.controller('TabController', function() {
     this.tab = 1;
 
     this.setTab = function(newValue) {
+    	console.log("Clicked tab!");
         this.tab = newValue;
     };
 

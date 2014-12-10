@@ -261,6 +261,8 @@ function ListingSearch() {
 			query['userId'] = filterUserId;
 		}
 
+		query['isActive'] = true;
+
 		return query;
 	};
 };
