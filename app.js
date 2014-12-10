@@ -59,6 +59,14 @@ app.use(function(err, req, res, next){
     else
         res.status(401).send('Unauthorized');
   }
+  else if(err.status == 404)
+  {
+    res.status(404).send("Not found");
+  }
+  else
+  {
+    res.status(err.status || 500).send("An error occurred. Please try again later.");
+  }
 });
 
 // development error handler
