@@ -54,9 +54,10 @@ router.post('/', function(req, res) {
 		}
 		else
 		{
+			var token = jwt.sign({"user": user}, config.get('secret'), {expiresInMinutes: config.get('loginDuration')});
 			res.status(201)
 			   .set('Location', '/users/' + user._id)
-			   .send(user);
+			   .send({"token": token, "user": user});
 		}
 	});
 

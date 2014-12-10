@@ -308,8 +308,22 @@ h4 a:hover {
 /*********************************************************************************/
 .search-button {
 	border-radius: 0 6 6 0;
+	color: white;
+	width: 200px;
+	position: fixed;
+	left: 15;
+	z-index: 1;
+	background-color: #E6791A !important;
+	background-image: linear-gradient(to bottom, #E6791A 0%, #D97218 100%);
+	border: none;
+}
+.search-button:hover {
+	border-radius: 0 6 6 0;
+	color: white;
 	position: fixed;
 	z-index: 1;
+	background-color: #E6791A !important;
+	background-image: linear-gradient(to bottom, #E6791A 0%, #D97218 100%);
 }
 
 /*********************************************************************************/

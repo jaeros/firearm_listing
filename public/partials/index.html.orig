@@ -45,8 +45,45 @@
 				        </div>
 				        <div class="tab-pane fade" id="model">
 				            <div class="row col-xs-12 space-sm"></div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Manufacturer</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="user.accountType">
+										<option>Glock</option>
+										<option>Karh</option>
+										<option>Mossberg</option>
+										<option>Remington</option>
+										<option>Sako</option>
+										<option>Springfield</option>
+									</select>
+									<!-- <li>
+										<div class="layout">
+											<input type="checkbox" id="{{Manufacturers.manufacturerId}}">
+											<label for=" ">{{Manufacturers.ManufacturerValue}}</label>
+										</div>
+									</li> -->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Model</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="user.accountType">
+										<option>19</option>
+										<option>Cm9</option>
+										<option>590</option>
+										<option>A-Bolt</option>
+										<option>TRG</option>
+										<option>XDM</option>
+									</select>
+								</div>
+<<<<<<< HEAD
+							</a>
+				        </div>
+				        </div>
+				        <div class="tab-pane" id="byModel">
+				            <div class="row col-xs-12 space-sm"></div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Manufacturer</label>
+							<label class="col-sm-2 control-label">Manufacturer</label>
 							<div class="col-sm-9">
 								<select class="form-control" ng-model="user.accountType">
 									<option>Glock</option>
@@ -65,7 +102,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Model</label>
+							<label class="col-sm-2 control-label">Model</label>
 							<div class="col-sm-9">
 								<select class="form-control" ng-model="user.accountType">
 									<option>19</option>
@@ -75,12 +112,13 @@
 									<option>TRG</option>
 									<option>XDM</option>
 								</select>
+=======
 							</div>
-						</div>
-						<div class="col-sm-offset-5 col-sm-7">
-							<button type="submit" class="btn btn-default">Search</button>
-						</div>
-						<div class="row col-xs-12 space-sm"></div>
+							<div class="col-sm-offset-5 col-sm-7">
+								<button type="submit" class="btn btn-default">Search</button>
+>>>>>>> bac5b1365240fa81aff9dc87f33e30dceb97bf0c
+							</div>
+							<div class="row col-xs-12 space-sm"></div>
 				        </div>
 				    </div>
 				</div>
