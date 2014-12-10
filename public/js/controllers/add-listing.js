@@ -5,6 +5,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     $scope.user = JSON.parse(localStorage.getItem('user'));
     $scope.currentPhoto = {};
     $scope.newListing = {
+      customGunSpecs: [],
       photos: [],
       userId : $scope.user._id,
       isActive: 'true',
@@ -13,6 +14,10 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     $scope.isPreview = false;
     //$scope.file = {};
     $scope.files = [];
+
+    $http.get('/manufacturers').success(function(response){
+      $scope.manufacturers = response;
+    });
   };
 
   this.init();

@@ -16,13 +16,14 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Manufacturer</label>
 			<div class="col-sm-10">
-				<select class="form-control" ng-model="newListing.customGunSpecs.manufacturer" required>
-					<option>Glock</option>
+				<select class="form-control" ng-model="newListing.customGunSpecs.manufacturer" ng-options="manufacturer.name for manufacturer in manufacturers" required>
+					<option value="">-Select A Manufacturer-</option>
+					<!--<option >Glock</option>
 					<option>Karh</option>
 					<option>Mossberg</option>
 					<option>Remington</option>
 					<option>Sako</option>
-					<option>Springfield</option>
+					<option>Springfield</option> -->
 				</select>
 				<!-- <li>
 					<div class="layout">
