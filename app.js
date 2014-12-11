@@ -15,6 +15,7 @@ var listings = require('./routes/listings');
 var firearms = require('./routes/firearms');
 var upload = require('./routes/upload');
 var manufacturers = require('./routes/manufacturers');
+var calibers = require('./routes/calibers');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/listings/', listings);
 app.use('/firearms/', firearms);
 app.use('/upload', upload);
 app.use('/manufacturers/', manufacturers);
+app.use('/calibers/', calibers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
