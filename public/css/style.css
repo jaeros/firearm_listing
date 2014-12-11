@@ -268,6 +268,20 @@ a h1:hover {
   margin: 5px 0 5px 10px;
 }
 
+.account-save-btn {
+  width: 100px;
+  margin: 0;
+}
+
+.account-change-picture {
+  margin: -10px 0;
+  color: rgb(131,146,159);
+}
+
+.account-change-picture:hover {
+  color:rgb(62,53,56);
+}
+
 .clickable {
   cursor: pointer;
 }
