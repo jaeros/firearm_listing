@@ -51,8 +51,8 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Manufacturer</label>
 									<div class="col-sm-9">
-										<select class="form-control" ng-model="user.accountType" ng-options="manufacturer.name for manufacturer in manufacturers">
-											<option value="">-Select A Manufacturer-</option>
+										<select class="form-control" ng-model="newListing.customGunSpecs.manufacturer" ng-options="manufacturer.name for manufacturer in manufacturers">
+											<option value="">-Select A Manufacturer-</option>-->
 										</select>
 									</div>
 								</div>
@@ -63,7 +63,9 @@
 									</div>
 								</div>
 								<div class="col-sm-offset-5 col-sm-7">
-									<button type="submit" class="btn btn-default">Search</button>
+									<a href="#/search"> 
+										<button type="submit" class="btn btn-default">Search</button>
+									</a>
 								</div>
 								<div class="row col-xs-12 space-sm"></div>
 							</form>
