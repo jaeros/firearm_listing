@@ -14,6 +14,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     $scope.isPreview = false;
     //$scope.file = {};
     $scope.files = [];
+    $scope.editManufacturer = "";
 
     $http.get('/manufacturers').success(function(response){
       $scope.manufacturers = response;
@@ -42,7 +43,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
 
   $scope.showPreview = function() {
     if($scope.newListing.photos.length) {
-     $scope.currentPhoto = $scope.newListing.photos[0]  
+     $scope.currentPhoto = $scope.newListing.photos[0]
     } else {
       $scope.currentPhoto = {
         url: 'http://placehold.it/200x200'
@@ -102,6 +103,22 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     }
   });
 
+  $scope.$watch('editManufacturer', function(newVal) {
+    if($scope.newListing.customGunSpecs.length > 0) {
+      angular.forEach($scope.newListing.customGunSpecs, function(spec) {
+        if(spec.name === "manufacturer")
+          spec.value = newVal.name;
+        if(!spec.name) {
+          spec.name = "manufacturer";
+          spec.value = newVal.name;
+        }
+      });
+    }
+    else {
+      $scope.newListing.customGunSpecs.push({name:"manufacturer", value:newVal.name});
+    }
+  });
+
   $scope.firearmSpecs = [
     {
       id: "1",
@@ -151,5 +168,5 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
   //       event.preventDefault();
   //   }
   // });
-  
+
 });
