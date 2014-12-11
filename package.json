@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "add-test-data": "node test-data.js",
-    "populate-manufacturers": "node populate-manufacturers.js"
+    "populate-manufacturers": "node populate-manufacturers.js",
+    "populate-calibers": "node populate-calibers.js"
   },
   "dependencies": {
     "express": "~4.9.0",
