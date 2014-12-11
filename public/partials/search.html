@@ -39,9 +39,9 @@
 						<label for="manufacturerFilter" class="col-sm-2 control-label">Manufacturer</label>
 						<div class="col-sm-10">
 							<select class="form-control">
-								<option>Manufacturer abc123-shotgun</option>
-								<option>Manufacturer abc124-rifle</option>
-								<option>Manufacturer abc125-handgun/revolver</option>
+								<option ng-repeat="manufacturer in manufacturers">
+									{{manufacturer.name}}
+								</option>
 							</select>
 						</div>
 					</div>
@@ -52,9 +52,7 @@
 						<label for="caliberFilter" class="col-sm-2 control-label">Caliber</label>
 						<div class="col-sm-10">
 							<select class="form-control">
-								<option>Caliber 1</option>
-								<option>Caliber 2</option>
-								<option>Caliber 3</option>
+								<option ng-repeat="caliber in calibers">{{caliber.name}}</option>
 							</select>
 						</div>
 					</div>

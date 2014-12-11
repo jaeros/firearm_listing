@@ -1,6 +1,6 @@
 var indexController = angular.module('GlobalController', []);
 
-indexController.controller('globalController', function($scope, $http, $window, $location) {
+indexController.controller('globalController', function($scope, $http, $window, $location, Manufacturers, Calibers) {
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
 
@@ -14,8 +14,6 @@ indexController.controller('globalController', function($scope, $http, $window, 
 					$scope.doLogout(true);
 			});
 	};
-
-	$scope.checkLogin();
 
 	/* Login dialog */
 	$scope.doLogin = function(loginData) {
@@ -86,4 +84,31 @@ indexController.controller('globalController', function($scope, $http, $window, 
 	$scope.doSearch = function() {
 		$location.path('/search').search('search', $scope.searchBar);
 	};
+
+	$scope.loadManufacturers = function () {
+		Manufacturers.query(function(manufacturers) {
+			$scope.manufacturers = manufacturers;
+			console.log("Retrieved manufacturers: ", manufacturers);
+		});
+	};
+
+	$scope.loadCalibers = function() {
+		Calibers.query(function(calibers) {
+			$scope.calibers = calibers;
+			console.log("Retrieved calibers: ", calibers);
+		});
+	};
+
+	// Initialization function
+	$scope.init = function() {
+
+		// Check if current login token is valid
+		$scope.checkLogin();
+
+		// Load list of manufacturers and calibers
+		$scope.loadManufacturers();
+		$scope.loadCalibers();
+	};
+
+	$scope.init();
 });
