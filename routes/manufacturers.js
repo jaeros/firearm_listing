@@ -8,7 +8,7 @@ var Manufacturer = model.Manufacturer;
 /* GET all manufacturer names and id's */
 router.get('/', function(req, res) {
   	Manufacturer.aggregate([
-  		{$project: {'name': 1}}
+  		{$project: {'name': 1}}, {$sort: {'name': 1}}
   	], function(err, result) {
   		if(err)
 		{
