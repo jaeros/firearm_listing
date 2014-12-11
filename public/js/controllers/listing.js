@@ -16,15 +16,16 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	this.init();
 
 	var listingId = $routeParams.listingId;
+
 	//Get main listing
-	var listing = Listings.get({listingId: listingId}, function(listing){
+	Listings.get({listingId: $routeParams.listingId}, function(listing){
 		if($scope.user && $scope.user._id === listing.userId)
 			$scope.isOwner = true;
 
 		listing.pageViews += 1;
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
-		//console.log(listing);
+		
 		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
 
@@ -33,31 +34,6 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 			$scope.editListing = listing;
 		}
 	});
-	/*$scope.listing = {
-		title: "Like-new AK-47",
-		gunTypeId: "abc123",
-		customGunSpecs: {
-			"Scope": "Bushnell",
-			"Trigger": "Bravo"
-		},
-		description: "This is a like-new firearm. Bought " +
-		"it a few years back, only took it to the range twice. " +
-		"Price is firm.",
-		price: 1024.13,
-		photos: [
-			{
-				url: 'http://placehold.it/200x200',
-				description: 'Side view'
-			},
-			{
-				url: 'http://placehold.it/200x200',
-				description: 'Front View'
-			}
-		],
-		userId: "abc123",
-		isSold: false,
-		isActive: true
-	};*/
 
 	$scope.sendMessage = function(){
 		$http.post('/listings/message/',$scope.message).success(function(data, status, headers, config){
