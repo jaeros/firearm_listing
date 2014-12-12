@@ -63,8 +63,6 @@ index.controller('indexController', function($scope, $location, Listings, Manufa
 		});
 	};
 
-	this.init();
-
 	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
 	//$(".myDropdownCheckbox").dropdownCheckbox({
 	//  data: myData,
