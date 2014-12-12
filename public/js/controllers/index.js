@@ -1,6 +1,6 @@
 var index = angular.module('IndexController', []);
 
-index.controller('indexController', function($scope, Listings, Manufacturers, searchService) {
+index.controller('indexController', function($scope, $location, Listings, Manufacturers, searchService) {
 
 	//Get related listings
 	Listings.query(function(listings) {
@@ -32,6 +32,38 @@ index.controller('indexController', function($scope, Listings, Manufacturers, se
 				$scope.registerError = "Couldn't register a new account at this time. Please try again later.";
 			});
 	};
+
+	$scope.searchByGunType = function(inputGunType) {
+		searchService.setSearch({gunType: inputGunType});
+		$location.path('/search');
+	};
+
+
+	// Initial search parameters
+	$scope.searchParams = {
+		search: null, // Text search
+		manufacturer: null,
+	};
+
+	$scope.doSearch = function() {
+		console.log("Searching with ", $scope.searchParams);
+
+		$http({
+			url: '/listings',
+			method: "GET",
+			params: $scope.searchParams
+		})
+		.success(function(data, status, headers, config) {
+			console.log("Got results: ", data);
+			$scope.listings = data;
+			
+		})
+		.error(function(data, status, headers, config) {
+			console.log("Got error: ", data);
+		});
+	};
+
+	this.init();
 
 	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
 	//$(".myDropdownCheckbox").dropdownCheckbox({
