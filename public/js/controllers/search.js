@@ -1,6 +1,6 @@
 var search = angular.module('SearchController', []);
 
-search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams, searchService) {
+search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams, searchService, $http) {
 
 	// Initial search parameters
 	$scope.searchParams = {
@@ -11,26 +11,32 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 		caliber: null,
 	};
 
-	$scope.globalTest = "Search Controller Text";
-
-	//Get related listings
-	Listings.query(function(listings) {
-		$scope.listings = listings;
-		console.log(listings);
-	});
-
 	$scope.init = function() {
 
+		// Retrieve any search parameters from service
 		$scope.searchParams = searchService.getSearch();
 		console.log("Search params: ", $scope.searchParams);
 
-		// // Load list of all manufacturers
-		// Manufacturers.query(function(manufacturers) {
-		// 	$scope.manufacturers = manufacturers;
-		// 	console.log("Manufacturers: ", manufacturers);
-		// })
+		// Perform initial search
+		$scope.updateSearch();
+	};
 
-		// // Load list of 
+	$scope.updateSearch = function() {
+		console.log("Searching with ", $scope.searchParams);
+
+		$http({
+			url: '/listings',
+			method: "GET",
+			params: $scope.searchParams
+		})
+		.success(function(data, status, headers, config) {
+			console.log("Got results: ", data);
+			$scope.listings = data;	
+			
+		})
+		.error(function(data, status, headers, config) {
+			console.log("Got error: ", data);
+		});
 	};
 
 	$scope.init();

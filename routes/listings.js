@@ -49,6 +49,7 @@ router.get('/', function(req, res) {
   queryObj.setCaliber(req.query['caliber']);
   queryObj.setUserId(req.query['userId']);
   queryObj.setSearchString(req.query['search']);
+  queryObj.setGunType(req.query['gunType']);
 
   console.log("Mongo query: ", queryObj.getQuery());
 
@@ -181,6 +182,7 @@ function ListingSearch() {
 	var filterMaxPrice = null;
 	var filterUserId = null;
 	var searchTerms = [];
+	var filterType = null;
 
 	this.setSearchString = function(search) {
 		if(!search)
@@ -211,6 +213,11 @@ function ListingSearch() {
 	this.setUserId = function(owner) {
 		if(typeof owner !== 'undefined')
 			filterUserId = owner;
+	};
+
+	this.setGunType = function(type) {
+		if(typeof type !== 'undefined')
+			filterType = type;
 	};
 
 	this.getQuery = function() {
@@ -245,6 +252,10 @@ function ListingSearch() {
 		if(filterUserId)
 		{
 			query['userId'] = filterUserId;
+		}
+		if(filterType)
+		{
+			query['gunType'] = filterType;
 		}
 
 		query['isActive'] = true;

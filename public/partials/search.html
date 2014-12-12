@@ -75,12 +75,12 @@
 					</div>
 					<label for="actionTypeFilter" class="col-sm-2 control-label text-left">Price To</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" ng-model="searchParams.minPrice" />
+						<input type="text" class="form-control" ng-model="searchParams.maxPrice" />
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="updateSearch()">Search</button>
 			</div>
 		</div>
 	</div>
