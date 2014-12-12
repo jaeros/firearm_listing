@@ -416,3 +416,7 @@ h4 a:hover {
 .space-xs {
 	height: 15px;
 }
+
+.gunType {
+	cursor: pointer;
+}
