@@ -1,6 +1,6 @@
 var addListing = angular.module('addListingController', []);
 
-addListing.controller('addListingController', function($scope, $upload, $http, $timeout, $location, Listings) {
+addListing.controller('addListingController', function($scope, $upload, $http, $timeout, $location, Listings, Manufacturers, Calibers) {
   this.init = function() {
     $scope.user = JSON.parse(localStorage.getItem('user'));
     $scope.currentPhoto = {};
@@ -15,10 +15,15 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     //$scope.file = {};
     $scope.files = [];
     $scope.editManufacturer = "";
+    $scope.editCaliber = "";
 
-    $http.get('/manufacturers').success(function(response){
+    Manufacturers.query(function(response){
       $scope.manufacturers = response;
     });
+
+    Calibers.query(function(response) {
+      $scope.calibers = response;
+    })
   };
 
   this.init();
@@ -104,18 +109,42 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
   });
 
   $scope.$watch('editManufacturer', function(newVal) {
+    var found = false;
     if($scope.newListing.customGunSpecs.length > 0) {
       angular.forEach($scope.newListing.customGunSpecs, function(spec) {
-        if(spec.name === "manufacturer")
+        if(spec.name === "manufacturer") {
           spec.value = newVal.name;
+          found = true;
+        }
         if(!spec.name) {
           spec.name = "manufacturer";
           spec.value = newVal.name;
+          found = true;
         }
       });
     }
-    else {
+    if(!found) {
       $scope.newListing.customGunSpecs.push({name:"manufacturer", value:newVal.name});
+    }
+  });
+
+  $scope.$watch('editCaliber', function(newVal) {
+    var found = false;
+    if($scope.newListing.customGunSpecs.length > 0) {
+      angular.forEach($scope.newListing.customGunSpecs, function(spec) {
+        if(spec.name === "caliber") {
+            spec.value = newVal.name;
+            found = true;
+        }
+        if(!spec.name) {
+          spec.name = "caliber";
+          spec.value = newVal.name;
+          found = true;
+        }
+      });
+    }
+    if(!found) {
+      $scope.newListing.customGunSpecs.push({name: "caliber", value:newVal.name});
     }
   });
 
