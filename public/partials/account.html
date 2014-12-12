@@ -11,7 +11,7 @@
 					</div>
 				</a>
 				<div class="account-change-picture clickable" ng-file-select ng-model="files" ng-multiple="false" accept="image/*"><h6>Change your picture</h6></div>
-				<a ng-click=""><h6>Change your password</h6></a>
+				<a class="clickable" data-target="#changePassword" data-toggle="modal"><h6>Change your password</h6></a>
 				<a ng-href="#/my-listings"><h6>View your listings</h6></a>
 			</div>
 			<div class="col-sm-9">
@@ -75,4 +75,47 @@
 			</div>
 		</div>
 	</form>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="changePasswordModal">Change Password</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<form class="form-horizontal" role="form" ng-submit="changePassword()">
+							<div class="form-group">
+								<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="changePassword.old" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="newPassword" class="col-sm-3 control-label">New Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="changePassword.new" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="verifyNewPassword" class="col-sm-3 control-label">Verify New Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="verifyNewPassword" placeholder="Verify New Password" ng-model="changePassword.verifyNew" required>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>

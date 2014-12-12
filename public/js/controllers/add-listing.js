@@ -2,7 +2,10 @@ var addListing = angular.module('addListingController', []);
 
 addListing.controller('addListingController', function($scope, $upload, $http, $timeout, $location, Listings) {
   this.init = function() {
-    $scope.user = JSON.parse(localStorage.getItem('user'));
+    if(localStorage.getItem('user'))
+      $scope.user = JSON.parse(localStorage.getItem('user'));
+      else
+        window.location = "/#";
     $scope.currentPhoto = {};
     $scope.newListing = {
       customGunSpecs: [],
