@@ -9,6 +9,16 @@ account.controller('accountController', function($scope, Users, $upload, $http) 
 			dontMatch: false,
 			wrongPassword: false
 		};
+		$scope.editing = {
+			name: false,
+			email: false,
+			phone: false,
+			address1: false,
+			address2: false,
+			city: false,
+			state: false,
+			zip: false
+		};
 
 		if(localStorage.getItem('user'))
 			$scope.user = JSON.parse(localStorage.getItem('user'));
@@ -22,28 +32,6 @@ account.controller('accountController', function($scope, Users, $upload, $http) 
 	};
 
 	this.init();
-
-	$scope.buildAddressString = function() {
-		var addressString = "";
-
-		if($scope.user.location) {
-			if($scope.user.location.address1)
-				addressString += $scope.user.location.address1 + ", ";
-			if($scope.user.location.address2)
-				addressString += $scope.user.location.address2 + ", ";
-			if($scope.user.location.city)
-				addressString += $scope.user.location.city + ", ";
-			if($scope.user.location.state)
-				addressString += $scope.user.location.state + " ";
-			if($scope.user.location.zip)
-				addressString += $scope.user.location.zip;
-		}
-		else {
-			addressString += "No address entered";
-		}
-
-		return addressString;
-	};
 
 	/*jshint loopfunc: true */
 	$scope.$watch('files', function() {
@@ -105,6 +93,24 @@ account.controller('accountController', function($scope, Users, $upload, $http) 
 		$scope.editPassword.old = "";
 		$scope.editPassword.new = "";
 		$scope.editPassword.verifyNew = "";
+	};
+
+	$scope.saveUser = function() {
+		$scope.editUser.$update({userId: $scope.editUser._id}, function() {
+			$scope.user = $scope.editUser;
+			$scope.editing = {
+				name: false,
+				email: false,
+				phone: false,
+				address1: false,
+				address2: false,
+				city: false,
+				state: false,
+				zip: false
+			};
+
+			$scope.form.$setPristine();
+		});
 	};
 
 });

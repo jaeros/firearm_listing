@@ -387,6 +387,15 @@ h4 a:hover {
 .round-corners {
 	border-radius: 5px 0px 0px 5px !important;
 }
+
+.all-round-corners {
+  border-radius: 5px !important;
+}
+
+.btn-default[disabled] {
+  background-color: rgb(131,146,159) !important;
+}
+
 /*********************************************************************************/
 /*SPACING*/
 /*********************************************************************************/
