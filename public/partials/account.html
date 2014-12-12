@@ -85,37 +85,47 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="changePasswordModal">Change Password</h4>
 			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<form class="form-horizontal" role="form" ng-submit="changePassword()">
-							<div class="form-group">
-								<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="changePassword.old" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="newPassword" class="col-sm-3 control-label">New Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="changePassword.new" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="verifyNewPassword" class="col-sm-3 control-label">Verify New Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="verifyNewPassword" placeholder="Verify New Password" ng-model="changePassword.verifyNew" required>
-								</div>
-							</div>
-						</form>
+			<form role="form" ng-submit="changePassword()">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="editPassword.old" required>
+									</div>
 
+								</div>
+								<div class="passwords-dont-match" ng-if="editPassword.wrongPassword">
+									Wrong password
+								</div>
+								<div class="form-group">
+									<label for="newPassword" class="col-sm-3 control-label">New Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="editPassword.new" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="verifyNewPassword" class="col-sm-3 control-label">Verify New Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="verifyNewPassword" placeholder="Verify New Password" ng-model="editPassword.verifyNew" required>
+									</div>
+
+								</div>
+								<div class="passwords-dont-match" ng-if="editPassword.dontMatch">
+									The new passwords don't match
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-default">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelChangePassword()">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

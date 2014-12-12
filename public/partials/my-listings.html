@@ -15,7 +15,8 @@
 		</div>
 		<div class="row listing-body">
 			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0">
-				<div class="text-right"><h4><a class="clickable" ng-click="startEditing(listing)">Edit</a></h4></div>
+				<div class="pull-right view-edit-link"><h4><a class="clickable" ng-click="startEditing(listing)">Edit</a></h4></div>
+				<div class="pull-right view-edit-link"><h4><a class="clickable" ng-click="viewListing(listing)">View</a></h4></div>
 			</div>
 			<div class="col-xs-10 col-xs-offset-1 col-sm-12 col-md-3">
 				<img class="img-responsive" ng-src="{{listing.photos[0].url}}" />

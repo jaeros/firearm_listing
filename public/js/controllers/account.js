@@ -1,9 +1,14 @@
 var account = angular.module('AccountController', []);
 
-account.controller('accountController', function($scope, Users, $upload) {
-
+account.controller('accountController', function($scope, Users, $upload, $http) {
 	this.init = function() {
-		$scope.changePassword = {};
+		$scope.editPassword = {
+			old: "",
+			new: "",
+			verifyNew: "",
+			dontMatch: false,
+			wrongPassword: false
+		};
 
 		if(localStorage.getItem('user'))
 			$scope.user = JSON.parse(localStorage.getItem('user'));
@@ -62,5 +67,44 @@ account.controller('accountController', function($scope, Users, $upload) {
 			});
 		}
 	});
+
+	$scope.changePassword = function() {
+		$http.post('users/checkPassword', {'username': $scope.user.username, 'password': $scope.editPassword.old})
+		.success(function(data, status, headers, config) {
+			$scope.editPassword.wrongPassword = false;
+
+			if($scope.editPassword.new === $scope.editPassword.verifyNew) {
+				$scope.user.password = $scope.editPassword.new;
+				$scope.user.$update({userId: $scope.user._id});
+
+				$scope.editPassword.dontMatch = false;
+				$scope.editPassword.old = "";
+				$scope.editPassword.new = "";
+				$scope.editPassword.verifyNew = "";
+				$('#changePassword').modal('hide');
+			}
+			else {
+				$scope.editPassword.dontMatch = true;
+			}
+		})
+		.error(function(data, status, headers, config) {
+			if(status === 401) {
+				$scope.editPassword.wrongPassword = true;
+
+				if($scope.editPassword.new === $scope.editPassword.verifyNew) {
+					$scope.editPassword.dontMatch = false;
+				}
+				else {
+					$scope.editPassword.dontMatch = true;
+				}
+			}
+		});
+	};
+
+	$scope.cancelChangePassword = function() {
+		$scope.editPassword.old = "";
+		$scope.editPassword.new = "";
+		$scope.editPassword.verifyNew = "";
+	};
 
 });

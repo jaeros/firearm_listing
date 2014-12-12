@@ -133,6 +133,10 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 		window.location = "#/listings/" + listing._id + "?editing=true";
 	};
 
+	$scope.viewListing = function(listing) {
+		window.location = "#/listings/" + listing._id;
+	};
+
 	$scope.sellListing = function(listing) {
 		var sold = window.confirm("Are you sure you want to mark this item as sold?");
 

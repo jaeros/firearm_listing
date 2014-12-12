@@ -97,7 +97,7 @@ router.put('/:userId', expressJwt({secret: _secret}), function(req, res) {
 		}
 		else
 		{
-			doc.password = req.body.password;
+			doc.password = hashPassword(req.body.password);
 			doc.name = req.body.name;
 			doc.location = req.body.location;
 			doc.email = req.body.email;
@@ -150,7 +150,40 @@ router.post('/login', function(req, res) {
 				res.status(401).send('Bad username or password');
 			}
 		}
-	})
+	});
+
+});
+
+router.post('/checkPassword', function(req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  // Retrieve specified user
+  User.findOne({'username': username}, function(err, doc) {
+    if(err || !doc)
+    {
+      console.log("Error: ", err);
+      console.log("Doc: ", doc);
+      res.status(401).send('Bad username or password');
+    }
+    else
+    {
+      var storedHash = doc.password;
+      // Compare passwords
+      if(bcrypt.compareSync(password, storedHash))
+      {
+        console.log("Okay, we're here.");
+        // Authentication successful, send token to client
+        res.status(200).send('Passwords match');
+      }
+      else
+      {
+        console.log("Bad password, actually.");
+        // Authentication failed
+        res.status(401).send('Bad username or password');
+      }
+    }
+  });
 
 });
 
