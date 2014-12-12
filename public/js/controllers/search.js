@@ -2,6 +2,8 @@ var search = angular.module('SearchController', []);
 
 search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams, searchService, $http) {
 
+	console.log("Search controller checking in.");
+
 	// Initial search parameters
 	$scope.searchParams = {
 		search: null, // Text search
@@ -11,7 +13,7 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 		caliber: null,
 	};
 
-	$scope.init = function() {
+	this.init = function() {
 
 		// Retrieve any search parameters from service
 		$scope.searchParams = searchService.getSearch();
@@ -39,5 +41,5 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 		});
 	};
 
-	$scope.init();
+	this.init();
 });

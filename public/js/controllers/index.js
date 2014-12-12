@@ -1,7 +1,6 @@
 var index = angular.module('IndexController', []);
 
 index.controller('indexController', function($scope, Listings, Manufacturers, searchService) {
-	$scope.globalTest = "Index Controller Text";
 
 	//Get related listings
 	Listings.query(function(listings) {
