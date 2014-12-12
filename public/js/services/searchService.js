@@ -15,6 +15,7 @@ app.service('searchService', function() {
 			minPrice: null,
 			maxPrice: null,
 			caliber: null,
+			gunType: null
 		};
 	};
 

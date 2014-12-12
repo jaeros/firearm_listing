@@ -31,7 +31,7 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 		})
 		.success(function(data, status, headers, config) {
 			console.log("Got results: ", data);
-			$scope.listings = data;	
+			$scope.listings = data;
 			
 		})
 		.error(function(data, status, headers, config) {
