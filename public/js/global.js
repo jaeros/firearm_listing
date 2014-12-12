@@ -99,6 +99,13 @@ indexController.controller('globalController', function($scope, $http, $window, 
 		});
 	};
 
+	$scope.gunTypes = [
+	    "Revolver",
+	    "Pistol",
+	    "Rifle",
+	    "Shotgun"
+	];
+
 	// Initialization function
 	$scope.init = function() {
 

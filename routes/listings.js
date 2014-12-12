@@ -133,7 +133,7 @@ router.put('/:listingId', function(req, res) {
 		else
 		{
 			doc.title = listing.title;
-			doc.gunTypeId = listing.gunTypeId;
+			doc.gunType = listing.gunType;
 			doc.customGunSpecs = listing.customGunSpecs;
 			doc.description = listing.description;
 			doc.price = listing.price;

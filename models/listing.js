@@ -14,7 +14,7 @@ var accountTypeValidator = {
 // -------------------------------------------
 var listingSchema = mongoose.Schema({
 	title: String,
-	gunTypeId: String,
+	gunType: String,
 	customGunSpecs: [
 		{
 			name: String,

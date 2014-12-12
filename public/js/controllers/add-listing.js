@@ -8,6 +8,7 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
         window.location = "/#";
     $scope.currentPhoto = {};
     $scope.newListing = {
+      gunType: "",
       customGunSpecs: [],
       photos: [],
       userId : $scope.user._id,
@@ -20,23 +21,24 @@ addListing.controller('addListingController', function($scope, $upload, $http, $
     $scope.editManufacturer = "";
     $scope.editCaliber = "";
 
-    Manufacturers.query(function(response){
+    /*Manufacturers.query(function(response){
       $scope.manufacturers = response;
-    });
+    });*/
 
-    Calibers.query(function(response) {
+    /*Calibers.query(function(response) {
       $scope.calibers = response;
-    })
+    });*/
   };
 
   this.init();
 
   $scope.addListing = function() {
-    console.log("Saving new listing: " + $scope.newListing);
+    console.log("Saving new listing: ", $scope.newListing);
     $http.post('listings/', $scope.newListing).
       success(function(data, status, headers, config) {
         console.log("Saved new listing: ", data);
         $scope.newListing = {
+          gunType: "",
           photos: [],
           userId : $scope.user._id,
           isActive: 'true',
