@@ -1,6 +1,6 @@
 var index = angular.module('IndexController', []);
 
-index.controller('indexController', function($scope, Listings, Manufacturers, searchService) {
+index.controller('indexController', function($scope, $location, Listings, Manufacturers, searchService) {
 
 	//Get related listings
 	Listings.query(function(listings) {
@@ -32,6 +32,12 @@ index.controller('indexController', function($scope, Listings, Manufacturers, se
 				$scope.registerError = "Couldn't register a new account at this time. Please try again later.";
 			});
 	};
+
+	$scope.searchByGunType = function(inputGunType) {
+		searchService.setSearch({gunType: inputGunType});
+		$location.path('/search');
+	};
+
 
 	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
 	//$(".myDropdownCheckbox").dropdownCheckbox({
