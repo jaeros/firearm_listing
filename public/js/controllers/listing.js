@@ -7,7 +7,8 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	$scope.files = [];
 
 	this.init = function() {
-		$scope.user = JSON.parse(localStorage.getItem('user'));
+		if(localStorage.getItem('user'))
+			$scope.user = JSON.parse(localStorage.getItem('user'));
 
 		if($location.search().editing)
 			$scope.isEditing = $location.search().editing;
@@ -25,7 +26,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 		listing.pageViews += 1;
 		$scope.listing = listing;
 		$scope.currentPhoto = $scope.listing.photos[0];
-		
+
 		$scope.currentPhotoIndex = 0;
 		listing.$update({listingId: listing._id});
 
