@@ -9,7 +9,7 @@
 		</div>
 		<div class="col-xs-10 col-sm-8 col-sm-offset-1">
 			<div class="row no-padding">
-				<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings">
+				<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0 col-md-4" ng-repeat="listing in listings | filter:{'customGunSpecs.value': 'O.F. Mossberg &amp; Sons'}">
 					<!--  | filter:{'gunTypeId': 'abc123'} -->
 					<a ng-href="#/listings/{{listing._id}}">
 						<div class="thumbnail">
