@@ -39,6 +39,32 @@ index.controller('indexController', function($scope, $location, Listings, Manufa
 	};
 
 
+	// Initial search parameters
+	$scope.searchParams = {
+		search: null, // Text search
+		manufacturer: null,
+	};
+
+	$scope.doSearch = function() {
+		console.log("Searching with ", $scope.searchParams);
+
+		$http({
+			url: '/listings',
+			method: "GET",
+			params: $scope.searchParams
+		})
+		.success(function(data, status, headers, config) {
+			console.log("Got results: ", data);
+			$scope.listings = data;
+			
+		})
+		.error(function(data, status, headers, config) {
+			console.log("Got error: ", data);
+		});
+	};
+
+	this.init();
+
 	//var myData = [{id: manufacturerId, label: {{manufacturers_value}} }];
 	//$(".myDropdownCheckbox").dropdownCheckbox({
 	//  data: myData,
