@@ -2,6 +2,8 @@ var account = angular.module('AccountController', []);
 
 account.controller('accountController', function($scope, Users, $upload) {
 	this.init = function() {
+		$scope.changePassword = {};
+
 		if(localStorage.getItem('user'))
 			$scope.user = JSON.parse(localStorage.getItem('user'));
 		else
