@@ -121,6 +121,7 @@ header .navbar-form .form-group {
     height: auto !important;
     height: 100%;
     margin: 0 auto -45px;
+    background: #fdfdfd;
 }
 
 .footer, .push {
@@ -197,6 +198,7 @@ a h1:hover {
 	color: darkgray;
 }
 
+
 /*********************************************************************************/
 /*LISTING STYLES*/
 /*********************************************************************************/
@@ -233,6 +235,8 @@ a h1:hover {
 
 .thumbnail {
 	border-radius: 0px;
+	max-height:250px;
+	max-width:250px;
 }
 
 .thumbnail-bottom {
@@ -240,11 +244,8 @@ a h1:hover {
 }
 
 .thumbnail-size {
-	min-height: 100px;
-	max-height: 150px;
-	min-width: 150px;
-	max-width: 225px;
-	padding: 5px;
+	max-height:200px;
+	max-width:200px;
 }
 
 .textarea {

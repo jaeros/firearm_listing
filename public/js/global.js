@@ -18,7 +18,6 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 	/* Login dialog */
 	$scope.doLogin = function(loginData) {
-		console.log("Logging in with user " + $scope.login_username + ", password " + $scope.login_password);
 
 		$http.post('users/login',
 		{
