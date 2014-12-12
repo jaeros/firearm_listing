@@ -242,11 +242,11 @@ function ListingSearch() {
 		}
 		if(searchTerms && searchTerms.length > 0)
 		{
-			query['description'] = {$in: []};
+			query['title'] = {$in: []};
 			// Iterate all search terms
 			searchTerms.forEach(function(term) {
 				var r = new RegExp('.*' + term + '.*', 'i');
-				query['description']['$in'].push(r);
+				query['title']['$in'].push(r);
 			});
 		}
 		if(filterUserId)
