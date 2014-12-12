@@ -1,6 +1,6 @@
 var search = angular.module('SearchController', []);
 
-search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams) {
+search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams, searchService) {
 
 	// Initial search parameters
 	$scope.searchParams = {
@@ -20,6 +20,10 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 	});
 
 	$scope.init = function() {
+
+		$scope.searchParams = searchService.getSearch();
+		console.log("Search params: ", $scope.searchParams);
+
 		// // Load list of all manufacturers
 		// Manufacturers.query(function(manufacturers) {
 		// 	$scope.manufacturers = manufacturers;

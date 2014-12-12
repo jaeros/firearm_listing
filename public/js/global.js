@@ -1,6 +1,6 @@
 var indexController = angular.module('GlobalController', []);
 
-indexController.controller('globalController', function($scope, $http, $window, $location, Manufacturers, Calibers) {
+indexController.controller('globalController', function($scope, $http, $window, $location, Manufacturers, Calibers, searchService) {
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
 
@@ -82,6 +82,7 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 	// Called by main search bar, redirects to search page
 	$scope.doSearch = function() {
+		searchService.setSearch({search: $scope.searchBar});
 		$location.path('/search').search('search', $scope.searchBar);
 	};
 
