@@ -121,6 +121,7 @@ header .navbar-form .form-group {
     height: auto !important;
     height: 100%;
     margin: 0 auto -45px;
+    background: #fdfdfd;
 }
 
 .footer, .push {
@@ -154,6 +155,7 @@ header .navbar-form .form-group {
 	/*padding-top: 15px;*/
 	border: 1px solid black;
 	/*border-left: none;*/
+	border-radius:20px;
 }
 
 .left-border {
@@ -196,6 +198,7 @@ a h1 {
 a h1:hover {
 	color: darkgray;
 }
+
 
 /*********************************************************************************/
 /*LISTING STYLES*/
@@ -245,6 +248,10 @@ a h1:hover {
 	min-width: 150px;
 	max-width: 225px;
 	padding: 5px;
+}
+
+.index-gun {
+	min-width:250px;
 }
 
 .textarea {
@@ -319,6 +326,16 @@ a h1:hover {
   margin-right: 25%;
 }
 
+.passwords-dont-match {
+  color: red;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.view-edit-link {
+  margin-left: 10px;
+}
+
 /*********************************************************************************/
 /*LISTING STYLES*/
 /*********************************************************************************/
@@ -333,6 +350,10 @@ a h6:hover {
 
 h4 a:hover {
   text-decoration: none;
+}
+
+#myGunPic {
+	max-width: 300px;
 }
 
 /*********************************************************************************/
@@ -377,6 +398,15 @@ h4 a:hover {
 .round-corners {
 	border-radius: 5px 0px 0px 5px !important;
 }
+
+.all-round-corners {
+  border-radius: 5px !important;
+}
+
+.btn-default[disabled] {
+  background-color: rgb(131,146,159) !important;
+}
+
 /*********************************************************************************/
 /*SPACING*/
 /*********************************************************************************/

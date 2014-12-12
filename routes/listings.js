@@ -13,7 +13,7 @@ var email   = require("../node_modules/emailjs/");
 // SETUP
 // -------------------------------------------
 var Listing = model.Listing;
-var User = model.User;
+var User = user.User;
 var _secret = config.get('secret');
 
 // -------------------------------------------
@@ -49,6 +49,7 @@ router.get('/', function(req, res) {
   queryObj.setCaliber(req.query['caliber']);
   queryObj.setUserId(req.query['userId']);
   queryObj.setSearchString(req.query['search']);
+  queryObj.setGunType(req.query['gunType']);
 
   console.log("Mongo query: ", queryObj.getQuery());
 
@@ -86,24 +87,67 @@ router.get('/:listingId', queryParams, function(req, res) {
 });
 
 /* POST a message to a seller */
-router.post('/message/', function(req,res) {
+router.post('/:listingId/message/', function(req,res) {
+
+	console.log("Body: ", req.body);
 
 	var server  = email.server.connect({
-	   user:    "firearm.listings", 
-	   password:"jeffisstupid", 
-	   host:    "smtp.gmail.com", 
+	   user:    config.get('email.user'), 
+	   password:config.get('email.password'),
+	   host:    config.get('email.host'),
 	   ssl:     true
 	});
 
-	// send the message and get a callback with an error or details of the message that was sent
-	server.send({
-	   text:    "i hope this works", 
-	   from:    "firearm.listings@gmail.com", 
-	   to:      "nicholas.martin90@gmail.com",
-	   subject: "testing emailjs"
-	}, function(err, message) { console.log(err || message); });
+	// Find the specified listing to get the owner
+	Listing.findOne({_id: req.params.listingId}, function(err, listingDoc) {
+		if(err)
+		{
+			res.status(500).send('Could not update listing');
+		}
+		else if(!listingDoc)
+		{
+			res.status(400).send("Couldn't find specified listing.");
+		}
+		else
+		{
+			var userId = listingDoc.userId;
 
-	res.status(200).send("Message sent successfully");
+			// Get the user's email
+			User.findOne({_id: userId}, function(err, userDoc) {
+				if(err)
+				{
+					res.status(500).send('Couldn\'t find contact information!');
+				}
+				else if(!userDoc)
+				{
+					res.status(400).send("Couldn't find listing owner!");
+				}
+				else
+				{
+					// send the message and get a callback with an error or details of the message that was sent
+					server.send({
+					   // text:    req.body.text, 
+					   text: 'test text',
+					   from:    "firearm.listings@gmail.com", 
+					   to:      userDoc.email,
+					   subject: "Contact Regarding Listing - " + listingDoc.title
+					}, function(err, message) { 
+						if(err)
+						{
+							res.status(500).send("Message could not be sent.");
+							console.error(err);
+						}
+						else
+						{
+							res.status(200).send("Message sent successfully");
+						}
+					});
+				}
+			});
+		}
+	});
+
+	
 
 });
 
@@ -181,6 +225,7 @@ function ListingSearch() {
 	var filterMaxPrice = null;
 	var filterUserId = null;
 	var searchTerms = [];
+	var filterType = null;
 
 	this.setSearchString = function(search) {
 		if(!search)
@@ -213,6 +258,11 @@ function ListingSearch() {
 			filterUserId = owner;
 	};
 
+	this.setGunType = function(type) {
+		if(typeof type !== 'undefined')
+			filterType = type;
+	};
+
 	this.getQuery = function() {
 		var query = {};
 		if(filterMinPrice)
@@ -235,16 +285,20 @@ function ListingSearch() {
 		}
 		if(searchTerms && searchTerms.length > 0)
 		{
-			query['description'] = {$in: []};
+			query['title'] = {$in: []};
 			// Iterate all search terms
 			searchTerms.forEach(function(term) {
 				var r = new RegExp('.*' + term + '.*', 'i');
-				query['description']['$in'].push(r);
+				query['title']['$in'].push(r);
 			});
 		}
 		if(filterUserId)
 		{
 			query['userId'] = filterUserId;
+		}
+		if(filterType)
+		{
+			query['gunType'] = filterType;
 		}
 
 		query['isActive'] = true;

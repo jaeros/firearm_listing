@@ -1,6 +1,8 @@
 var search = angular.module('SearchController', []);
 
-search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams) {
+search.controller('searchController', function($scope, Listings, Manufacturers, $routeParams, searchService, $http) {
+
+	console.log("Search controller checking in.");
 
 	// Initial search parameters
 	$scope.searchParams = {
@@ -11,23 +13,33 @@ search.controller('searchController', function($scope, Listings, Manufacturers, 
 		caliber: null,
 	};
 
-	$scope.globalTest = "Search Controller Text";
+	this.init = function() {
 
-	//Get related listings
-	Listings.query(function(listings) {
-		$scope.listings = listings;
-		console.log(listings);
-	});
+		// Retrieve any search parameters from service
+		$scope.searchParams = searchService.getSearch();
+		console.log("Search params: ", $scope.searchParams);
 
-	$scope.init = function() {
-		// // Load list of all manufacturers
-		// Manufacturers.query(function(manufacturers) {
-		// 	$scope.manufacturers = manufacturers;
-		// 	console.log("Manufacturers: ", manufacturers);
-		// })
-
-		// // Load list of 
+		// Perform initial search
+		$scope.updateSearch();
 	};
 
-	$scope.init();
+	$scope.updateSearch = function() {
+		console.log("Searching with ", $scope.searchParams);
+
+		$http({
+			url: '/listings',
+			method: "GET",
+			params: $scope.searchParams
+		})
+		.success(function(data, status, headers, config) {
+			console.log("Got results: ", data);
+			$scope.listings = data;
+			
+		})
+		.error(function(data, status, headers, config) {
+			console.log("Got error: ", data);
+		});
+	};
+
+	this.init();
 });

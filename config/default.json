@@ -9,5 +9,10 @@
 		"business"	: {
 			"maxPostsPerMonth": 50
 		}
+	},
+	"email": {
+		"user": "nottheuser",
+		"password": "notthepassword",
+		"host": "notahost"
 	}
 }

@@ -2,7 +2,7 @@
 	<h1 class="text-center">My Account</h1>
 	<h3 class="text-center">{{user.username}}</h3>
 	<div class="row col-xs-12 space-sm"></div>
-	<form role="form">
+	<form role="form" name="form" ng-submit="saveUser()">
 		<div class="row">
 			<div class="col-sm-3">
 				<a>
@@ -19,8 +19,9 @@
 					<div class="form-group">
 						<label for="inputUsername" class="col-sm-3 control-label">Name</label>
 						<div class="input-group col-sm-9">
-							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.name || 'No name entered'}}"/>
-							<span class="input-group-addon">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.name || 'No name entered'}}" ng-if="!editing.name" />
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.name" ng-if="editing.name" />
+							<span class="input-group-addon" ng-click="editing.name = true" ng-if="!editing.name">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								<span>Edit</span>
 							</span>
@@ -29,8 +30,9 @@
 					<div class="form-group">
 						<label for="inputUsername" class="col-sm-3 control-label">Email</label>
 						<div class="input-group col-sm-9">
-							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.email}}"/>
-							<span class="input-group-addon">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.email}}" ng-if="!editing.email" />
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.email" ng-if="editing.email" required />
+							<span class="input-group-addon" ng-click="editing.email = true" ng-if="!editing.email">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							<span>Edit</span>
 							</span>
@@ -39,20 +41,66 @@
 					<div class="form-group">
 						<label for="inputUsername" class="col-sm-3 control-label">Phone Number</label>
 						<div class="input-group col-sm-9">
-							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.phone || 'No phone number entered'}}"/>
-							<span class="input-group-addon">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.phone || 'No phone number entered'}}" ng-if="!editing.phone" />
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.phone" ng-if="editing.phone" />
+							<span class="input-group-addon" ng-click="editing.phone = true" ng-if="!editing.phone">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							<span>Edit</span>
 							</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputUsername" class="col-sm-3 control-label">Location</label>
+						<label for="inputUsername" class="col-sm-3 control-label">Address 1</label>
 						<div class="input-group col-sm-9">
-							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{buildAddressString()}}"/>
-							<span class="input-group-addon">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.location.address1 || 'No address 1 entered'}}" ng-if="!editing.address1"/>
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.location.address1" ng-if="editing.address1" />
+							<span class="input-group-addon" ng-click="editing.address1 = true" ng-if="!editing.address1">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							<span>Edit</span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputUsername" class="col-sm-3 control-label">Address 2</label>
+						<div class="input-group col-sm-9">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.location.address2 || 'No address 2 entered'}}" ng-if="!editing.address2"/>
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.location.address2" ng-if="editing.address2" />
+							<span class="input-group-addon" ng-click="editing.address2 = true" ng-if="!editing.address2">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span>Edit</span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputUsername" class="col-sm-3 control-label">City</label>
+						<div class="input-group col-sm-9">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.location.city || 'No city entered'}}" ng-if="!editing.city"/>
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.location.city" ng-if="editing.city" />
+							<span class="input-group-addon" ng-click="editing.city = true" ng-if="!editing.city">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span>Edit</span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputUsername" class="col-sm-3 control-label">State</label>
+						<div class="input-group col-sm-9">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.location.state || 'No state entered'}}" ng-if="!editing.state"/>
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.location.state" ng-if="editing.state" />
+							<span class="input-group-addon" ng-click="editing.state = true" ng-if="!editing.state">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span>Edit</span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputUsername" class="col-sm-3 control-label">Zip</label>
+						<div class="input-group col-sm-9">
+							<input disabled type="text" class="form-control white-background round-corners" placeholder="{{user.location.zip || 'No zip code entered'}}" ng-if="!editing.zip"/>
+							<input type="text" class="form-control white-background all-round-corners" ng-model="editUser.location.zip" ng-if="editing.zip" />
+							<span class="input-group-addon" ng-click="editing.zip = true" ng-if="!editing.zip">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span>Edit</span>
 							</span>
 						</div>
 					</div>
@@ -68,7 +116,7 @@
 					</div>
 					<div class="form-group">
 						<div class="input-group col-sm-9 pull-right">
-							<button type="submit" class="btn btn-default blue-btn no-padding account-save-btn pull-right"><small>Save</small></button>
+							<button type="submit" class="btn btn-default blue-btn no-padding account-save-btn pull-right" ng-disabled="form.$pristine"><small>Save</small></button>
 						</div>
 					</div>
 				</div>
@@ -85,37 +133,47 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="changePasswordModal">Change Password</h4>
 			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<form class="form-horizontal" role="form" ng-submit="changePassword()">
-							<div class="form-group">
-								<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="changePassword.old" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="newPassword" class="col-sm-3 control-label">New Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="changePassword.new" required>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="verifyNewPassword" class="col-sm-3 control-label">Verify New Password</label>
-								<div class="col-sm-9">
-									<input type="password" class="form-control" id="verifyNewPassword" placeholder="Verify New Password" ng-model="changePassword.verifyNew" required>
-								</div>
-							</div>
-						</form>
+			<form role="form" ng-submit="changePassword()">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-10 col-sm-offset-1">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="editPassword.old" required>
+									</div>
 
+								</div>
+								<div class="passwords-dont-match" ng-if="editPassword.wrongPassword">
+									Wrong password
+								</div>
+								<div class="form-group">
+									<label for="newPassword" class="col-sm-3 control-label">New Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="editPassword.new" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="verifyNewPassword" class="col-sm-3 control-label">Verify New Password</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control" id="verifyNewPassword" placeholder="Verify New Password" ng-model="editPassword.verifyNew" required>
+									</div>
+
+								</div>
+								<div class="passwords-dont-match" ng-if="editPassword.dontMatch">
+									The new passwords don't match
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-default">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelChangePassword()">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

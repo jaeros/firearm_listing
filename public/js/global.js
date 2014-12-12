@@ -1,8 +1,9 @@
 var indexController = angular.module('GlobalController', []);
 
-indexController.controller('globalController', function($scope, $http, $window, $location, Manufacturers, Calibers) {
+indexController.controller('globalController', function($scope, $http, $window, $location, Manufacturers, Calibers, searchService, $route) {
 
 	$scope.isLoggedIn = $window.localStorage.getItem('token') != null;
+	$scope.searchBar = "";
 
 	$scope.checkLogin = function() {
 		$http.get('/users/test')
@@ -17,7 +18,6 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 	/* Login dialog */
 	$scope.doLogin = function(loginData) {
-		console.log("Logging in with user " + $scope.login_username + ", password " + $scope.login_password);
 
 		$http.post('users/login',
 		{
@@ -58,10 +58,10 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 		// Save token and user to storage
 		$window.localStorage.setItem('token', token);
-		$window.localStorage.setItem('user', user);	
+		$window.localStorage.setItem('user', user);
 
 		// Set user as logged in
-		$scope.isLoggedIn = true;	
+		$scope.isLoggedIn = true;
 	};
 
 	$scope.doLogout = function(skipAlert) {
@@ -82,7 +82,11 @@ indexController.controller('globalController', function($scope, $http, $window, 
 
 	// Called by main search bar, redirects to search page
 	$scope.doSearch = function() {
-		$location.path('/search').search('search', $scope.searchBar);
+		searchService.setSearch({search: $scope.searchBar});
+		if($location.path() === '/search')
+			$route.reload();
+		else
+			$location.path('/search');
 	};
 
 	$scope.loadManufacturers = function () {
