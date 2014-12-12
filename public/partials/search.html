@@ -36,6 +36,16 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
+
+					<div class="form-group">
+						<label for="searchText" class="col-sm-2 control-label">Title</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="searchParams.search" />
+						</div>
+					</div>
+
+					<div class="row col-xs-12 space-xs"></div>
+
 					<div class="form-group">
 						<label for="manufacturerFilter" class="col-sm-2 control-label">Manufacturer</label>
 						<div class="col-sm-10">
@@ -60,67 +70,17 @@
 
 					<div class="row col-xs-12 space-xs"></div>
 
-					<div class="form-group">
-						<label for="actionTypeFilter" class="col-sm-2 control-label">Action Type</label>
-						<div class="col-sm-10">
-							<select class="form-control">
-								<option>Action Type 1</option>
-								<option>Action Type 2</option>
-								<option>Action Type 3</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="row col-xs-12 space-xs"></div>
-
-					<div class="form-group">
-						<label for="actionTypeFilter" class="col-sm-2 control-label">Barrel Length</label>
-						<div class="col-sm-10">
-							<select class="form-control">
-								<option>Barrel Length 1</option>
-								<option>Barrel Length 2</option>
-								<option>Barrel Length 3</option>
-							</select>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="form-group">
 					<label for="actionTypeFilter" class="col-sm-2 control-label text-left">Price From</label>
 					<div class="col-sm-4">
-						<select class="form-control">
-							<option>$0</option>
-							<option>$50</option>
-							<option>$100</option>
-							<option>$150</option>
-							<option>$200</option>
-							<option>$250</option>
-							<option>$300</option>
-							<option>$350</option>
-							<option>$400</option>
-							<option>$450</option>
-							<option>$500</option>
-							<option>$550</option>
-							<option>$600</option>
-						</select>
+						<input type="text" class="form-control" ng-model="searchParams.minPrice" />
 					</div>
 					<label for="actionTypeFilter" class="col-sm-2 control-label text-left">Price To</label>
 					<div class="col-sm-4">
-						<select class="form-control">
-							<option>$0</option>
-							<option>$50</option>
-							<option>$100</option>
-							<option>$150</option>
-							<option>$200</option>
-							<option>$250</option>
-							<option>$300</option>
-							<option>$350</option>
-							<option>$400</option>
-							<option>$450</option>
-							<option>$500</option>
-							<option>$600</option>
-						</select>
+						<input type="text" class="form-control" ng-model="searchParams.minPrice" />
 					</div>
 				</div>
 			</div>
