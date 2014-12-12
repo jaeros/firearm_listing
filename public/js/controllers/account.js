@@ -2,7 +2,12 @@ var account = angular.module('AccountController', []);
 
 account.controller('accountController', function($scope, Users, $upload) {
 	this.init = function() {
-		$scope.user = JSON.parse(localStorage.getItem('user'));
+		$scope.changePassword = {};
+
+		if(localStorage.getItem('user'))
+			$scope.user = JSON.parse(localStorage.getItem('user'));
+		else
+			window.location = "/#";
 		$scope.files = [];
 
 		Users.get({userId: $scope.user._id}, function(user) {

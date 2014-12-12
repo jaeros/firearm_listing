@@ -106,7 +106,10 @@ myListings.controller('myListingsController', function($scope, Listings, $timeou
 	// Actual implementation
 
 	this.init = function() {
-		$scope.user = JSON.parse(localStorage.getItem('user'));
+		if(localStorage.getItem('user'))
+			$scope.user = JSON.parse(localStorage.getItem('user'));
+		else
+			window.location = "/#";
 
 		$scope.editing = false;
 		$scope.editListing = {};
