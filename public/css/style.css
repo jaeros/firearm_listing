@@ -121,6 +121,7 @@ header .navbar-form .form-group {
     height: auto !important;
     height: 100%;
     margin: 0 auto -45px;
+    background: #fdfdfd;
 }
 
 .footer, .push {
@@ -196,6 +197,7 @@ a h1 {
 a h1:hover {
 	color: darkgray;
 }
+
 
 /*********************************************************************************/
 /*LISTING STYLES*/
