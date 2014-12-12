@@ -37,7 +37,7 @@ listing.controller('listingController', function($scope, Listings, $location, $r
 	});
 
 	$scope.sendMessage = function(){
-		$http.post('/listings/message/',$scope.message).success(function(data, status, headers, config){
+		$http.post('/listings/' + listingId + '/message/',$scope.message).success(function(data, status, headers, config){
 			console.log("My data ",data);
 		}).error(function(data, status, headers, config){
 			console.log("My data ",data);
