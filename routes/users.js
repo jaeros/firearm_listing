@@ -97,7 +97,8 @@ router.put('/:userId', expressJwt({secret: _secret}), function(req, res) {
 		}
 		else
 		{
-			doc.password = hashPassword(req.body.password);
+			if(doc.password !== req.body.password)
+				doc.password = hashPassword(req.body.password);
 			doc.name = req.body.name;
 			doc.location = req.body.location;
 			doc.email = req.body.email;
